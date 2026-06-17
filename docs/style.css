@@ -1,282 +1,189 @@
-/* --- Variables et Reset --- */
+/* --- Palette de couleurs customisée --- */
 :root {
-    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    --primary-color: #2c3e50;    /* Bleu-gris foncé */
-    --accent-color: #00bcd4;     /* Cyan vif pour les accents */
-    --text-color: #34495e;       /* Texte principal */
-    --card-bg: #ffffff;
-    --shadow-light: 0 4px 6px rgba(0,0,0,0.1);
-    --shadow-hover: 0 10px 20px rgba(0,0,0,0.15);
-    --transition: all 0.3s ease;
+    --bg-main: #0D1117;       /* Fond sombre principal (style GitHub dark) */
+    --bg-card: #21262D;       /* Gris pour les cartes et conteneurs */
+    --accent-cyan: #00D4FF;   /* Cyan pour les titres et éléments interactifs */
+    --text-white: #E6EDF3;    /* Blanc cassé pour une lecture confortable */
+    --text-muted: #8B949E;    /* Gris clair pour les sous-titres / détails */
+    --success-green: #39D353; /* Vert signal pour les badges de validation/preuves */
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Fira Code', 'Segoe UI', Monaco, monospace; /* Police style dev */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-gradient);
-    background-attachment: fixed; /* Fond fixe pour l'effet de dégradé */
-    color: var(--text-color);
+    background-color: var(--bg-main);
+    color: var(--text-white);
     line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Pour que le footer reste en bas */
-}
-
-/* --- Utilitaires --- */
-.text-center { text-align: center; }
-.main-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 40px 20px;
-    flex: 1; /* Remplit l'espace pour pousser le footer */
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre horizontalement le contenu */
 }
 
 /* --- Header & Footer --- */
 header {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 60px 20px;
+    background-color: #161B22; /* Légèrement plus clair que le fond pour détacher */
+    padding: 3rem 1rem;
     text-align: center;
-    border-bottom: 4px solid var(--accent-color);
+    border-bottom: 2px solid var(--bg-card);
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 2.2rem;
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
 }
 
-.subtitle {
-    font-size: 1.2rem;
-    font-weight: 300;
-    opacity: 0.8;
+header p {
+    color: var(--accent-cyan);
+    font-weight: 500;
 }
 
 footer {
-    background-color: var(--primary-color);
-    color: white;
     text-align: center;
-    padding: 20px;
-    margin-top: auto; /* Pousse le footer vers le bas */
-    border-top: 2px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    background-color: #161B22;
+    color: var(--text-muted);
+    margin-top: 4rem;
+    font-size: 0.9rem;
+    border-top: 1px solid var(--bg-card);
 }
 
-/* --- Section Bienvenue --- */
-.welcome-section {
-    margin-bottom: 50px;
-    max-width: 700px;
+/* --- Conteneurs généraux --- */
+.container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
 }
 
-.welcome-section h2 {
-    font-size: 2rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
+.intro {
+    text-align: center;
+    margin-bottom: 3.5rem;
 }
 
-.welcome-section p {
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+.intro h2 {
+    color: var(--text-white);
+    font-size: 1.8rem;
+    margin-bottom: 0.75rem;
 }
 
-/* --- Grille des Boutons/Cartes (Accueil) --- */
-.competences-grid {
+.intro p {
+    color: var(--text-muted);
+}
+
+/* --- Grille des Boutons de l'accueil (5 Cartes) --- */
+.grid-competences {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    width: 100%; /* Occupe toute la largeur du conteneur */
+    gap: 1.5rem;
 }
 
-.comp-card {
-    background-color: var(--card-bg);
-    padding: 40px 30px;
-    border-radius: 15px;
+.btn-comp {
+    background-color: var(--bg-card);
+    border: 1px solid #30363D; /* Bordure fine style GitHub */
+    border-radius: 6px;
+    padding: 2rem 1.5rem;
     text-decoration: none;
-    color: var(--text-color);
-    text-align: center;
+    color: var(--text-white);
+    transition: all 0.25s ease-in-out;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition);
-    box-shadow: var(--shadow-light);
-    border: 1px solid rgba(0,0,0,0.05);
+    justify-content: flex-start;
 }
 
-.comp-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--accent-color);
+.btn-comp h3 {
+    color: var(--accent-cyan);
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
 }
 
-.card-icon {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    transition: var(--transition);
+.btn-comp p {
+    color: var(--text-white);
+    font-size: 0.95rem;
 }
 
-.comp-card:hover .card-icon {
-    transform: scale(1.1);
+/* Effet au survol (Hover) */
+.btn-comp:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
 }
 
-.comp-card h3 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    text-transform: uppercase;
-}
-
-.comp-card p {
-    font-size: 1rem;
-    font-weight: 300;
-}
-
-/* --- Style Pages de Compétence (Détails) --- */
-
-/* Bouton Retour */
-.back-nav {
-    width: 100%;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: flex-start; /* Aligne le bouton à gauche */
-}
-
+/* --- Styles des pages internes de Compétences --- */
 .btn-back {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--bg-main);
     text-decoration: none;
-    border-radius: 30px;
+    background-color: var(--accent-cyan);
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
     font-weight: bold;
-    transition: var(--transition);
-    box-shadow: var(--shadow-light);
-}
-
-.btn-back i {
-    margin-right: 10px;
+    transition: background 0.2s;
 }
 
 .btn-back:hover {
-    background-color: var(--accent-color);
-    transform: translateX(-3px);
+    background-color: #00b0d4;
 }
 
-/* Conteneur de détail centré */
-.comp-detail-container {
-    width: 100%;
-    max-width: 800px;
-    background-color: var(--card-bg);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: var(--shadow-light);
+.section-portfolio {
+    background-color: var(--bg-card);
+    border: 1px solid #30363D;
+    padding: 2.5rem;
+    border-radius: 6px;
+    margin-bottom: 2rem;
 }
 
-.comp-title-area {
-    text-align: center;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #eee;
+.section-portfolio h2 {
+    color: var(--text-white);
+    border-bottom: 1px solid #30363D;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
 }
 
-.comp-title-area h2 {
-    font-size: 2.2rem;
-    color: var(--primary-color);
-}
-
-.comp-title-area .comp-full-name {
-    font-size: 1.2rem;
-    color: var(--accent-color);
-    font-weight: 300;
-}
-
-/* Sections AC et Preuves */
-.detail-section {
-    margin-bottom: 30px;
-}
-
-.detail-section h3 {
-    font-size: 1.6rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.detail-section h3 i {
-    color: var(--accent-color);
-    margin-right: 10px;
-}
-
-/* Liste des AC */
-.ac-list {
+.liste-ac {
     list-style: none;
 }
 
-.ac-item {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    border-left: 4px solid #ddd;
-    transition: var(--transition);
+.liste-ac li {
+    padding: 1rem 0;
+    border-bottom: 1px solid #30363D;
+    color: var(--text-white);
 }
 
-.ac-item:hover {
-    border-left-color: var(--accent-color);
-    background-color: #f1f1f1;
+.liste-ac li strong {
+    color: var(--accent-cyan);
 }
 
-.ac-code {
-    font-weight: bold;
-    color: var(--primary-color);
-    margin-right: 10px;
+/* Bloc des réalisations (SAÉ / TP) */
+.projet-card {
+    background-color: #161B22;
+    border-left: 4px solid var(--accent-cyan);
+    padding: 1.5rem;
+    border-radius: 0 6px 6px 0;
+    margin-top: 1rem;
 }
 
-/* Liste des Preuves */
-.proof-item {
-    margin-bottom: 20px;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    border: 1px solid #eee;
+.projet-card h3 {
+    color: var(--text-white);
+    margin-bottom: 0.5rem;
 }
 
-.proof-item h4 {
-    color: var(--primary-color);
-    margin-bottom: 5px;
+.projet-card p {
+    color: var(--text-muted);
 }
 
-.proof-ac-ref {
-    font-size: 0.9rem;
-    color: #7f8c8d;
-    margin-bottom: 10px;
-    display: block;
-}
-
-.proof-proof {
+/* Badge en vert signal */
+.badge {
     display: inline-block;
-    padding: 5px 15px;
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 20px;
-    font-size: 0.9rem;
-}
-
-/* --- Adaptabilité (Responsive) --- */
-@media (max-width: 768px) {
-    header h1 { font-size: 2rem; }
-    .main-container { padding: 20px; }
-    .comp-detail-container { padding: 20px; }
-    .comp-title-area h2 { font-size: 1.8rem; }
+    background-color: rgba(57, 211, 83, 0.15);
+    color: var(--success-green);
+    border: 1px solid rgba(57, 211, 83, 0.3);
+    padding: 0.35rem 0.85rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-top: 1rem;
+    font-weight: bold;
 }

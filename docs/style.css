@@ -15,6 +15,12 @@
     font-family: 'Fira Code', 'Segoe UI', Monaco, monospace; /* Police style dev */
 }
 
+html, body {
+    height: 100%; /* Force le HTML et le BODY à prendre 100% de l'écran */
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-color: var(--bg-main);
     color: var(--text-white);

@@ -1,160 +1,282 @@
 /* --- Variables et Reset --- */
 :root {
-    --primary-color: #0f172a; /* Bleu très foncé / Slate */
-    --accent-color: #0284c7;  /* Bleu réseau/techno */
-    --bg-color: #f8fafc;      /* Fond clair */
-    --card-bg: #ffffff;      /* Fond des cartes */
-    --text-color: #334155;    /* Texte principal */
-    --text-light: #ffffff;
+    --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --primary-color: #2c3e50;    /* Bleu-gris foncé */
+    --accent-color: #00bcd4;     /* Cyan vif pour les accents */
+    --text-color: #34495e;       /* Texte principal */
+    --card-bg: #ffffff;
+    --shadow-light: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-hover: 0 10px 20px rgba(0,0,0,0.15);
+    --transition: all 0.3s ease;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-gradient);
+    background-attachment: fixed; /* Fond fixe pour l'effet de dégradé */
     color: var(--text-color);
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Pour que le footer reste en bas */
+}
+
+/* --- Utilitaires --- */
+.text-center { text-align: center; }
+.main-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1; /* Remplit l'espace pour pousser le footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centre horizontalement le contenu */
 }
 
 /* --- Header & Footer --- */
 header {
     background-color: var(--primary-color);
-    color: var(--text-light);
-    padding: 2.5rem 1rem;
+    color: white;
+    padding: 60px 20px;
     text-align: center;
-    position: relative;
+    border-bottom: 4px solid var(--accent-color);
 }
 
 header h1 {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.8;
 }
 
 footer {
-    text-align: center;
-    padding: 2rem;
     background-color: var(--primary-color);
-    color: var(--text-light);
-    margin-top: 3rem;
-}
-
-/* --- Conteneurs --- */
-.container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-}
-
-.intro {
+    color: white;
     text-align: center;
-    margin-bottom: 3rem;
+    padding: 20px;
+    margin-top: auto; /* Pousse le footer vers le bas */
+    border-top: 2px solid rgba(255,255,255,0.1);
 }
 
-.intro h2 {
+/* --- Section Bienvenue --- */
+.welcome-section {
+    margin-bottom: 50px;
+    max-width: 700px;
+}
+
+.welcome-section h2 {
+    font-size: 2rem;
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-bottom: 15px;
 }
 
-/* --- Grille des Boutons (Accueil) --- */
-.grid-competences {
+.welcome-section p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+/* --- Grille des Boutons/Cartes (Accueil) --- */
+.competences-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    gap: 25px;
+    width: 100%; /* Occupe toute la largeur du conteneur */
 }
 
-.btn-comp {
+.comp-card {
     background-color: var(--card-bg);
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 2rem 1.5rem;
+    padding: 40px 30px;
+    border-radius: 15px;
     text-decoration: none;
     color: var(--text-color);
-    transition: all 0.3s ease;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+    border: 1px solid rgba(0,0,0,0.05);
 }
 
-.btn-comp h3 {
-    color: var(--accent-color);
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-}
-
-.btn-comp:hover {
+.comp-card:hover {
     transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
     border-color: var(--accent-color);
-    box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.2);
 }
 
-/* --- Style Pages Internes --- */
+.card-icon {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    transition: var(--transition);
+}
+
+.comp-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.comp-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.comp-card p {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* --- Style Pages de Compétence (Détails) --- */
+
+/* Bouton Retour */
+.back-nav {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start; /* Aligne le bouton à gauche */
+}
+
 .btn-back {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--text-light);
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
     text-decoration: none;
-    background-color: var(--accent-color);
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    border-radius: 30px;
     font-weight: bold;
-    transition: background 0.2s;
+    transition: var(--transition);
+    box-shadow: var(--shadow-light);
+}
+
+.btn-back i {
+    margin-right: 10px;
 }
 
 .btn-back:hover {
-    background-color: #0369a1;
+    background-color: var(--accent-color);
+    transform: translateX(-3px);
 }
 
-.section-portfolio {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+/* Conteneur de détail centré */
+.comp-detail-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: var(--shadow-light);
 }
 
-.section-portfolio h2 {
+.comp-title-area {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #eee;
+}
+
+.comp-title-area h2 {
+    font-size: 2.2rem;
     color: var(--primary-color);
-    border-bottom: 3px solid var(--accent-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
 }
 
-.liste-ac {
+.comp-title-area .comp-full-name {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: 300;
+}
+
+/* Sections AC et Preuves */
+.detail-section {
+    margin-bottom: 30px;
+}
+
+.detail-section h3 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.detail-section h3 i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+/* Liste des AC */
+.ac-list {
     list-style: none;
 }
 
-.liste-ac li {
-    padding: 0.75rem 0;
-    border-bottom: 1px solid #e2e8f0;
+.ac-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border-left: 4px solid #ddd;
+    transition: var(--transition);
 }
 
-.liste-ac li strong {
-    color: var(--accent-color);
+.ac-item:hover {
+    border-left-color: var(--accent-color);
+    background-color: #f1f1f1;
 }
 
-.projet-card {
-    background-color: #f8fafc;
-    border-left: 5px solid var(--accent-color);
-    padding: 1.5rem;
-    border-radius: 0 8px 8px 0;
+.ac-code {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 10px;
 }
 
-.projet-card h3 {
-    margin-bottom: 0.5rem;
+/* Liste des Preuves */
+.proof-item {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #eee;
 }
 
-.badge {
+.proof-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.proof-ac-ref {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.proof-proof {
     display: inline-block;
-    background-color: #e2e8f0;
-    padding: 0.25rem 0.75rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    margin-top: 1rem;
-    font-weight: 500;
+    padding: 5px 15px;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* --- Adaptabilité (Responsive) --- */
+@media (max-width: 768px) {
+    header h1 { font-size: 2rem; }
+    .main-container { padding: 20px; }
+    .comp-detail-container { padding: 20px; }
+    .comp-title-area h2 { font-size: 1.8rem; }
 }

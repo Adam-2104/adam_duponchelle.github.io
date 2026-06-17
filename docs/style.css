@@ -20,10 +20,9 @@ body {
     color: var(--text-white);
     line-height: 1.6;
     
-    /* Ces 3 lignes magiques activent le mode Flexbox vertical */
+    /* Flexbox vertical strict */
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Force le body à faire au moins 100% de la hauteur de l'écran */
 }
 
 /* --- Header & Footer --- */
@@ -53,8 +52,8 @@ footer {
     font-size: 0.9rem;
     border-top: 1px solid var(--bg-card);
     
-    /* Sécurité pour qu'il reste bien ancré en bas */
-    margin-top: auto; 
+    /* Empêche le footer de se rétrécir */
+    flex-shrink: 0; 
 }
 
 /* --- Conteneurs généraux --- */
@@ -63,8 +62,8 @@ footer {
     margin: 3rem auto;
     padding: 0 1.5rem;
     
-    /* Permet à cette partie centrale de s'étirer et de pousser le footer */
-    flex: 1; 
+    /* Le flex-grow (le "1") force cette zone à pousser le footer tout en bas */
+    flex: 1 0 auto; 
 }
 
 .intro {

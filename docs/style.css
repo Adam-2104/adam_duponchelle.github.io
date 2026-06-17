@@ -89,22 +89,35 @@ footer {
 
 /* --- Grille des Boutons de l'accueil (5 Cartes) --- */
 .grid-competences {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;       /* Permet aux boutons de passer à la ligne suivante */
+    justify-content: center; /* Centre les éléments sur chaque ligne (aligne les 2 du bas) */
+    gap: 1.5rem;           /* Espace entre les boutons */
+    width: 100%;
+    max-width: 1000px;     /* Empêche la ligne de 3 de devenir trop large */
+    margin: 0 auto;        /* Centre tout le bloc sur la page */
 }
 
 .btn-comp {
     background-color: var(--bg-card);
-    border: 1px solid #30363D; /* Bordure fine style GitHub */
+    border: 1px solid #30363D;
     border-radius: 6px;
     padding: 2rem 1.5rem;
     text-decoration: none;
     color: var(--text-white);
     transition: all 0.25s ease-in-out;
+    
+    /* Configuration pour que chaque bouton prenne environ 30% de la largeur */
+    flex: 1 1 calc(33.333% - 1.5rem); 
+    min-width: 280px;      /* Sécurité pour le rendu sur smartphone */
+    max-width: 320px;      /* Évite que les 2 du bas s'étirent plus que les 3 du haut */
+
+    /* Centrage parfait du texte à l'intérieur du bouton */
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    align-items: center;    /* Centre horizontalement */
+    justify-content: center;/* Centre verticalement */
+    text-align: center;     /* Centre le texte multi-lignes */
 }
 
 .btn-comp h3 {

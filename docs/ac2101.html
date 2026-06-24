@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.01 - Routage dynamique</title>
+    <title>AC21.01 - Routage dynamique dans un réseau</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
-        
-        /* Bouton Retour Vert Plein */
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
         .btn-back:active { transform: scale(0.98); }
-
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -23,6 +20,7 @@
         .ac-footer strong { color: #ffffff; }
         .ac-footer a { color: #38bdf8; text-decoration: none; }
         .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -36,44 +34,46 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai configuré, interconnecté et dépanné des routeurs d'infrastructure pour qu'ils s'échangent automatiquement leurs réseaux via un protocole dynamique.</p>
+            <p>Dans le cadre de la SAE 303 (Pépinière multi-site), j'ai mis en place et configuré le protocole de routage dynamique OSPF (Open Shortest Path First) sur les routeurs de l'infrastructure afin de lier automatiquement le Siège et ses différentes succursales.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Le routage statique devient impossible à gérer lorsque la taille du réseau augmente ou que les liens physiques tombent en panne. Le routage dynamique permet d'automatiser la mise à jour des tables de routage et d'assurer une haute disponibilité sans intervention humaine.</p>
+            <p>Sur une topologie multi-site comprenant plusieurs sous-réseaux (VLANs d'administration, personnels, serveurs et production), l'utilisation de routes statiques devient rapidement lourde et complexe à maintenir. OSPF permet de découvrir automatiquement les chemins optimaux et d'assurer une convergence rapide du réseau en cas de coupure de lien.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En utilisant des équipements Cisco réels et le simulateur Packet Tracer. J'ai déployé le protocole <strong>OSPFv2</strong> (Open Shortest Path First) en définissant des aires, les IDs des routeurs, les réseaux directement connectés ainsi que les métriques associées à la bande passante.</p>
+            <p>J'ai activé le processus OSPF sur les routeurs clés et déclaré les réseaux locaux (VLANs 10, 20, 30, 40, 50) ainsi que les réseaux d'interconnexion WAN dans l'aire principale (Area 0) à l'aide des masques génériques (wildcard masks). J'ai également activé la journalisation des changements de voisinage pour faciliter la surveillance.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Lors de la phase de test, deux routeurs refusaient de devenir voisins (pas d'adjacence). Après diagnostic, j'ai identifié une incohérence sur les masques génériques (wildcard masks) déclarés ainsi que sur les timers d'envoi des paquets Hello.</p>
+            <p>Lors de l'établissement du tunnel inter-sites, les routes dynamiques OSPF saturaient inutilement les réseaux d'interconnexion en propageant des messages Hello sur les interfaces d'accès clients. J'ai résolu ce problème en configurant des interfaces passives (<code>passive-interface</code>) vers les LANs pour bloquer ces annonces inutiles sans couper le routage.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris l'importance de l'état des liens dans la vitesse de convergence d'un réseau et j'ai appris à maîtriser les outils essentiels de dépannage en CLI comme <code>show ip route</code> et <code>show ip ospf neighbor</code>.</p>
+            <p>J'ai compris le fonctionnement des algorithmes à état de lien, l'importance des wildcard masks pour cibler précisément les réseaux, et la manière d'analyser une table de routage dynamique via la commande <code>show ip route ospf</code>.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Je mettrais systématiquement en place une authentification (MD5 ou SHA) dès le départ entre les routeurs voisins pour éviter qu'un équipement malveillant ou non autorisé puisse injecter de fausses routes dans notre infrastructure.</p>
+            <p>À la place d'une seule grande Area 0, j'organiserais le réseau de manière hiérarchique en créant des aires secondaires (Multi-area OSPF) pour chaque succursale. Cela réduirait la taille des bases de données de topologie (LSDB) sur les routeurs et optimiserait la bande passante globale.</p>
         </section>
 
         <footer class="ac-footer">
-            <strong>Preuve :</strong> <p>router ospf 1 
-log-adjacency-changes 
-network 192.168.10.0 0.0.0.255 area 0 
-network 192.168.20.0 0.0.0.255 area 0 
-network 192.168.30.0 0.0.0.255 area 0 
-network 192.168.40.0 0.0.0.255 area 0 
-network 192.168.50.0 0.0.0.255 area 0 
-network 172.16.0.0 0.0.0.255 area 0 
-network 172.16.1.0 0.0.0.255 area 0</p>
+            📂 <strong>Trace ciblée :</strong> Extraits des commandes d'activation réseau
+            <pre>
+router ospf 1
+ log-adjacency-changes
+ network 192.168.10.0 0.0.0.255 area 0
+ network 192.168.20.0 0.0.0.255 area 0
+ network 192.168.30.0 0.0.0.255 area 0
+ network 192.168.40.0 0.0.0.255 area 0
+ network 192.168.50.0 0.0.0.255 area 0
+ network 172.16.0.0 0.0.0.255 area 0
+ network 172.16.1.0 0.0.0.255 area 0</pre>
         </footer>
     </div>
 </body>

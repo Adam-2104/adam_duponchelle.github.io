@@ -7,14 +7,14 @@
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; gap: 8px; color: #aaa; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: color 0.2s; }
+        .btn-back:hover { color: #4ade80; }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
         .ac-section { margin-bottom: 30px; }
         .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; }
-        .ac-section ul { padding-left: 20px; margin: 0; }
-        .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; }
         .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
@@ -24,45 +24,43 @@
 </head>
 <body>
     <div class="ac-container">
+        <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
+
         <header class="ac-header">
             <h1>AC21.01</h1>
             <p>Configurer et dépanner le routage dynamique dans un réseau</p>
         </header>
 
         <section class="ac-section">
-            <h2>Objectif</h2>
-            <p>Mettre en place et fiabiliser des protocoles de routage dynamique pour assurer l'interconnexion automatique et la convergence des tables de routage entre différents sous-réseaux.</p>
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai configuré, interconnecté et dépanné des routeurs d'infrastructure pour qu'ils s'échangent automatiquement leurs réseaux via un protocole dynamique.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Compétences</h2>
-            <ul>
-                <li>Configuration de protocoles de routage dynamique (OSPF, RIPv2 ou EIGRP).</li>
-                <li>Analyse et diagnostic de pannes de routage (détection de boucles, interfaces passives).</li>
-                <li>Optimisation de la convergence réseau et manipulation des métriques.</li>
-            </ul>
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Le routage statique devient impossible à gérer lorsque la taille du réseau augmente ou que les liens physiques tombent en panne. Le routage dynamique permet d'automatiser la mise à jour des tables de routage et d'assurer une haute disponibilité sans intervention humaine.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Le contexte</h2>
-            <p>Cette activité a été menée dans le cadre de nos TP d'architecture réseau et des interconnexions multi-sites de nos maquettes de réseaux d'entreprise à l'IUT.</p>
-        </section>
-
-        <section class="ac-section">
-            <h2>La mise en œuvre</h2>
+            <h2>Comment je l’ai fait</h2>
             <div class="ac-box">
-                <p>J'ai configuré le protocole OSPF (Open Shortest Path First) sur des routeurs Cisco pour interconnecter plusieurs aires réseaux. J'ai défini les ID de routeurs, propagé les réseaux directement connectés et sécurisé les échanges de tables de routage.</p>
+                <p>En utilisant des équipements Cisco réels et le simulateur Packet Tracer. J'ai déployé le protocole <strong>OSPFv2</strong> (Open Shortest Path First) en définissant des aires, les IDs des routeurs, les réseaux directement connectés ainsi que les métriques associées à la bande passante.</p>
             </div>
         </section>
 
         <section class="ac-section">
-            <h2>Les difficultés rencontrées</h2>
-            <p>Lors des tests, certains routeurs ne parvenaient pas à établir de relations d'adjacence. Le problème venait d'une erreur de masque générique (wildcard mask) dans la déclaration des réseaux et d'une discordance sur les timers Hello/Dead.</p>
+            <h2>Mes difficultés</h2>
+            <p>Lors de la phase de test, deux routeurs refusaient de devenir voisins (pas d'adjacence). Après diagnostic, j'ai identifié une incohérence sur les masques génériques (wildcard masks) déclarés ainsi que sur les timers d'envoi des paquets Hello.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Ce que j'ai appris</h2>
-            <p>J'ai compris comment un réseau converge de manière autonome lors d'une coupure de lien et j'ai appris à utiliser les outils de diagnostic essentiels comme <code>show ip route</code> et <code>show ip ospf neighbor</code>.</p>
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris l'importance de l'état des liens dans la vitesse de convergence d'un réseau et j'ai appris à maîtriser les outils essentiels de dépannage en CLI comme <code>show ip route</code> et <code>show ip ospf neighbor</code>.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Je mettrais systématiquement en place une authentification (MD5 ou SHA) dès le départ entre les routeurs voisins pour éviter qu'un équipement malveillant ou non autorisé puisse injecter de fausses routes dans notre infrastructure.</p>
         </section>
 
         <footer class="ac-footer">

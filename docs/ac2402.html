@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC24.02Cyber - Sécurisation d'Infrastructure</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AC24.02Cyber | Sécurisation d'Infrastructure</h1>
+        <p>Mettre en œuvre les outils fondamentaux de sécurisation d’une infrastructure du réseau</p>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
+        </div>
+
+        <section class="section-portfolio">
+            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
+            <p>Le déploiement de la maquette d'entreprise distribuée dans la <strong>SAÉ 4.Cyber.01</strong> incluait l'intégration d'une couche périmétrique de sécurité stateful avancée.</p>
+            
+            <div class="projet-card">
+                <h3>Détails Techniques de la Preuve :</h3>
+                <ul>
+                    <li><strong>Pare-feu Cisco ASA 5506-X :</strong> Configuration complète du firewall de bordure définissant les interfaces de sécurité fondamentales : <code>Inside</code> (réseau interne), <code>Outside</code> (Internet), et <code>DMZ</code> (serveurs publics).</li>
+                    <li><strong>Filtrage Dynamique & Inspection :</strong> Implémentation d'une matrice de flux stricte avec des règles de pare-feu et l'activation de l'inspection dynamique des protocoles (<code>inspect icmp</code>) pour autoriser les réponses légitimes tout en bloquant les requêtes non initiées depuis l'extérieur.</li>
+                    <li><strong>Sécurisation Commutée :</strong> Durcissement des commutateurs de niveau 3 (SR1) par des listes de contrôle d'accès (ACL) restrictives empêchant les rebonds internes.</li>
+                </ul>
+                <span class="badge">Livrable : Code de Configuration Cisco ASA & Matrice de Flux</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio BUT R&T</p>
+    </footer>
+
+</body>
+</html>

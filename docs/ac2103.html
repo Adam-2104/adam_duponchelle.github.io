@@ -3,24 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.03 - Déploiement clients et solutions virtualisées</title>
-    <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
-        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
-        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
-        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
-        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
-        .ac-section { margin-bottom: 30px; }
-        .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
-        .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; }
-        .ac-section ul { padding-left: 20px; margin: 0; }
-        .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; }
-        .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; }
-        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
-    </style>
+    <title>AC21.03 - Postes clients et virtualisation</title>
+    <style>/* Même CSS */ body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; } .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); } .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; } .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; } .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; } .ac-section { margin-bottom: 30px; } .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; } .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; } .ac-section ul { padding-left: 20px; margin: 0; } .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; } .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; } .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; } .ac-footer strong { color: #ffffff; } .ac-footer a { color: #38bdf8; text-decoration: none; } .ac-footer a:hover { text-decoration: underline; }</style>
 </head>
 <body>
     <div class="ac-container">
@@ -31,43 +15,42 @@
 
         <section class="ac-section">
             <h2>Objectif</h2>
-            <p>Être capable de préparer, configurer et déployer efficacement des systèmes d'exploitation pour des clients d'entreprise, ainsi que d'installer des infrastructures de stockage ou applicatives virtualisées.</p>
+            <p>Maîtriser le déploiement propre de systèmes d'exploitation sur des postes de travail et monter des serveurs ou services virtualisés répondant aux besoins de l'entreprise.</p>
         </section>
 
         <section class="ac-section">
             <h2>Compétences</h2>
             <ul>
-                <li>Masterisation et contournement des restrictions de configuration au démarrage des OS (Windows 11 Pro).</li>
-                <li>Mise en œuvre d'environnements virtualisés pour héberger des services de stockage et de centralisation.</li>
-                <li>Préparation et brassage physique de postes clients en réseau local.</li>
+                <li>Installation avancée, automatisation et contournement d'OS (Windows 11 Pro).</li>
+                <li>Configuration d'hyperviseurs (Type 1 et Type 2) pour l'hébergement d'infrastructures.</li>
+                <li>Allocation optimale des ressources matérielles virtuelles (vCPU, RAM, Stockage).</li>
             </ul>
         </section>
 
         <section class="ac-section">
             <h2>Le contexte</h2>
-            <p>Cette compétence a été validée durant mon <strong>stage de technicien informatique chez BM-Tech</strong>, où j'ai géré la maintenance, la configuration matérielle et le déploiement de flottes de machines clients.</p>
+            <p>Cette compétence s'appuie sur mon expérience terrain lors de mon <strong>stage chez BM-Tech</strong> ainsi que nos ateliers pratiques sur VMware et Proxmox.</p>
         </section>
 
         <section class="ac-section">
             <h2>La mise en œuvre</h2>
             <div class="ac-box">
-                <p>J'ai préparé et installé plusieurs postes clients sous Windows 11 Professionnel. Face aux contraintes d'installation initiale sans compte Microsoft obligatoire, j'ai exploité la commande <code>OOBE\BYPASSNRO</code> via l'invite de commande pour contourner l'obligation de connexion réseau.</p>
-                <p>En parallèle, j'ai déployé et optimisé des solutions virtualisées comme TrueNAS et Nextcloud pour tester des configurations de serveurs NAS de sauvegarde de fichiers centralisés.</p>
+                <p>Pendant mon stage, j'ai préparé et packagé des postes clients d'entreprise. Pour accélérer les configurations hors-ligne de Windows 11 sans compte cloud imposé, j'ai exploité le bypass machine <code>OOBE\BYPASSNRO</code>. J'ai aussi déployé des instances de serveurs NAS via TrueNAS et des clouds privés avec Nextcloud en environnement virtualisé.</p>
             </div>
         </section>
 
         <section class="ac-section">
             <h2>Les difficultés rencontrées</h2>
-            <p>L'obligation par défaut de Microsoft de disposer d'une connexion Internet active et d'un compte cloud lors du premier démarrage bloquait le déploiement hors-ligne des machines. Il a fallu identifier et utiliser les options de contournement système adaptées.</p>
+            <p>Les restrictions de sécurité et d'authentification réseau de Microsoft lors des phases d'installation initiale (OOBE) ralentissaient les installations à la chaîne, nécessitant le recours à des scripts de contournement en ligne de commande.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j'ai appris</h2>
-            <p>J'ai développé une autonomie sur le paramétrage avancé des OS d'entreprise et j'ai acquis une solide expérience sur les technologies de serveurs de stockage en réseau (NAS) et la virtualisation légère.</p>
+            <p>J'ai consolidé mes bases en gestion de parc informatique client et assimilé les mécanismes indispensables de cloisonnement et d'allocation en virtualisation de serveurs.</p>
         </section>
 
         <footer class="ac-footer">
-            <strong>Preuve :</strong> <a href="#" target="_blank">rapport_de_stage_duponchelle_adam.pdf</a> (Section Préparation et configuration des postes).
+            <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_de_stage_BM-Tech.pdf</a>
         </footer>
     </div>
 </body>

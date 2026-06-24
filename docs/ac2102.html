@@ -3,40 +3,160 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.02 - QoS & Sécurité de Base</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Détail AC - Alignement Vertical</title>
+    <style>
+        /* --- STYLE GLOBAL --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212; /* Fond sombre */
+            color: #e0e0e0;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- CONTENEUR PRINCIPAL DE L'AC --- */
+        .ac-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #1e1e1e;
+            border: 1px solid #2d2d2d;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        /* --- EN-TÊTE : CODE AC & LIBELLÉ --- */
+        .ac-header {
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .ac-header h1 {
+            font-size: 2rem;
+            color: #4ade80; /* Vert pour le code AC */
+            margin: 0 0 10px 0;
+        }
+
+        .ac-header p {
+            font-size: 1.1rem;
+            color: #b3b3b3;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* --- BLOCS DE CONTENU (TOUS À LA VERTICALE) --- */
+        .ac-section {
+            margin-bottom: 25px;
+        }
+
+        .ac-section h2 {
+            font-size: 1.2rem;
+            color: #ffffff;
+            border-bottom: 1px solid #333;
+            padding-bottom: 6px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        /* Liste pour les indicateurs */
+        .ac-section ul {
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .ac-section li {
+            margin-bottom: 6px;
+            color: #cccccc;
+            line-height: 1.4;
+        }
+
+        /* Paragraphes de texte (Contexte, Travail) */
+        .ac-section p {
+            margin: 0 0 10px 0;
+            line-height: 1.6;
+            color: #cccccc;
+        }
+
+        /* Encadré spécial pour la Description / Justifications */
+        .ac-highlight-box {
+            background-color: #252526;
+            border-left: 4px solid #4ade80;
+            padding: 18px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .ac-highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* --- PIED DE FICHE : PREUVES --- */
+        .ac-proofs {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            margin-top: 30px;
+        }
+
+        .ac-proofs strong {
+            color: #ffffff;
+        }
+
+        .ac-proofs a {
+            color: #38bdf8; /* Bleu clair pour les fichiers/liens */
+            text-decoration: none;
+        }
+
+        .ac-proofs a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <h1>AC21.02 | QoS & Sécurité</h1>
-        <p>Configurer et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau</p>
-    </header>
+    <div class="ac-container">
+        
+        <header class="ac-header">
+            <h1>AC21.02</h1>
+            <p>Configure et explique une politique simple de QoS et les fonctions de base de la sécurité</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
-        </div>
+        <section class="ac-section">
+            <h2>🎯 Indicateurs d'évaluation</h2>
+            <ul>
+                <li>Segmentation réseau (VLAN L2)</li>
+                <li>Listes de contrôle d'accès (ACLs)</li>
+                <li>Redondance de passerelle (HSRP)</li>
+            </ul>
+        </section>
 
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 303)</h2>
-            <p>Lors du déploiement de l'infrastructure de la pépinière multi-site, j'ai pris en charge le fractionnement logique et la sécurisation des flux réseau essentiels à l'entreprise.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Segmentation LAN (VLANs) :</strong> Isolation complète des services de l'entreprise en 5 VLANs distincts de niveau 2 (Admin, Personnel, Vidéo, Production, et Invité) associés à des sous-réseaux IP de classe C.</li>
-                    <li><strong>Sécurisation par ACLs :</strong> Définition et application de listes de contrôle d'accès (ACLs) IP nommées sur les interfaces de distribution Cisco pour empêcher le réseau "Invité" ou "Personnel" d'interroger la zone "Admin".</li>
-                    <li><strong>Redondance et Résilience :</strong> Configuration du protocole <strong>HSRP (Hot Standby Router Protocol)</strong> pour assurer la redondance des passerelles par défaut et maintenir la continuité de service sans coupure.</li>
-                </ul>
-                <span class="badge">Livrable : Schéma d'Architecture & Rapport SAÉ 303</span>
+        <section class="ac-section">
+            <h2>💼 Contexte de réalisation</h2>
+            <p><strong>Cadre :</strong> SAÉ 303 — Pépinière Multi-site</p>
+            <p><strong>Description :</strong> Segmentation logique et isolation des flux de l'entreprise sur l'infrastructure du siège social.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>🛠️ Travail Réalisé & Justifications</h2>
+            <div class="ac-highlight-box">
+                <p>
+                    J'ai configuré la segmentation de niveau 2 en découpant logiquement le LAN en 5 VLANs distincts (Admin, Personnel, Vidéo, Production, Invité) associés à des sous-réseaux IP de classe C.
+                </p>
+                <p>
+                    Pour assurer la sécurité à la distribution, j'ai écrit et appliqué des listes d'accès (ACLs) IP nommées sur les commutateurs Cisco de niveau 3 pour interdire aux VLANs "Invité" et "Personnel" d'initier des flux vers le VLAN "Admin". De plus, la redondance des passerelles par défaut a été configurée via le protocole HSRP.
+                </p>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <footer class="ac-proofs">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">RAPPORT_SAE303_Duponchelle_Adam_Grévin_Antoine.pdf</a> (Topologie et architecture des VLANs, pages 2-3).
+        </footer>
+
+    </div>
 
 </body>
 </html>

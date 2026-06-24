@@ -3,40 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.03 - Déploiement Postes & Virtualisation</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC21.03 - Déploiement clients et solutions virtualisées</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; }
+        .ac-section ul { padding-left: 20px; margin: 0; }
+        .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; }
+        .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <header class="ac-header">
+            <h1>AC21.03</h1>
+            <p>Déploier des postes clients et des solutions virtualisées adaptées à une situation donnée</p>
+        </header>
 
-    <header>
-        <h1>AC21.03 | Déploiement & Virtualisation</h1>
-        <p>Déployer des postes clients et des solutions virtualisées adaptées à une situation donnée</p>
-    </header>
+        <section class="ac-section">
+            <h2>Objectif</h2>
+            <p>Être capable de préparer, configurer et déployer efficacement des systèmes d'exploitation pour des clients d'entreprise, ainsi que d'installer des infrastructures de stockage ou applicatives virtualisées.</p>
+        </section>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
-        </div>
+        <section class="ac-section">
+            <h2>Compétences</h2>
+            <ul>
+                <li>Masterisation et contournement des restrictions de configuration au démarrage des OS (Windows 11 Pro).</li>
+                <li>Mise en œuvre d'environnements virtualisés pour héberger des services de stockage et de centralisation.</li>
+                <li>Préparation et brassage physique de postes clients en réseau local.</li>
+            </ul>
+        </section>
 
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (Stage chez BM-Tech)</h2>
-            <p>Pendant mon stage de technicien au sein de l'entreprise <strong>BM-Tech</strong>, j'ai été pleinement chargé de la préparation, du déploiement massif et de la maintenance de flottes de postes clients pour divers environnements professionnels (mairies, écoles, entreprises privées).</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Configuration Système & OS :</strong> Installation, optimisation et déploiement de systèmes d'exploitation Windows 11 Professionnel. Utilisation de commandes avancées au premier démarrage (comme <code>OOBE\BYPASSNRO</code>) pour s'affranchir des restrictions réseau initiales et installer des comptes locaux administrés.</li>
-                    <li><strong>Virtualisation :</strong> Déploiement et tests d'environnements systèmes virtualisés ou serveurs applicatifs (ex: solutions NAS basées sur TrueNAS) pour valider des environnements de stockage et de partage sécurisés avant mise en production.</li>
-                    <li><strong>Interventions sur site :</strong> Livraison, brassage d'armoires réseaux, raccordement et intégration finale des machines au domaine de l'organisation cliente.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport de Stage (BM-Tech)</span>
+        <section class="ac-section">
+            <h2>Le contexte</h2>
+            <p>Cette compétence a été validée durant mon <strong>stage de technicien informatique chez BM-Tech</strong>, où j'ai géré la maintenance, la configuration matérielle et le déploiement de flottes de machines clients.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>La mise en œuvre</h2>
+            <div class="ac-box">
+                <p>J'ai préparé et installé plusieurs postes clients sous Windows 11 Professionnel. Face aux contraintes d'installation initiale sans compte Microsoft obligatoire, j'ai exploité la commande <code>OOBE\BYPASSNRO</code> via l'invite de commande pour contourner l'obligation de connexion réseau.</p>
+                <p>En parallèle, j'ai déployé et optimisé des solutions virtualisées comme TrueNAS et Nextcloud pour tester des configurations de serveurs NAS de sauvegarde de fichiers centralisés.</p>
             </div>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Les difficultés rencontrées</h2>
+            <p>L'obligation par défaut de Microsoft de disposer d'une connexion Internet active et d'un compte cloud lors du premier démarrage bloquait le déploiement hors-ligne des machines. Il a fallu identifier et utiliser les options de contournement système adaptées.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Ce que j'ai appris</h2>
+            <p>J'ai développé une autonomie sur le paramétrage avancé des OS d'entreprise et j'ai acquis une solide expérience sur les technologies de serveurs de stockage en réseau (NAS) et la virtualisation légère.</p>
+        </section>
+
+        <footer class="ac-footer">
+            <strong>Preuve :</strong> <a href="#" target="_blank">rapport_de_stage_duponchelle_adam.pdf</a> (Section Préparation et configuration des postes).
+        </footer>
+    </div>
 </body>
 </html>

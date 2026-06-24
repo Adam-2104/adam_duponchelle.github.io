@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.06 - Travail en équipe</title>
+    <title>AC21.06 - Travailler en équipe</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,7 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        .trace-image { max-width: 100%; height: auto; border: 1px solid #3a3a3a; border-radius: 6px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -33,36 +32,38 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai travaillé en équipe sur des projets R&T : répartition des tâches, livrabiles communs et coordination technique.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01 (Sécuriser un système d'information), j'ai collaboré activement au sein d'un groupe projet de quatre personnes. Nous avons mis en place une organisation collective rigoureuse basée sur la spécialisation technique et le partage de compétences.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Je l'ai fait parce que la compétence professionnelle ne se limite pas à la technique individuelle : un projet n'aboutit que si les contributions s'assemblent correctement.</p>
+            <p>La mise en sécurité d'une infrastructure réseau complète et multi-site demande un large panel de compétences (durcissement système, sécurité web, routage, cryptographie). Face à la densité des exigences de l'ANSSI, le travail en équipe permet de paralléliser les tâches complexes, d'avancer plus vite et de croiser nos regards lors des phases de tests et d'audit.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>Par le découpage et la répartition des rôles selon les domaines à traiter (adressage, routage, services, tests), la planification de points réguliers pour synchroniser les configurations et éviter les incohérences, et la centralisation des captures, schémas et tests pour produire un livrable cohérent.</p>
+            <p>Dès le lancement du projet, nous avons formalisé une matrice de répartition des rôles en fonction des affinités techniques de chacun. J'ai pris en charge le volet lié à l'application des recommandations ANSSI sur l'infrastructure (VLANs, ACLs et configurations ASA). Pour assurer la cohérence, nous avons partagé nos configurations via un espace commun et effectué des revues croisées de notre "Write-Up" technique final.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>La principale difficulté a été la coordination. Une configuration juste localement peut provoquer un problème global si les hypothèses de travail ne sont pas partagées.</p>
+            <p>La principale difficulté résidait dans l'interdépendance de nos spécialisations. Par exemple, les règles de filtrage réseau (mon rôle) bloquaient initialement les requêtes de validation DNSSEC ou l'accès Web HTTPS gérés par mes camarades. Nous avons surmonté cela en établissant une communication constante et en menant des sessions de débogage communes pour ajuster les matrices de flux.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai appris que documenter et communiquer font partie du travail technique. L'efficacité d'équipe repose autant sur la lisibilité du travail que sur la qualité de la configuration.</p>
+            <p>J'ai compris l'importance de la coordination de groupe, de la gestion du temps et de la documentation technique partagée. Travailler à plusieurs m'a aussi permis de développer mes compétences d'écoute professionnelle et d'adaptation aux contraintes techniques des autres.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Je formaliserais davantage les responsabilités de test et les critères de validation communs avant la phase d'intégration.</p>
+            <p>Pour fluidifier encore davantage l'intégration de nos travaux respectifs, j'introduisais des outils de gestion de projet plus formels comme un tableau Kanban (Trello) ainsi qu'un dépôt de versioning Git commun. Cela aurait permis de suivre en temps réel l'avancement des configurations de chacun et d'éviter les frictions de synchronisation de fichiers.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Suivi_Projet_SAE303_Groupe.pdf</a>
+            <strong>Trace ciblée :</strong> Matrice de répartition des tâches et des spécialisations de l'équipe (SAE 4.Cyber.01)
+            <br>
+            <img src="repartition_equipe.png" alt="Tableau de répartition des tâches d'équipe" class="trace-image">
         </footer>
     </div>
 </body>

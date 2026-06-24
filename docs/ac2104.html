@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.04 - Services réseaux avancés</title>
+    <title>AC21.04 - Déployer des services réseaux avancés</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -20,6 +20,7 @@
         .ac-footer strong { color: #ffffff; }
         .ac-footer a { color: #38bdf8; text-decoration: none; }
         .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,36 +34,47 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai déployé et configuré une infrastructure d'annuaire Active Directory sous Windows Server, incluant des rôles DNS et des serveurs mandataires (proxy).</p>
+            <p>Dans le cadre de la sécurisation des infrastructures de la SAE 4.Cyber.01, j'ai participé au déploiement et à l'authentification d'un service de résolution de noms durci via la mise en œuvre de l'extension de sécurité DNSSEC sur notre infrastructure Linux (serveur Bind9).</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Pour centraliser la gestion des droits, l'authentification des utilisateurs et sécuriser la navigation web des postes de travail au sein du réseau de l'entreprise locale.</p>
+            <p>Le protocole DNS classique n'intègre aucun mécanisme de vérification de l'origine des données. Un attaquant peut facilement injecter de fausses réponses (DNS Spoofing / Cache Poisoning) pour rediriger les clients vers des serveurs malveillants. Déployer DNSSEC permet de signer cryptographiquement les zones afin de garantir l'intégrité des résolutions et l'authenticité de la source.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En SAÉ 303, j'ai installé Windows Server, créé la structure des Unités d'Organisation (OU) et configuré des <strong>stratégies de groupe (GPO)</strong> pour brider les accès locaux (panneau de configuration). J'ai également couplé l'architecture à un proxy WinGate/Squid pour filtrer les flux HTTP.</p>
+            <p>J'ai généré un couple de clés asymétriques en utilisant l'algorithme RSASHA256 : une clé de signature de zone (ZSK) de 2048 bits pour signer périodiquement les enregistrements de ressources de notre domaine, et une clé de signature de clés (KSK) plus robuste de 4096 bits pour signer la ZSK et établir l'ancrage de la chaîne de confiance vers la zone parente.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Les nouvelles GPOs ne s'appliquaient pas sur les postes clients de test. Après investigation, j'ai découvert un décalage d'horloge de plus de 5 minutes entre le client et le serveur, ce qui bloquait le protocole d'authentification Kerberos.</p>
+            <p>L'une des difficultés a été de comprendre l'articulation de la hiérarchie des clés (KSK vs ZSK) et d'automatiser la signature de la zone sans corrompre les fichiers de configuration initiaux de Bind9, ce qui rendait le domaine temporairement injoignable si les fichiers `.signed` n'étaient pas correctement référencés.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai appris à orchestrer des services d'infrastructure dépendants les uns des autres (pas d'Active Directory fonctionnel sans un serveur DNS et un serveur de temps NTP parfaitement réglés).</p>
+            <p>J'ai maîtrisé les commandes de l'outil <code>dnssec-keygen</code>, compris l'importance de la taille des clés cryptographiques selon leur rôle fonctionnel, et assimilé le mécanisme de validation des requêtes côté résolveur (directive <code>dnssec-validation auto</code>).</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>J'essaierais de réaliser ce même travail sous un environnement Linux (avec Samba4 pour l'Active Directory) afin de comparer la flexibilité d'administration et d'évaluer le gain financier sur les licences système.</p>
+            <p>Au lieu d'utiliser l'algorithme RSA traditionnel qui génère de gros paquets réseaux et consomme des cycles CPU, j'opterais pour l'algorithme ECDSA (courbes elliptiques) comme ECDSAP256SHA256, permettant d'obtenir une sécurité équivalente avec des clés et des signatures beaucoup plus légères.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Maîtrise technologique</h2>
+            <p><strong>Protocoles & Outils :</strong> DNSSEC, Bind9, dnssec-keygen, RSASHA256.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Dossier_Technique_Windows_Server_SAE303.pdf</a>
+            <strong>Trace ciblée :</strong> Commandes de génération des paires de clés de confiance (ZSK et KSK)
+            <pre>
+# ZSK (Zone Signing Key) — signe les enregistrements de la zone 
+sudo dnssec-keygen -a RSASHA256 -b 2048 -n ZONE example.local 
+
+# KSK (Key Signing Key) — signe les autres clés (chaîne de confiance) 
+sudo dnssec-keygen -f KSK -a RSASHA256 -b 4096 -n ZONE example.local</pre>
         </footer>
     </div>
 </body>

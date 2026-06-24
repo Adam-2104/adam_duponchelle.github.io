@@ -1,22 +1,16 @@
 /* --- Palette de couleurs customisée --- */
 :root {
-    --bg-main: #0D1117;       /* Fond sombre principal (style GitHub dark) */
-    --bg-card: #21262D;       /* Gris pour les cartes et conteneurs */
-    --accent-cyan: #00D4FF;   /* Cyan pour les titres et éléments interactifs */
-    --text-white: #E6EDF3;    /* Blanc cassé pour une lecture confortable */
-    --text-muted: #8B949E;    /* Gris clair pour les sous-titres / détails */
-    --success-green: #39D353; /* Vert signal pour les badges de validation/preuves */
+    --bg-main: #0D1117;       
+    --bg-card: #21262D;       
+    --accent-cyan: #00D4FF;   
+    --text-white: #E6EDF3;    
+    --text-muted: #8B949E;    
+    --success-green: #39D353; 
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Fira Code', 'Segoe UI', Monaco, monospace; /* Police style dev */
-}
-
+/* --- Structure d'ancrage du footer --- */
 html, body {
-    height: 100%; /* Force le HTML et le BODY à prendre 100% de l'écran */
+    height: 100%;
     margin: 0;
     padding: 0;
 }
@@ -25,15 +19,14 @@ body {
     background-color: var(--bg-main);
     color: var(--text-white);
     line-height: 1.6;
-    
-    /* Flexbox vertical strict */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
 }
 
 /* --- Header & Footer --- */
 header {
-    background-color: #161B22; /* Légèrement plus clair que le fond pour détacher */
+    background-color: #161B22; 
     padding: 3rem 1rem;
     text-align: center;
     border-bottom: 2px solid var(--bg-card);
@@ -57,19 +50,15 @@ footer {
     color: var(--text-muted);
     font-size: 0.9rem;
     border-top: 1px solid var(--bg-card);
-    
-    /* Empêche le footer de se rétrécir */
-    flex-shrink: 0; 
+    flex-shrink: 0;
 }
 
-/* --- Conteneurs généraux --- */
+/* --- Conteneur Principal (Ressort Flex) --- */
 .container {
     max-width: 1100px;
     margin: 3rem auto;
     padding: 0 1.5rem;
-    
-    /* Le flex-grow (le "1") force cette zone à pousser le footer tout en bas */
-    flex: 1 0 auto; 
+    flex: 1 0 auto; /* Force le footer en bas */
 }
 
 .intro {
@@ -87,15 +76,13 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- Grille des Boutons de l'accueil (5 Cartes) --- */
+/* --- Alignement des boutons (3 en haut, 2 en bas centrés) --- */
 .grid-competences {
     display: flex;
-    flex-wrap: wrap;       /* Permet aux boutons de passer à la ligne suivante */
-    justify-content: center; /* Centre les éléments sur chaque ligne (aligne les 2 du bas) */
-    gap: 1.5rem;           /* Espace entre les boutons */
+    flex-wrap: wrap;       
+    justify-content: center; 
+    gap: 1.5rem;           
     width: 100%;
-    max-width: 1000px;     /* Empêche la ligne de 3 de devenir trop large */
-    margin: 0 auto;        /* Centre tout le bloc sur la page */
 }
 
 .btn-comp {
@@ -107,17 +94,15 @@ footer {
     color: var(--text-white);
     transition: all 0.25s ease-in-out;
     
-    /* Configuration pour que chaque bouton prenne environ 30% de la largeur */
     flex: 1 1 calc(33.333% - 1.5rem); 
-    min-width: 280px;      /* Sécurité pour le rendu sur smartphone */
-    max-width: 320px;      /* Évite que les 2 du bas s'étirent plus que les 3 du haut */
+    min-width: 280px;      
+    max-width: 320px;      
 
-    /* Centrage parfait du texte à l'intérieur du bouton */
     display: flex;
     flex-direction: column;
-    align-items: center;    /* Centre horizontalement */
-    justify-content: center;/* Centre verticalement */
-    text-align: center;     /* Centre le texte multi-lignes */
+    align-items: center;    
+    justify-content: center;
+    text-align: center;     
 }
 
 .btn-comp h3 {
@@ -131,17 +116,15 @@ footer {
     font-size: 0.95rem;
 }
 
-/* Effet au survol (Hover) */
 .btn-comp:hover {
     transform: translateY(-4px);
     border-color: var(--accent-cyan);
     box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
 }
 
-/* --- Styles des pages internes de Compétences --- */
+/* --- Structure des pages de compétences --- */
 .btn-back {
     display: inline-block;
-    margin-top: 1rem;
     color: var(--bg-main);
     text-decoration: none;
     background-color: var(--accent-cyan);
@@ -185,7 +168,6 @@ footer {
     color: var(--accent-cyan);
 }
 
-/* Bloc des réalisations (SAÉ / TP) */
 .projet-card {
     background-color: #161B22;
     border-left: 4px solid var(--accent-cyan);
@@ -199,11 +181,6 @@ footer {
     margin-bottom: 0.5rem;
 }
 
-.projet-card p {
-    color: var(--text-muted);
-}
-
-/* Badge en vert signal */
 .badge {
     display: inline-block;
     background-color: rgba(57, 211, 83, 0.15);

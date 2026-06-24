@@ -1,14 +1,18 @@
-/* --- Palette de couleurs customisée --- */
+/* ==========================================================================
+   1. VARIABLES & PALETTE DE COULEURS (GitHub Dark / Terminal style)
+   ========================================================================== */
 :root {
-    --bg-main: #0D1117;       
-    --bg-card: #21262D;       
-    --accent-cyan: #00D4FF;   
-    --text-white: #E6EDF3;    
-    --text-muted: #8B949E;    
-    --success-green: #39D353; 
+    --bg-main: #0D1117;       /* Fond sombre principal */
+    --bg-card: #21262D;       /* Gris foncé pour les conteneurs et cartes */
+    --accent-cyan: #00D4FF;   /* Cyan vif pour les titres et éléments actifs */
+    --text-white: #E6EDF3;    /* Blanc cassé pour le texte principal */
+    --text-muted: #8B949E;    /* Gris clair pour les descriptions/détails */
+    --success-green: #39D353; /* Vert signal pour les validations */
 }
 
-/* --- Structure d'ancrage du footer --- */
+/* ==========================================================================
+   2. RESTRUCTURATION GLOBALE (Force le footer en bas)
+   ========================================================================== */
 html, body {
     height: 100%;
     margin: 0;
@@ -21,12 +25,23 @@ body {
     line-height: 1.6;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organise le contenu verticalement */
 }
 
-/* --- Header & Footer --- */
+/* Container principal faisant office de ressort */
+.container {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+    flex: 1 0 auto; /* Repousse le footer vers le bas si la page est vide */
+    width: 100%;
+}
+
+/* ==========================================================================
+   3. EN-TÊTE & PIED DE PAGE (Header & Footer)
+   ========================================================================== */
 header {
-    background-color: #161B22; 
+    background-color: #161B22; /* Légèrement plus clair que le bg principal */
     padding: 3rem 1rem;
     text-align: center;
     border-bottom: 2px solid var(--bg-card);
@@ -50,17 +65,12 @@ footer {
     color: var(--text-muted);
     font-size: 0.9rem;
     border-top: 1px solid var(--bg-card);
-    flex-shrink: 0;
+    flex-shrink: 0; /* Empêche le footer de se compresser */
 }
 
-/* --- Conteneur Principal (Ressort Flex) --- */
-.container {
-    max-width: 1100px;
-    margin: 3rem auto;
-    padding: 0 1.5rem;
-    flex: 1 0 auto; /* Force le footer en bas */
-}
-
+/* ==========================================================================
+   4. ZONE ACCUEIL : GRILLE DES BOUTONS (Positionnement strict 3 + 2)
+   ========================================================================== */
 .intro {
     text-align: center;
     margin-bottom: 3.5rem;
@@ -76,17 +86,17 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- Alignement des boutons (3 au-dessus, 2 en dessous centrés) --- */
+/* Grille basée sur 6 colonnes virtuelles */
 .grid-competences {
-    display: flex;
-    flex-wrap: wrap;       
-    justify-content: center; /* Centre la ligne du bas (les 2 boutons) */
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); 
     gap: 1.5rem;           
     width: 100%;
-    max-width: 1050px;       /* Élargi pour laisser de la place aux 3 boutons côte à côte */
+    max-width: 1000px;
     margin: 0 auto;
 }
 
+/* Style de base de chaque bouton de compétence */
 .btn-comp {
     background-color: var(--bg-card);
     border: 1px solid #30363D;
@@ -96,102 +106,8 @@ footer {
     color: var(--text-white);
     transition: all 0.25s ease-in-out;
     
-    /* Ajustement des proportions pour forcer le 3 en haut, 2 en bas */
-    flex: 0 1 calc(33.333% - 1.5rem); 
-    min-width: 280px;      
-    max-width: 320px;      
-
     display: flex;
     flex-direction: column;
     align-items: center;    
     justify-content: center;
-    text-align: center;     
-}
-
-.btn-comp h3 {
-    color: var(--accent-cyan);
-    margin-bottom: 0.75rem;
-    font-size: 1.25rem;
-}
-
-.btn-comp p {
-    color: var(--text-white);
-    font-size: 0.95rem;
-}
-
-.btn-comp:hover {
-    transform: translateY(-4px);
-    border-color: var(--accent-cyan);
-    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.15);
-}
-
-/* --- Structure des pages de compétences --- */
-.btn-back {
-    display: inline-block;
-    color: var(--bg-main);
-    text-decoration: none;
-    background-color: var(--accent-cyan);
-    padding: 0.5rem 1.2rem;
-    border-radius: 4px;
-    font-weight: bold;
-    transition: background 0.2s;
-}
-
-.btn-back:hover {
-    background-color: #00b0d4;
-}
-
-.section-portfolio {
-    background-color: var(--bg-card);
-    border: 1px solid #30363D;
-    padding: 2.5rem;
-    border-radius: 6px;
-    margin-bottom: 2rem;
-}
-
-.section-portfolio h2 {
-    color: var(--text-white);
-    border-bottom: 1px solid #30363D;
-    padding-bottom: 0.75rem;
-    margin-bottom: 1.5rem;
-    font-size: 1.5rem;
-}
-
-.liste-ac {
-    list-style: none;
-}
-
-.liste-ac li {
-    padding: 1rem 0;
-    border-bottom: 1px solid #30363D;
-    color: var(--text-white);
-}
-
-.liste-ac li strong {
-    color: var(--accent-cyan);
-}
-
-.projet-card {
-    background-color: #161B22;
-    border-left: 4px solid var(--accent-cyan);
-    padding: 1.5rem;
-    border-radius: 0 6px 6px 0;
-    margin-top: 1rem;
-}
-
-.projet-card h3 {
-    color: var(--text-white);
-    margin-bottom: 0.5rem;
-}
-
-.badge {
-    display: inline-block;
-    background-color: rgba(57, 211, 83, 0.15);
-    color: var(--success-green);
-    border: 1px solid rgba(57, 211, 83, 0.3);
-    padding: 0.35rem 0.85rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    margin-top: 1rem;
-    font-weight: bold;
-}
+    text-align: center;

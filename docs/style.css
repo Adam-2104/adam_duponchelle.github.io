@@ -76,25 +76,28 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- Alignement des boutons (3 en haut, 2 en bas centrés) --- */
+/* --- Alignement des boutons (3 au-dessus, 2 en dessous centrés) --- */
 .grid-competences {
     display: flex;
     flex-wrap: wrap;       
-    justify-content: center; 
+    justify-content: center; /* Centre la ligne du bas (les 2 boutons) */
     gap: 1.5rem;           
     width: 100%;
+    max-width: 1050px;       /* Élargi pour laisser de la place aux 3 boutons côte à côte */
+    margin: 0 auto;
 }
 
 .btn-comp {
     background-color: var(--bg-card);
     border: 1px solid #30363D;
     border-radius: 6px;
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     text-decoration: none;
     color: var(--text-white);
     transition: all 0.25s ease-in-out;
     
-    flex: 1 1 calc(33.333% - 1.5rem); 
+    /* Ajustement des proportions pour forcer le 3 en haut, 2 en bas */
+    flex: 0 1 calc(33.333% - 1.5rem); 
     min-width: 280px;      
     max-width: 320px;      
 

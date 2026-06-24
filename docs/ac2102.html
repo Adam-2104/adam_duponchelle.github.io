@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC21.02 - QoS & Sécurité de Base</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AC21.02 | QoS & Sécurité</h1>
+        <p>Configurer et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau</p>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
+        </div>
+
+        <section class="section-portfolio">
+            <h2>Description de la Réalisation (SAÉ 303)</h2>
+            <p>Lors du déploiement de l'infrastructure de la pépinière multi-site, j'ai pris en charge le fractionnement logique et la sécurisation des flux réseau essentiels à l'entreprise.</p>
+            
+            <div class="projet-card">
+                <h3>Détails Techniques de la Preuve :</h3>
+                <ul>
+                    <li><strong>Segmentation LAN (VLANs) :</strong> Isolation complète des services de l'entreprise en 5 VLANs distincts de niveau 2 (Admin, Personnel, Vidéo, Production, et Invité) associés à des sous-réseaux IP de classe C.</li>
+                    <li><strong>Sécurisation par ACLs :</strong> Définition et application de listes de contrôle d'accès (ACLs) IP nommées sur les interfaces de distribution Cisco pour empêcher le réseau "Invité" ou "Personnel" d'interroger la zone "Admin".</li>
+                    <li><strong>Redondance et Résilience :</strong> Configuration du protocole <strong>HSRP (Hot Standby Router Protocol)</strong> pour assurer la redondance des passerelles par défaut et maintenir la continuité de service sans coupure.</li>
+                </ul>
+                <span class="badge">Livrable : Schéma d'Architecture & Rapport SAÉ 303</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio BUT R&T</p>
+    </footer>
+
+</body>
+</html>

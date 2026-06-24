@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.05Cyber - Connaissance des Attaques</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC24.05Cyber - Connaître les différents types d'attaque</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC24.05Cyber | Connaissance des Attaques</h1>
-        <p>Connaître les différents types d’attaque</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC24.05Cyber</h1>
+            <p>Connaître les différents types d’attaque</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 3.CYBER.04 & SAÉ 4.Cyber.01)</h2>
-            <p>La compréhension approfondie des techniques offensives a été un prérequis indispensable pour concevoir des mécanismes de défense pertinents lors de mes projets pratiques de cybersécurité.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Attaques Réseau (SAÉ 4.Cyber.01) :</strong> Étude théorique et démonstration pratique d'attaques par interception de type Man-in-the-Middle (MitM) basées sur l'usurpation et la manipulation des priorités du protocole de commutation <strong>STP (Spanning Tree Protocol)</strong>.</li>
-                    <li><strong>Failles Applicatives (SAÉ 3.CYBER.04) :</strong> Identification et manipulation de vecteurs d'attaque courants répertoriés dans l'OWASP Top 10, tels que les **injections SQL**, les failles **XSS (Cross-Site Scripting)** réfléchies ou stockées, et l'exploitation de défauts de configuration (services FTP anonymes ou protocoles transmettant en clair).</li>
-                </ul>
-                <span class="badge">Livrables : Rapports d'Audit & Analyses de Vulnérabilités</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>Lors des phases de tests de notre SAE 4.Cyber.01, nous avons étudié et simulé l'impact d'attaques sur la couche de liaison (L2), notamment le détournement de topologie par usurpation de commutateur racine (Attaque STP/BPDU Spoofing).</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Pour protéger efficacement un réseau d'entreprise, il faut comprendre précisément comment un attaquant procède. Connaître les mécaniques d'attaques (comme le déni de service, le spoofing ou l'injection) permet de configurer les protections adéquates au plus près des équipements.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>Nous avons analysé le scénario où une machine malveillante envoie de fausses trames BPDU avec une priorité nulle pour s'imposer comme commutateur racine (Root Bridge). Cela lui permet de rediriger l'ensemble des flux du réseau vers elle. Nous avons ensuite appliqué la parade technique en activant <code>BPDU Guard</code> et <code>Root Guard</code> sur les interfaces d'accès Cisco.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Il a fallu identifier correctement toutes les interfaces d'accès connectées à des hôtes terminaux pour y appliquer le BPDU Guard, tout en évitant de l'activer sur les liens trunks d'inter-connexion, ce qui aurait causé un déni de service immédiat de l'infrastructure.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris le fonctionnement des attaques ciblant les protocoles réseau fondamentaux (STP) et assimilé l'utilisation du modèle conceptuel STRIDE (Spoofing, Tampering, etc.) pour cartographier les menaces d'un système informatique.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'associerais à ces protections physiques une inspection dynamique des tables de commutations via du DHCP Snooping et de Dynamic ARP Inspection (DAI) pour bloquer également les attaques de type ARP Spoofing.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_Analyse_Attaque_STP.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

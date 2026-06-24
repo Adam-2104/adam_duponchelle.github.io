@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.02 - Accès Distant Sécurisé</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC22.02 - Accès distant sécurisé</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC22.02 | Accès Distant Sécurisé</h1>
-        <p>Mettre en place un accès distant sécurisé</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC22.02</h1>
+            <p>Mettre en place un accès distant sécurisé</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
-            <p>Lors de la <strong>SAÉ 4.Cyber.01 (Sécuriser un SI)</strong>, l'un des enjeux majeurs consistait à interconnecter les deux sites de l'entreprise de manière totalement hermétique à travers un espace public non maîtrisé.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Tunnel d'Encapsulation :</strong> Configuration d'un tunnel <strong>GRE (Generic Routing Encapsulation)</strong> entre les routeurs de bordure Cisco pour encapsuler l'intégralité des paquets de données et des protocoles de routage dynamique (OSPF).</li>
-                    <li><strong>Chiffrement de Sécurité (IPSec) :</strong> Implémentation d'une couche <strong>IPSec (IP Security)</strong> pour chiffrer l'intégralité du tunnel GRE (Architecture GRE over IPSec).</li>
-                    <li><strong>Paramètres de Chiffrement :</strong> Définition de politiques ISAKMP strictes avec algorithme de chiffrement symétrique fort <strong>AES-256</strong>, hachage SHA-256 pour l'intégrité, et utilisation du protocole d'échange de clés Diffie-Hellman (DH Group 14) pour sécuriser l'authentification mutuelle des routeurs.</li>
-                </ul>
-                <span class="badge">Livrable : Matrice de flux & Configurations Cisco SAÉ 4.Cyber.01</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai déployé une passerelle de réseau privé virtuel (VPN) pour permettre à des utilisateurs nomades de se connecter de manière chiffrée à l'infrastructure interne de l'entreprise.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Avec l'essor du télétravail, ouvrir des services internes directement sur Internet expose l'entreprise aux cyberattaques. Le VPN chiffre les flux de bout en bout et authentifie strictement l'utilisateur.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai installé et configuré un serveur **OpenVPN** sur une machine Linux Debian. J'ai généré une infrastructure de clés publiques (PKI) avec Easy-RSA pour distribuer des certificats SSL/TLS uniques aux clients, et j'ai configuré les règles de routage et de NAT correspondantes.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Les clients VPN parvenaient à se connecter au serveur mais ne pouvaient pas pinguer les machines situées dans les sous-réseaux locaux cachés derrière le serveur. J'ai dû activer l'IP Forwarding dans le noyau Linux et ajouter des directives "push route" dans la configuration d'OpenVPN.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai assimilé la logique du chiffrement asymétrique/symétrique et compris l'importance de sécuriser l'accès au réseau dès le périmètre externe.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Je basculerais sur la technologie **WireGuard**, qui offre de bien meilleures performances en termes de débit et de temps de latence tout en restant plus légère à configurer qu'OpenVPN.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Documentation_Technique_VPN.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

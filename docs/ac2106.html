@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.06 - Travail en Équipe</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC21.06 - Travail en équipe</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC21.06 | Travail en Équipe</h1>
-        <p>Travailler en équipe pour développer ses compétences professionnelles</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC21.06</h1>
+            <p>Travailler en équipe pour développer ses compétences professionnelles</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
-            <p>Dans le cadre de la <strong>SAÉ 4.Cyber.01 (Sécuriser un SI)</strong>, j'ai collaboré au sein d'un groupe projet de 4 ingénieurs réseaux et sécurité pour concevoir l'infrastructure sécurisée globale d'un système d'information d'entreprise distribué sur deux sites.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Organisation & Répartition des tâches :</strong> Planification des livrables et attribution de rôles spécialisés à chaque membre du groupe (Matisse sur le DNSSEC, Quentin sur la sécurisation Web HTTPS, Antoine sur les tests d'intrusion, et moi-même sur l'audit des Recommandations de l'ANSSI).</li>
-                    <li><strong>Synergie Technique :</strong> Mise en commun de nos configurations individuelles (Cisco Packet Tracer et Machines Virtuelles Linux Ubuntu) pour former l'infrastructure consolidée finale (Routage OSPF, Tunnel GRE, pare-feu Cisco ASA 5506-X).</li>
-                    <li><strong>Livrables Co-rédigés :</strong> Production conjointe d'un <em>Write Up</em> technique d'architecture complet de 29 pages synthétisant l'ensemble de nos validations techniques.</li>
-                </ul>
-                <span class="badge">Livrable : Write Up Technique SAÉ 4.Cyber.01 (29 pages)</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai travaillé en équipe sur des projets R&T : répartition des tâches, livrabiles communs et coordination technique.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Je l'ai fait parce que la compétence professionnelle ne se limite pas à la technique individuelle : un projet n'aboutit que si les contributions s'assemblent correctement.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>Par le découpage et la répartition des rôles selon les domaines à traiter (adressage, routage, services, tests), la planification de points réguliers pour synchroniser les configurations et éviter les incohérences, et la centralisation des captures, schémas et tests pour produire un livrable cohérent.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>La principale difficulté a été la coordination. Une configuration juste localement peut provoquer un problème global si les hypothèses de travail ne sont pas partagées.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai appris que documenter et communiquer font partie du travail technique. L'efficacité d'équipe repose autant sur la lisibilité du travail que sur la qualité de la configuration.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Je formaliserais davantage les responsabilités de test et les critères de validation communs avant la phase d'intégration.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Suivi_Projet_SAE303_Groupe.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

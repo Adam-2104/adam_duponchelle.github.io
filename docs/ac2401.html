@@ -3,40 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.01Cyber - Recommandations de Cybersécurité</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC24.01Cyber - Bonnes pratiques</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+    </style>
 </head>
 <body>
-
-    <header>
-        <h1>AC24.01Cyber | Recommandations de Cybersécurité</h1>
-        <p>Connaître et utiliser les bonnes pratiques et les recommandations de cybersécurité</p>
-    </header>
-
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
-            <p>Dans la <strong>SAÉ 4.Cyber.01 (Sécuriser un SI)</strong>, ma spécialisation portait sur l'application rigoureuse des **Recommandations de l'ANSSI** pour auditer et endurcir l'infrastructure réseau et système de l'entreprise.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Grille d'Audit ANSSI :</strong> Conception et intégration d'une checklist de conformité basée sur le guide d'hygiène informatique de l'ANSSI (Règles R16, R24, R25, R27, R28, etc.).</li>
-                    <li><strong>Application Opérationnelle :</strong> Justification technique de chaque mesure retenue (ex: interdiction des protocoles obsolètes ou en clair, gestion stricte du Maintien en Condition Opérationnelle - MCO).</li>
-                    <li><strong>Politique de Moindre Privilège :</strong> Isolation des flux d'administration système et mise en place de barrières d'accès pour interdire les rebonds malveillants entre les VLANs métiers et de gestion.</li>
-                </ul>
-                <span class="badge">Livrable : Section Spécialisation ANSSI - Write Up SAÉ 4.Cyber.01</span>
-            </div>
+    <div class="ac-container">
+        <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
+        <header class="ac-header">
+            <h1>AC24.01Cyber</h1>
+            <p>Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité</p>
+        </header>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai appliqué les référentiels de sécurité (type guides de l'ANSSI) pour durcir les configurations de serveurs et de postes de travail.</p>
         </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
-
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Pour réduire la surface d'attaque en appliquant le principe du moindre privilège et en supprimant les services inutiles qui sont autant de vecteurs d'intrusion.</p>
+        </section>
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>En désactivant les protocoles obsolètes (Telnet, FTP, SMBv1), en imposant une politique de complexité de mots de passe via GPO et en configurant des pare-feux locaux (iptables/ufw) pour ne laisser passer que les flux métier nécessaires.</p>
+        </section>
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Le durcissement extrême peut parfois empêcher le fonctionnement de services légitimes. Il a fallu tester chaque règle en environnement de recette avant le déploiement en production.</p>
+        </section>
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>Que la sécurité est un équilibre permanent entre protection et usabilité, et que le "durcissement" (hardening) doit être documenté pour faciliter le dépannage.</p>
+        </section>
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'utiliserais des outils de scanning de vulnérabilités (type OpenVAS) dès la fin de l'installation pour vérifier automatiquement que mes configurations respectent bien les standards de sécurité.</p>
+        </section>
+    </div>
 </body>
 </html>

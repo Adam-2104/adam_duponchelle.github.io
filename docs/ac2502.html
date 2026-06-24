@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC25.02Cyber - Outils de Pentesting & Détection</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC25.02Cyber - Outils de test de pénétration</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence5.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC25.02Cyber | Pentesting & Détection</h1>
-        <p>Prendre en main des outils de test de pénétration réseau/système ou de détection d’intrusion</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC25.02Cyber</h1>
+            <p>Prendre en main des outils de test de pénétration réseau/système</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence5.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 3.CYBER.04)</h2>
-            <p>Dans la <strong>SAÉ 3.CYBER.04 (Découverte du Pentesting)</strong>, j'ai adopté la méthodologie d'un attaquant pour réaliser un audit de sécurité complet (boîte noire et boîte grise) sur une maquette d'infrastructure vulnérable.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Phase de Reconnaissance & Énumération :</strong> Utilisation de l'outil <strong>Nmap</strong> pour cartographier le réseau, identifier les ports ouverts et analyser les bannières de services. Exploitation de protocoles comme NetBIOS pour récupérer des informations sensibles exposées.</li>
-                    <li><strong>Analyse de Vulnérabilités :</strong> Utilisation de scanners automatisés et d'outils offensifs sous Kali Linux (comme <strong>Nikto</strong> et <strong>SQLmap</strong> pour détecter des injections) afin d'identifier des défauts d'endurcissement, tels que des services FTP anonymes transmettant en clair.</li>
-                    <li><strong>Exploitation & Analyse :</strong> Exploitation contrôlée de failles critiques (ex: EternalBlue MS17-010 via Metasploit) suivie d'une phase d'analyse des journaux d'événements (logs) pour comprendre les traces laissées par l'attaque sur le système.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport d'Audit & Write-Up Technique SAÉ 3.CYBER.04</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>Dans le cadre des TP de la SAE3.CYBER.04, j'ai pris en main des outils d'audit et d'intrusion offensifs pour cartographier un système d'information et identifier ses vulnérabilités applicatives et réseau.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Un administrateur doit savoir mener des audits réguliers pour découvrir les faiblesses de son infrastructure avant qu'elles ne soient exploitées de manière malveillante. L'évaluation technique par pentesting permet de mesurer concrètement l'expositon et l'impact réel des failles.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai utilisé l'outil **Nmap** depuis une machine Linux pour mener des scans de ports furtifs (<code>nmap -sS</code>) et détecter les services actifs ainsi que leurs versions exactes (<code>-sV</code>). J'ai également exploité le framework d'automatisation de scripts de Nmap (NSE) pour rechercher des vulnérabilités de type services FTP anonymes ou partages SMB ouverts sans authentification.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Lors des scans UDP (<code>-sU</code>), les temps de réponse de la cible étaient extrêmement longs en raison des mécanismes de limitation de débit (rate limiting) des messages d'erreur ICMP de la machine distante. Il a fallu optimiser les options de temporisation de Nmap.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai maîtrisé les phases de reconnaissance active et d'énumération du cycle de vie d'un pentest. J'ai compris la différence entre un scan de ports TCP SYN (half-open) et un scan TCP Connect complet au niveau des traces laissées dans les logs de sécurité.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Pour un audit à plus grande échelle, je couplerais l'utilisation manuelle de Nmap avec des scanners de vulnérabilités automatisés éprouvés (comme Greenbone OpenVAS ou Nessus) afin d'obtenir un rapport de sévérité basé sur les scores CVSS de manière globale.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">TP2_Pentesting_Rapport_Nmap.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

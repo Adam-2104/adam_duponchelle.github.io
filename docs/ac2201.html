@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.01 - Systèmes de Transmissions Complexes</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC22.01 - Systèmes de transmissions complexes</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC22.01 | Transmissions Complexes</h1>
-        <p>Déployer et caractériser des systèmes de transmissions complexes</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC22.01</h1>
+            <p>Déployer et caractériser des systèmes de transmissions complexes</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 301)</h2>
-            <p>Dans le cadre de la <strong>SAÉ 301 (Radiocommunications)</strong>, j'ai manipulé et mis en œuvre une chaîne de traitement du signal de Radio Logicielle (SDR) pour moduler et démuler des signaux radioélectriques complexes.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Matériel & Logiciel :</strong> Utilisation de l'émetteur-récepteur SDR <strong>Adalm-Pluto</strong> interfacé avec le logiciel de développement par blocs <strong>GNU Radio</strong>.</li>
-                    <li><strong>Modulations & Traitement :</strong> Étude et configuration de modulations analogiques (AM) et de systèmes de diffusion numérique complexes tels que l'<strong>OFDM (Orthogonal Frequency Division Multiplexing)</strong> utilisé pour la norme de radio numérique <strong>DAB+</strong>.</li>
-                    <li><strong>Optimisation Multimédia :</strong> Intégration de flux vidéo/audio en streaming (OBS/VLC) adaptés par des codecs de forte compression pour s'aligner sur les limitations physiques et spectrales de la bande passante HF accordée par le cadre réglementaire (TNRBF).</li>
-                </ul>
-                <span class="badge">Livrable : Rapport d'Essais Techniques SAÉ 301</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai configuré et analysé des supports de transmission haut débit comme les liaisons par fibre optique (WDM) ou des modulations radiofréquences avancées.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Pour répondre aux besoins croissants en bande passante des cœurs de réseaux et comprendre les limites physiques de l'atténuation du signal sur de longues distances.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>Lors des séances de TP, j'ai manipulé des réflectomètres (OTDR) pour localiser des défauts sur une fibre optique et utilisé des analyseurs de spectre pour mesurer le taux d'erreur binaire (BER) de modulations numériques complexes.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Interpréter précisément les courbes de réflectométrie de la fibre a été complexe au début, notamment pour différencier une épissure de qualité moyenne d'une courbure excessive du câble.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai appris à faire le lien concret entre la théorie des signaux (rapport signal sur bruit, zones de Fresnel) et les performances physiques réelles d'une liaison de télécommunication.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Je prendrais davantage de temps pour nettoyer méticuleusement les connecteurs optiques avant chaque mesure, car une simple poussière invisible fausse l'intégralité du diagnostic.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">CR_Transmission_Fibre_Optique.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

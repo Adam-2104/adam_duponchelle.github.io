@@ -3,58 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.02 - QoS & Sécurité</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC21.01 - Routage dynamique</title>
     <style>
-        .grid-ac { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-        .card-ac { background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); }
-        .badge-status { background: #1a3322; color: #4ade80; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
-        .table-eval { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-        .table-eval th, .table-eval td { border: 1px solid var(--border-color); padding: 0.75rem; text-align: left; }
-        .table-eval th { background: rgba(255,255,255,0.05); }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; }
+        .ac-section ul { padding-left: 20px; margin: 0; }
+        .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; }
+        .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <div>
-                <h1>AC21.02 | QoS & Sécurité de base</h1>
-                <p style="color: var(--text-muted);">Configure et explique une politique simple de QoS et les fonctions de base de la sécurité</p>
-            </div>
-            <span class="badge-status">Niveau Requis Validé</span>
-        </div>
-    </header>
-    <main class="container">
-        <div style="margin-top: 1rem; margin-bottom: 2rem;"><a href="competence1.html" class="btn-back">← Retour à la compétence</a></div>
-        <div class="grid-ac">
-            <div class="card-ac">
-                <h3>🎯 Indicateurs d'évaluation</h3>
-                <table class="table-eval">
-                    <thead><tr><th>Critères</th><th>Niveau</th></tr></thead>
-                    <tbody>
-                        <tr><td>Segmentation réseau (VLAN L2)</td><td>✔️ Acquis</td></tr>
-                        <tr><td>Listes de contrôle d'accès (ACLs)</td><td>✔️ Acquis</td></tr>
-                        <tr><td>Redondance de passerelle (HSRP)</td><td>✔️ Acquis</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="card-ac">
-                <h3>💼 Contexte de réalisation</h3>
-                <p><strong>Cadre :</strong> SAÉ 303 — Pépinière Multi-site</p>
-                <p><strong>Description :</strong> Segmentation logique et isolation des flux de l'entreprise sur l'infrastructure du siège social.</p>
-            </div>
-        </div>
-        <section class="section-portfolio" style="margin-top: 2rem;">
-            <h2>🛠️ Travail Réalisé & Justifications Techniques</h2>
-            <div class="projet-card" style="margin-bottom: 1.5rem;">
-                <p>J'ai configuré la segmentation de niveau 2 en découpant logiquement le LAN en 5 VLANs distincts (Admin, Personnel, Vidéo, Production, Invité) associés à des sous-réseaux IP de classe C.</p>
-                <p>Pour assurer la sécurité à la distribution, j'ai écrit et appliqué des listes d'accès (ACLs) IP nommées sur les commutateurs Cisco de niveau 3 pour interdire aux VLANs "Invité" et "Personnel" d'initier des flux vers le VLAN "Admin". De plus, la redondance des passerelles par défaut a été configurée via le protocole <strong>HSRP (Hot Standby Router Protocol)</strong>.</p>
-            </div>
-            <div class="card-ac">
-                <h3>📎 Preuves fournies</h3>
-                <p>📂 <strong>Livrable associé :</strong> <a href="#" style="color: var(--accent-cyan);">RAPPORT_SAE303_Duponchelle_Adam_Grévin_Antoine.pdf</a> (Topologie et architecture des VLANs, pages 2-3).</p>
+    <div class="ac-container">
+        <header class="ac-header">
+            <h1>AC21.01</h1>
+            <p>Configurer et dépanner le routage dynamique dans un réseau</p>
+        </header>
+
+        <section class="ac-section">
+            <h2>Objectif</h2>
+            <p>Mettre en place et fiabiliser des protocoles de routage dynamique pour assurer l'interconnexion automatique et la convergence des tables de routage entre différents sous-réseaux.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Compétences</h2>
+            <ul>
+                <li>Configuration de protocoles de routage dynamique (OSPF, RIPv2 ou EIGRP).</li>
+                <li>Analyse et diagnostic de pannes de routage (détection de boucles, interfaces passives).</li>
+                <li>Optimisation de la convergence réseau et manipulation des métriques.</li>
+            </ul>
+        </section>
+
+        <section class="ac-section">
+            <h2>Le contexte</h2>
+            <p>Cette activité a été menée dans le cadre de nos TP d'architecture réseau et des interconnexions multi-sites de nos maquettes de réseaux d'entreprise à l'IUT.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>La mise en œuvre</h2>
+            <div class="ac-box">
+                <p>J'ai configuré le protocole OSPF (Open Shortest Path First) sur des routeurs Cisco pour interconnecter plusieurs aires réseaux. J'ai défini les ID de routeurs, propagé les réseaux directement connectés et sécurisé les échanges de tables de routage.</p>
             </div>
         </section>
-    </main>
+
+        <section class="ac-section">
+            <h2>Les difficultés rencontrées</h2>
+            <p>Lors des tests, certains routeurs ne parvenaient pas à établir de relations d'adjacence. Le problème venait d'une erreur de masque générique (wildcard mask) dans la déclaration des réseaux et d'une discordance sur les timers Hello/Dead.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j'ai appris</h2>
+            <p>J'ai compris comment un réseau converge de manière autonome lors d'une coupure de lien et j'ai appris à utiliser les outils de diagnostic essentiels comme <code>show ip route</code> et <code>show ip ospf neighbor</code>.</p>
+        </section>
+
+        <footer class="ac-footer">
+            <strong>Preuve :</strong> <a href="#" target="_blank">CR_TP_Routage_Dynamique.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

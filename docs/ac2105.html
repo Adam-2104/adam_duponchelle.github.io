@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.05 - Réseaux opérateurs et Internet</title>
+    <title>AC21.05 - Réseaux opérateurs et architecture d'Internet</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,8 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        /* Style pour l'image */
+        .trace-image { max-width: 100%; height: auto; border: 1px solid #3a3a3a; border-radius: 6px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -33,36 +33,38 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai étudié le fonctionnement des liaisons WAN inter-opérateurs et simulé l'échange de routes à l'échelle mondiale à l'aide de protocoles de routage externe.</p>
+            <p>Dans le cadre de la SAE 303 (Pépinière multi-site) et de la SAE 4.Cyber.01, j'ai analysé et configuré des interconnexions WAN traversant un réseau opérateur simulé afin de lier de manière sécurisée le réseau du Siège et des succursales distantes.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Internet n'est pas un réseau unique mais un ensemble de milliers de Systèmes Autonomes (AS) connectés entre eux. Comprendre comment le trafic transite entre ces structures est indispensable pour appréhender les infrastructures des fournisseurs d'accès (FAI).</p>
+            <p>Les données d'une entreprise transitant par un réseau opérateur public (Internet) sont exposées à l'interception. Il est indispensable de comprendre l'architecture d'un cœur de réseau et d'isoler nos flux des autres clients de l'opérateur en encapsulant le trafic dans des tunnels sécurisés.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En manipulant des architectures virtuelles sous EVE-NG/GNS3. J'ai configuré le protocole <strong>BGP (Border Gateway Protocol)</strong> pour créer des sessions de peering et de transit (eBGP) entre les routeurs de bordure de plusieurs opérateurs fictifs.</p>
+            <p>J'ai configuré un tunnel de niveau 3 (GRE / IPsec) traversant le réseau opérateur externe (simulé par le VLAN 800 WAN). Cette encapsulation permet de faire transiter nos protocoles internes (comme les annonces de routage OSPF) à travers l'infrastructure de l'opérateur de manière transparente et étanche.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Assimiler la logique de décision des routes de BGP a été complexe, car contrairement aux protocoles internes (comme OSPF basés sur la vitesse), BGP choisit ses routes selon des critères politiques et contractuels via des attributs complexes (Local Preference, AS-Path).</p>
+            <p>La principale difficulté résidait dans la fragmentation des paquets. L'ajout des en-têtes de tunnel (GRE et IPsec) augmente la taille des paquets et peut dépasser la MTU standard de 1500 octets du réseau opérateur. J'ai résolu ce problème en ajustant la MTU du tunnel (<code>ip mtu 1400</code>) et la taille MSS TCP sur les interfaces.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris l'architecture globale du réseau Internet (rôle des IXP, accords de transit de niveau Tier-1/Tier-2) et comment manipuler les politiques de routage pour influencer le chemin emprunté par les paquets.</p>
+            <p>J'ai compris la différence entre l'adressage public et privé, le rôle des technologies WAN d'entreprise, ainsi que les mécanismes de transport et d'encapsulation nécessaires pour traverser l'architecture d'Internet.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>J'aimerais coupler ces maquettes BGP avec de la commutation d'étiquettes MPLS (MultiProtocol Label Switching), technique massivement déployée par les opérateurs pour accélérer le transport de données au cœur de leur cœur de réseau.</p>
+            <p>Au lieu d'utiliser de simples tunnels point-à-point statiques qui deviennent complexes à lister quand le nombre de succursales augmente, j'implémenterais une solution de type DMVPN (Dynamic Multipoint VPN) ou une architecture SD-WAN pour automatiser le maillage à travers l'opérateur.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">TP_Architecture_Internet_BGP.pdf</a>
+            📂 <strong>Trace ciblée :</strong> Schéma de la topologie multi-site et de l'interconnexion WAN
+            <br>
+            <img src="schema_sae303.png" alt="Topologie Réseau Multi-site SAE 303" class="trace-image">
         </footer>
     </div>
 </body>

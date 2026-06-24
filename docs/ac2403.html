@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC24.03Cyber - Sécurisation des Services</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AC24.03Cyber | Sécurisation des Services</h1>
+        <p>Sécuriser les services</p>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
+        </div>
+
+        <section class="section-portfolio">
+            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
+            <p>Afin de protéger les services serveurs vitaux exposés dans la zone démilitarisée (DMZ), notre groupe a procédé à l'endurcissement des configurations applicatives des serveurs Web et DNS.</p>
+            
+            <div class="projet-card">
+                <h3>Détails Techniques de la Preuve :</h3>
+                <ul>
+                    <li><strong>Sécurisation Web (HTTPS) :</strong> Configuration du serveur Web Apache pour forcer les redirections permanentes HTTP (port 80) vers HTTPS (port 443). Injection d'en-têtes HTTP de sécurité pour prémunir le serveur contre le clickjacking et le vol de cookies (<code>HSTS</code>, <code>X-Frame-Options</code>, <code>X-XSS-Protection</code>).</li>
+                    <li><strong>Sécurisation DNS (DNSSEC) :</strong> Implémentation du protocole d'extension de sécurité <strong>DNSSEC</strong> sur le serveur de noms BIND9. Signature complète de la zone DNS d'entreprise à l'aide de paires de clés de signature de zone (ZSK) et de clés de signature de clé (KSK). Validation des enregistrements cryptographiques (RRSIG, DNSKEY).</li>
+                </ul>
+                <span class="badge">Livrable : Fichiers de zone signés & Fichiers de configuration Apache</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio BUT R&T</p>
+    </footer>
+
+</body>
+</html>

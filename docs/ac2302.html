@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC23.02 - Développement sur Cahier des Charges</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC23.02 - Développer une application</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC23.02 | Développement d'Applications</h1>
-        <p>Développer une application à partir d’un cahier des charges donné</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC23.02</h1>
+            <p>Développer une application à partir d’un cahier des charges donné, pour le Web ou les périphériques mobiles</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 302)</h2>
-            <p>Dans la <strong>SAÉ 302 (Projet Python)</strong>, j'ai conçu et développé de bout en bout une application de recherche de mots-clés au sein d'un ensemble hétérogène de documents numériques.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Analyse de documents multi-formats :</strong> Implémentation d'algorithmes capables de parser et d'extraire des chaînes de caractères depuis des fichiers bruts ou enrichis : textes simples (<code>.txt</code>), pages web (<code>.html</code>), documents Adobe (<code>.pdf</code>), et feuilles de calcul Microsoft Excel (<code>.xlsx</code>).</li>
-                    <li><strong>Respect strict des normes (PEP 8) :</strong> Écriture d'un code hautement structuré respectant le guide de style Python, incluant des docstrings explicites pour chaque fonction, des variables typées et l'utilisation rigoureuse de chemins relatifs.</li>
-                    <li><strong>Qualité logicielle :</strong> Code entièrement documenté en anglais et versionné sur une plateforme GitLab universitaire.</li>
-                </ul>
-                <span class="badge">Livrable : Code Source Python & README (SAÉ 302)</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai programmé une application web dynamique dotée d'une interface responsive, respectant les fonctionnalités exigées par le client.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Pour mettre à disposition des utilisateurs un outil ergonomique capable de traiter des données métiers en temps réel sans nécessiter d'installation locale.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai développé le frontend en **HTML5, CSS3 (framework Tailwind)** et **JavaScript**, assurant la compatibilité PC/smartphone. Le backend a été réalisé en PHP pour orchestrer le traitement des requêtes formulaires.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Garantir un affichage impeccable sur tous les navigateurs (notamment Safari mobile) a demandé de nombreux ajustements CSS sur la gestion des conteneurs flexibles (Flexbox/Grid).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai appris à organiser mon code selon une logique modulaire et compris l'importance de l'expérience utilisateur (UX) dans l'adoption d'une application.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Je séparerais plus nettement le code en adoptant une architecture d'API (avec un framework moderne comme FastAPI ou Express.js) couplée à un frontend indépendant.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Code_Source_Application_Web.zip</a>
+        </footer>
+    </div>
 </body>
 </html>

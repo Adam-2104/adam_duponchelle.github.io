@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.03 - Connexion Multi-site Opérateur</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC22.03 - Connexion multi-site</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC22.03 | Connexion Multi-site Opérateur</h1>
-        <p>Mettre en place une connexion multi-site via un réseau opérateur</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC22.03</h1>
+            <p>Mettre en place une connexion multi-site via un réseau opérateur</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 303)</h2>
-            <p>L'objectif central de la <strong>SAÉ 303 (Pépinière)</strong> était d'établir l'infrastructure réseau d'une entreprise déclinée sur un Siège social et sa succursale distante via un réseau de transit opérateur.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Simuler le Transit Opérateur :</strong> Exploitation du VLAN 800 de l'infrastructure d'émulation pour simuler la dorsale d'interconnexion d'un fournisseur d'accès Internet (FAI).</li>
-                    <li><strong>Ralliement Logique :</strong> Configuration et montage d'un tunnel VPN permanent <strong>IPSec / GRE</strong> joignant les deux points de présence. Ce mécanisme a permis d'échanger des réseaux privés internes et d'établir un voisinage dynamique sans exposer l'adressage au cœur du réseau opérateur public.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport d'Architecture Réseau SAÉ 303</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai interconnecté virtuellement deux agences d'une entreprise distantes géographiquement en passant de façon sécurisée par le réseau de transport public.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Pour qu'un employé du site B puisse accéder aux serveurs centraux situés sur le site A de manière transparente, sans avoir besoin de louer des lignes physiques dédiées extrêmement onéreuses.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>Sur le simulateur GNS3, j'ai mis en place un tunnel **IPsec de site à site** (Site-to-Site) entre deux routeurs Cisco de bordure. J'ai configuré les politiques ISAKMP (Phase 1) pour l'échange de clés Diffie-Hellman, et le profil de transformation (Phase 2) pour l'encapsulation ESP.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Le tunnel refusait de monter en raison d'un "Phase 1 Mismatch". En analysant les logs, j'ai constaté qu'une des deux agences utilisait l'algorithme AES-256 alors que l'autre attendait du 3DES. L'alignement rigoureux des deux côtés a résolu le blocage.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris le fonctionnement des tunnels chiffrés sur Internet et l'importance d'une documentation stricte des paramètres de chiffrement lors d'une interconnexion.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Si l'architecture devait s'étendre à 10 ou 20 sites, l'IPsec classique deviendrait ingérable. Je déploierais une solution **DMVPN (Dynamic Multipoint VPN)** ou une architecture de type SD-WAN pour automatiser le maillage.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Maquette_GNS3_IPsec_MultiSite.zip</a>
+        </footer>
+    </div>
 </body>
 </html>

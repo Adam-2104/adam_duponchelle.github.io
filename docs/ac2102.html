@@ -4,53 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AC21.02 - QoS et Sécurité de base</title>
-    <style>/* Même CSS */ body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; } .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); } .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; } .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; } .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; } .ac-section { margin-bottom: 30px; } .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; } .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; } .ac-section ul { padding-left: 20px; margin: 0; } .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; } .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; } .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; } .ac-footer strong { color: #ffffff; } .ac-footer a { color: #38bdf8; text-decoration: none; } .ac-footer a:hover { text-decoration: underline; }</style>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
     <div class="ac-container">
+        <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
+
         <header class="ac-header">
             <h1>AC21.02</h1>
-            <p>Configure et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau</p>
+            <p>Configurer et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau</p>
         </header>
 
         <section class="ac-section">
-            <h2>Objectif</h2>
-            <p>Mettre en place des mécanismes de priorisation du trafic critique (QoS) et verrouiller les accès réseau basiques pour protéger l'infrastructure des intrusions locales.</p>
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai implémenté des règles de filtrage de paquets et configuré la mise en file d'attente prioritaire du trafic réseau sur les commutateurs et routeurs de notre maquette.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Compétences</h2>
-            <ul>
-                <li>Marquage et classification des flux réseaux (VoIP, données).</li>
-                <li>Configuration de listes de contrôle d'accès (ACL) standards et étendues.</li>
-                <li>Sécurisation des ports de commutateurs (Port Security).</li>
-            </ul>
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Dans un réseau d'entreprise, tous les flux n'ont pas la même valeur : une coupure sur la voix (VoIP) rend une conversation impossible alors qu'un ralentissement sur un e-mail est tolérable. Côté sécurité, il fallait s'assurer que seuls les administrateurs légitimes accèdent aux équipements sensibles.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Le contexte</h2>
-            <p>Ce travail s'inscrit dans le cadre de la sécurisation logique des réseaux locaux d'entreprise simulés en SAÉ 303.</p>
+            <h2>Comment je l’ai fait</h2>
+            <p>En SAÉ 303, j'ai créé des <strong>listes de contrôle d'accès (ACL)</strong> étendues pour bloquer ou autoriser des protocoles spécifiques (SSH, HTTP). Pour la QoS, j'ai configuré la classification des paquets à l'aide des marquages CoS/DSCP pour forcer le trafic de la voix à passer en priorité absolue.</p>
         </section>
 
         <section class="ac-section">
-            <h2>La mise en œuvre</h2>
-            <div class="ac-box">
-                <p>J'ai rédigé des ACLs sur le routeur pour bloquer les flux d'administration venant des segments utilisateurs classiques. Pour la QoS, nous avons priorisé le trafic de la voix (VLAN Voix) sur les files d'attente des commutateurs face aux téléchargements de fichiers.</p>
-            </div>
+            <h2>Mes difficultés</h2>
+            <p>Une de mes ACL bloquait involontairement la négociation des adresses IP dynamiques des ordinateurs clients. J'avais oublié que le protocole DHCP s'appuyait sur des requêtes broadcast UDP spécifiques qu'il fallait explicitement laisser passer.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Les difficultés rencontrées</h2>
-            <p>L'application d'une ACL trop restrictive à l'entrée d'une interface coupait également les requêtes DHCP légitimes des clients, empêchant l'attribution d'adresses IP automatiques.</p>
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris que la sécurité réseau nécessite une analyse rigoureuse de l'ordre séquentiel des règles (le "Deny All" implicite en fin d'ACL) et comment se comporte la gestion de la bande passante sous forte charge.</p>
         </section>
 
         <section class="ac-section">
-            <h2>Ce que j'ai appris</h2>
-            <p>J'ai compris l'importance de l'ordre d'évaluation des lignes d'une ACL et la manière dont la bande passante est allouée dynamiquement en fonction du marquage des paquets.</p>
+            <h2>Ce que je ferais autrement</h2>
+            <p>Au lieu de déployer des ACLs manuellement équipement par équipement, j'utiliserais un serveur de politique centralisé ou des scripts d'automatisation pour éviter le risque d'erreur humaine et d'oubli sur un commutateur.</p>
         </section>
 
         <footer class="ac-footer">
-            <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_SAE303_Securite_QoS.pdf</a>
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_SAE303_Securite_QoS.pdf</a>
         </footer>
     </div>
 </body>

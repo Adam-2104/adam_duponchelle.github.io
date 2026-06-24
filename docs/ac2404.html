@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.04Cyber - Outils Cryptographiques</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC24.04Cyber - Choix des outils cryptographiques</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC24.04Cyber | Outils Cryptographiques</h1>
-        <p>Choisir les outils cryptographiques adaptés au besoin fonctionnel du système d’information</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC24.04Cyber</h1>
+            <p>Choisir les outils cryptographiques adaptés au besoin fonctionnel du système d’information</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
-            <p>L'implémentation de liaisons de confiance et de services sécurisés dans la <strong>SAÉ 4.Cyber.01</strong> a nécessité la sélection et le déploiement de mécanismes de chiffrement asymétriques et symétriques conformes aux exigences modernes.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Infrastructure de Gestion de Clés (Génération SSL/TLS) :</strong> Utilisation de l'outil en ligne de commande <strong>OpenSSL</strong> pour générer des clés privées et des requêtes de certificats (CSR). Sélection de clés asymétriques fortes basées sur l'algorithme <strong>RSA 4096 bits</strong> pour sécuriser l'identité des serveurs applicatifs de la DMZ.</li>
-                    <li><strong>Cryptographie sur liaisons tunnels :</strong> Configuration de protocoles de chiffrement symétriques robustes (<strong>AES-256 bits</strong>) et de fonctions de hachage sécurisées (<strong>SHA-256</strong>) pour assurer la confidentialité intégrale des paquets encapsulés au sein du tunnel VPN inter-sites IPsec.</li>
-                </ul>
-                <span class="badge">Livrable : Certificats X.509 générés & Scripts de configuration de chiffrement IPsec</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>Dans la SAE 4.Cyber.01, j'ai sélectionné et mis en œuvre des algorithmes de chiffrement asymétrique pour sécuriser les serveurs web (certificats TLS) et signer cryptographiquement nos zones DNS via DNSSEC.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Utiliser des protocoles de chiffrement obsolètes (comme MD5, SHA-1 ou des clés RSA trop courtes) compromet l'intégrité du système d'information car ces algorithmes peuvent être cassés par force brute ou collisions. Il est capital de choisir des standards robustes face aux capacités de calcul actuelles.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>Pour le serveur HTTPS, j'ai généré une clé privée avec un certificat RSA de 4096 bits. Concernant la spécialisation DNSSEC, nous avons choisi une architecture à deux clés : une clé de signature de zone (ZSK) s'appuyant sur RSA 2048 bits pour les signatures courantes, et une clé de signature de clés (KSK) hautement sécurisée en RSA 4096 bits pour l'ancrage de confiance.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Le calcul des signatures DNSSEC avec des clés asymétriques de 4096 bits augmente significativement la taille des réponses DNS (paquets UDP) et la charge CPU du serveur virtuel. Il a fallu ajuster la configuration du cache de Bind9 pour optimiser les performances.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris la distinction entre l'utilisation fonctionnelle d'une ZSK et d'une KSK, et j'ai appris à dimensionner la taille des clés cryptographiques en fonction de la criticité des données et de la durée de vie des secrets.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>À la place du chiffrement RSA classique, je préconiserais l'usage de la cryptographie sur les courbes elliptiques (ECDSA). Cela permet d'obtenir un niveau de sécurité équivalent ou supérieur avec des tailles de clés beaucoup plus petites, ce qui réduit la consommation de bande passante.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Configuration_Zones_DNSSEC_Signées.conf</a>
+        </footer>
+    </div>
 </body>
 </html>

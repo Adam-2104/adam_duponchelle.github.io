@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.02 - QoS et Sécurité de base</title>
+    <title>AC21.02 - Sécurité de base et politique de réseau</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -20,6 +20,7 @@
         .ac-footer strong { color: #ffffff; }
         .ac-footer a { color: #38bdf8; text-decoration: none; }
         .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,37 +34,41 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai implémenté des règles de filtrage de paquets et configuré la mise en file d'attente prioritaire du trafic réseau sur les commutateurs et routeurs de notre maquette.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai implémenté des politiques de filtrage et de cloisonnement réseau à l'aide de listes de contrôle d'accès étendues (Extended ACLs) sur les switchs de niveau 3 et les routeurs de l'infrastructure inter-sites.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Dans un réseau d'entreprise, tous les flux n'ont pas la même valeur : une coupure sur la voix (VoIP) rend une conversation impossible alors qu'un ralentissement sur un e-mail est tolérable. Côté sécurité, il fallait s'assurer que seuls les administrateurs légitimes accèdent aux équipements sensibles.</p>
+            <p>Un réseau d'entreprise sans contrôle d'accès permet à n'importe quel équipement compromis (par exemple dans le VLAN de Production ou des Services) d'attaquer directement les postes d'Administration ou de rebondir vers d'autres sous-réseaux. Appliquer le principe du moindre privilège via des ACLs permet d'isoler hermétiquement les zones critiques tout en maintenant les flux d'administration légitimes.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En SAÉ 303, j'ai créé des <strong>listes de contrôle d'accès (ACL)</strong> étendues pour bloquer ou autoriser des protocoles spécifiques (SSH, HTTP). Pour la QoS, j'ai configuré la classification des paquets à l'aide des marquages CoS/DSCP pour forcer le trafic de la voix à passer en priorité absolue.</p>
+            <p>J'ai rédigé une liste d'accès étendue nommée <code>BLOCK_SERVICE_PROD</code>. Cette règle autorise le trafic de routage dynamique OSPF, donne un accès total aux sous-réseaux d'Administration (gauche et droit), et met en œuvre un comportement "stateful" basique en n'autorisant que les réponses TCP établies (<code>established</code>) et les retours de requêtes ping (<code>echo-reply</code>) vers les postes admins, avant de bloquer tout le reste (<code>deny ip any any</code>).</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Une de mes ACL bloquait involontairement la négociation des adresses IP dynamiques des ordinateurs clients. J'avais oublié que le protocole DHCP s'appuyait sur des requêtes broadcast UDP spécifiques qu'il fallait explicitement laisser passer.</p>
+            <p>Au début de la configuration, l'application de la règle bloquait le trafic de retour légitime initié par les administrateurs vers les autres zones, car le pare-feu ou le commutateur ne suivait pas l'état des connexions. L'introduction du mot-clé <code>established</code> pour le trafic TCP et la déclaration explicite de l'ICMP type 0 (<code>echo-reply</code>) ont permis de résoudre ce blocage.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris que la sécurité réseau nécessite une analyse rigoureuse de l'ordre séquentiel des règles (le "Deny All" implicite en fin d'ACL) et comment se comporte la gestion de la bande passante sous forte charge.</p>
+            <p>J'ai appris à concevoir et traduire une matrice de flux d'entreprise en règles de filtrage Cisco concrètes, et j'ai assimilé l'impact de l'ordre d'évaluation séquentiel des ACLs (la règle lue en premier s'applique, avec un blocage implicite à la fin).</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Au lieu de déployer des ACLs manuellement équipement par équipement, j'utiliserais un serveur de politique centralisé ou des scripts d'automatisation pour éviter le risque d'erreur humaine et d'oubli sur un commutateur.</p>
+            <p>Plutôt que de simuler un comportement stateful avec des options de filtrage de paquets statiques (comme <code>established</code>), je migrerais ces règles directement sur notre pare-feu matériel dédié (Cisco ASA) afin de bénéficier d'une inspection dynamique approfondie des paquets (Stateful Inspection) de manière plus robuste et transparente.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_SAE303_Securite_QoS.pdf</a>
-        </footer>
-    </div>
-</body>
-</html>
+            📂 <strong>Trace ciblée :</strong> Configuration de l'ACL étendue de cloisonnement
+            <pre>
+ip access-list extended BLOCK_SERVICE_PROD 
+ permit ospf any any ! OSPF non bloqué 
+ permit ip 192.168.11.0 0.0.0.255 any ! Admin droit : accès total 
+ permit ip 192.168.10.0 0.0.0.255 any ! Admin gauche : accès total 
+ permit tcp any 192.168.10.0 0.0.0.255 established ! Réponses TCP vers Admin gauche 
+ permit icmp any 192.168.10.0 0.0.0.255 echo-reply ! Réponses ping vers Admin gauche 
+ permit icmp any 192.168.11.0 0.0.0.255 echo-reply ! Réponses ping vers Admin droit

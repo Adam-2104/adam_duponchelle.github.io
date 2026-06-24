@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.03Cyber - Sécurisation des Services</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC24.03Cyber - Sécuriser les services</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC24.03Cyber | Sécurisation des Services</h1>
-        <p>Sécuriser les services</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC24.03Cyber</h1>
+            <p>Sécuriser les services</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
-            <p>Afin de protéger les services serveurs vitaux exposés dans la zone démilitarisée (DMZ), notre groupe a procédé à l'endurcissement des configurations applicatives des serveurs Web et DNS.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Sécurisation Web (HTTPS) :</strong> Configuration du serveur Web Apache pour forcer les redirections permanentes HTTP (port 80) vers HTTPS (port 443). Injection d'en-têtes HTTP de sécurité pour prémunir le serveur contre le clickjacking et le vol de cookies (<code>HSTS</code>, <code>X-Frame-Options</code>, <code>X-XSS-Protection</code>).</li>
-                    <li><strong>Sécurisation DNS (DNSSEC) :</strong> Implémentation du protocole d'extension de sécurité <strong>DNSSEC</strong> sur le serveur de noms BIND9. Signature complète de la zone DNS d'entreprise à l'aide de paires de clés de signature de zone (ZSK) et de clés de signature de clé (KSK). Validation des enregistrements cryptographiques (RRSIG, DNSKEY).</li>
-                </ul>
-                <span class="badge">Livrable : Fichiers de zone signés & Fichiers de configuration Apache</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>Durant la SAE 4.Cyber.01, j'ai configuré et sécurisé les services hébergés dans la DMZ locale, spécifiquement le serveur Web Apache en appliquant une redirection stricte du trafic HTTP vers HTTPS et en durcissant la configuration DNS.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Les services accessibles publiquement (Web, DNS) sont les cibles prioritaires des attaquants. Faire transiter des données en HTTP clair expose les utilisateurs à des attaques de type Man-In-The-Middle (MITM) et au vol d'identifiants.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai implémenté des règles de redirection permanente (statut 301) dans le serveur virtuel Apache et j'ai configuré des en-têtes de sécurité web essentiels tels que le HSTS (HTTP Strict Transport Security), X-Frame-Options et X-XSS-Protection afin de prémunir le serveur contre le clickjacking et les failles de scripts inter-sites.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>L'activation du HSTS a temporairement bloqué les accès de test car nos certificats de sécurité auto-signés n'étaient pas reconnus par les navigateurs des machines clientes, obligeant à importer l'autorité de certification locale sur chaque poste.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris comment durcir un service web Linux au-delà de la simple activation du SSL/TLS et j'ai mesuré l'impact des politiques d'en-têtes HTTP sur la protection globale d'une application.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'utiliserais un reverse proxy dédié (comme Nginx ou HAProxy) placé devant le serveur d'application afin de centraliser le déchiffrement SSL/TLS et la gestion des politiques de sécurité.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Script_Migration_HTTPS_Apache.sh</a>
+        </footer>
+    </div>
 </body>
 </html>

@@ -5,32 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AC21.01 - Routage Dynamique</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .grid-ac { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+        .card-ac { background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color); }
+        .badge-status { background: #1a3322; color: #4ade80; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; font-weight: bold; }
+        .table-eval { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .table-eval th, .table-eval td { border: 1px solid var(--border-color); padding: 0.75rem; text-align: left; }
+        .table-eval th { background: rgba(255,255,255,0.05); }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>AC21.01 | Routage Dynamique</h1>
-        <p>Configurer et dépanner le routage dynamique dans un réseau</p>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h1>AC21.01 | Routage Dynamique</h1>
+                <p style="color: var(--text-muted);">Configure et dépanne le routage dynamique dans un réseau</p>
+            </div>
+            <span class="badge-status">Niveau Requis Validé</span>
+        </div>
     </header>
 
     <main class="container">
-        <div style="margin-bottom: 2rem;">
+        <div style="margin-top: 1rem; margin-bottom: 2rem;">
             <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
         </div>
 
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 303)</h2>
-            <p>Dans le cadre de la <strong>SAÉ 303 (Pépinière multi-site)</strong>, j'ai mis en place l'architecture de routage d'une infrastructure d'entreprise distribuée comprenant un Siège social et plusieurs succursales.</p>
+        <div class="grid-ac">
             
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <p>Pour assurer l'interconnexion réseau sans inonder les liaisons d'accès publiques, nous avons configuré le protocole de routage dynamique <strong>OSPF (Open Shortest Path First)</strong> à travers un tunnel VPN IPSEC / GRE joignant le siège et la succursale.</p>
+            <div class="card-ac">
+                <h3>🎯 Indicateurs d'évaluation</h3>
+                <table class="table-eval">
+                    <thead>
+                        <tr>
+                            <th>Critères</th>
+                            <th>Niveau</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Configuration protocoles (OSPF)</td><td>✔️ Acquis</td></tr>
+                        <tr><td>Voisinage et routage inter-sites</td><td>✔️ Acquis</td></tr>
+                        <tr><td>Dépannage et analyse de table</td><td>✔️ Acquis</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card-ac">
+                <h3>💼 Contexte de réalisation</h3>
+                <p><strong>Cadre :</strong> SAÉ 303 — Pépinière Multi-site</p>
+                <p><strong>Description :</strong> Implémentation du routage d'une infrastructure d'entreprise distribuée (Siège social et succursale) simulant un transit opérateur sur le VLAN 800.</p>
+            </div>
+
+        </div>
+
+        <section class="section-portfolio" style="margin-top: 2rem;">
+            <h2>🛠️ Travail Réalisé & Justifications Techniques</h2>
+            <div class="projet-card" style="margin-bottom: 1.5rem;">
+                <p>Pour cette tâche, nous avons déployé le protocole de routage dynamique <strong>OSPF (Open Shortest Path First)</strong>. Afin d'éviter d'inonder le réseau public de l'opérateur virtuel (VLAN 800) avec nos tables de routage internes, j'ai encapsulé les flux dans un tunnel <strong>VPN IPsec / GRE</strong> reliant le Siège et la succursale.</p>
+                
+                <h4 style="margin-top: 1rem; color: var(--accent-cyan);">Commandes et validations clés :</h4>
                 <ul>
-                    <li><strong>Architecture :</strong> Modèle de conception hiérarchique à 3 couches (Core, Distribution, Access).</li>
-                    <li><strong>Routage Inter-VLAN :</strong> Implémentation du routage dynamique sur les commutateurs de niveau 3 et routeurs de distribution.</li>
-                    <li><strong>Optimisation :</strong> Isolation des tables de routage via les configurations d'interfaces passives et l'optimisation des annonces réseau pour préserver la bande passante.</li>
+                    <li>Définition des réseaux de la pépinière dans le processus OSPF (<code>router ospf 1</code>).</li>
+                    <li>Configuration des interfaces passives (<code>passive-interface</code>) vers les VLANs utilisateurs (Admin, Personnel, etc.) pour sécuriser et économiser la bande passante.</li>
+                    <li>Vérification des tables avec la commande <code>show ip route ospf</code> pour valider l'apprentissage des routes de la succursale distante.</li>
                 </ul>
-                <span class="badge">Livrable : Rapport Technique SAÉ 303</span>
+            </div>
+
+            <div class="card-ac">
+                <h3>📎 Preuves fournies</h3>
+                <p>📂 <strong>Livrable associé :</strong> <a href="#" style="color: var(--accent-cyan);">Rapport_Technique_SAE303.pdf</a> (Voir section II. Configuration de chaque équipement).</p>
             </div>
         </section>
     </main>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC21.01 - Routage Dynamique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AC21.01 | Routage Dynamique</h1>
+        <p>Configurer et dépanner le routage dynamique dans un réseau</p>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
+        </div>
+
+        <section class="section-portfolio">
+            <h2>Description de la Réalisation (SAÉ 303)</h2>
+            <p>Dans le cadre de la <strong>SAÉ 303 (Pépinière multi-site)</strong>, j'ai mis en place l'architecture de routage d'une infrastructure d'entreprise distribuée comprenant un Siège social et plusieurs succursales.</p>
+            
+            <div class="projet-card">
+                <h3>Détails Techniques de la Preuve :</h3>
+                <p>Pour assurer l'interconnexion réseau sans inonder les liaisons d'accès publiques, nous avons configuré le protocole de routage dynamique <strong>OSPF (Open Shortest Path First)</strong> à travers un tunnel VPN IPSEC / GRE joignant le siège et la succursale.</p>
+                <ul>
+                    <li><strong>Architecture :</strong> Modèle de conception hiérarchique à 3 couches (Core, Distribution, Access).</li>
+                    <li><strong>Routage Inter-VLAN :</strong> Implémentation du routage dynamique sur les commutateurs de niveau 3 et routeurs de distribution.</li>
+                    <li><strong>Optimisation :</strong> Isolation des tables de routage via les configurations d'interfaces passives et l'optimisation des annonces réseau pour préserver la bande passante.</li>
+                </ul>
+                <span class="badge">Livrable : Rapport Technique SAÉ 303</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio BUT R&T</p>
+    </footer>
+
+</body>
+</html>

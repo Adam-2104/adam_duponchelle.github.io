@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.01 - Systèmes de transmissions complexes</title>
+    <title>AC22.01 - Déployer et caractériser des systèmes de transmissions complexes</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,7 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        .trace-image { max-width: 100%; height: auto; border: 1px solid #3a3a3a; border-radius: 6px; margin-top: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -33,36 +32,38 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai configuré et analysé des supports de transmission haut débit comme les liaisons par fibre optique (WDM) ou des modulations radiofréquences avancées.</p>
+            <p>Dans le cadre de la SAE 301 (Radio logicielle), j'ai configuré et déployé une chaîne complète de traitement du signal de transmission et de réception haute fréquence (HF) en couplant le boîtier matériel Adalm-Pluto à l'environnement de développement GNU Radio Companion.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Pour répondre aux besoins croissants en bande passante des cœurs de réseaux et comprendre les limites physiques de l'atténuation du signal sur de longues distances.</p>
+            <p>Comprendre les systèmes de télécommunication modernes impose de savoir analyser la manière dont un signal analogique ou numérique est traité (modulation, filtrage, décodage) avant d'être restitué. La technologie SDR (Software Defined Radio) permet d'expérimenter et de caractériser ces traitements complexes de manière logicielle, sans nécessiter de lourds composants matériels figés.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>Lors des séances de TP, j'ai manipulé des réflectomètres (OTDR) pour localiser des défauts sur une fibre optique et utilisé des analyseurs de spectre pour mesurer le taux d'erreur binaire (BER) de modulations numériques complexes.</p>
+            <p>J'ai assemblé un synoptique fonctionnel composé d'un bloc source *PlutoSDR* paramétré sur une fréquence d'échantillonnage et une fréquence centrale spécifiques. Le signal reçu passe par un filtre passe-bas (Low Pass Filter) pour isoler le canal, traverse un bloc de démodulation pour extraire l'information, puis est dirigé vers un outil de visualisation fréquentielle (QT GUI Sink) et un bloc de sortie audio.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Interpréter précisément les courbes de réflectométrie de la fibre a été complexe au début, notamment pour différencier une épissure de qualité moyenne d'une courbure excessive du câble.</p>
+            <p>Le principal défi a été de caler correctement le taux d'échantillonnage (sample rate) entre le flux matériel capturé par l'Adalm-Pluto et la carte son de l'ordinateur. Un décalage entraînait des saccades audio importantes ou une saturation logicielle. J'ai surmonté cela en intégrant un bloc de rééchantillonnage rationnel (Rational Resampler) pour adapter les débits binaires.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai appris à faire le lien concret entre la théorie des signaux (rapport signal sur bruit, zones de Fresnel) et les performances physiques réelles d'une liaison de télécommunication.</p>
+            <p>J'ai assimilé les bases du traitement numérique du signal (DSP), notamment l'impact de la décimation, de l'interpolation, le rôle des filtres dans la réduction du bruit, et la manipulation des modulations en bande de base.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Je prendrais davantage de temps pour nettoyer méticuleusement les connecteurs optiques avant chaque mesure, car une simple poussière invisible fausse l'intégralité du diagnostic.</p>
+            <p>À la place d'une réception analogique simple, je ferais évoluer ce synoptique pour décoder des signaux numériques multiplexés plus robustes comme le DAB+ (Digital Audio Broadcasting) à base de modulations multi-porteuses OFDM et de codecs de compression AAC+, ce qui correspond aux standards actuels de l'industrie radiophonique.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">CR_Transmission_Fibre_Optique.pdf</a>
+            <strong>Trace ciblée :</strong> Synoptique de la chaîne de traitement de réception SDR sous GNU Radio
+            <br>
+            <img src="chaine_gnu_radio.png" alt="Synoptique de traitement SDR sous GNU Radio" class="trace-image">
         </footer>
     </div>
 </body>

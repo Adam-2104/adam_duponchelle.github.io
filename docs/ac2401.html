@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.01Cyber - Bonnes pratiques</title>
+    <title>AC24.01Cyber - Bonnes pratiques et recommandations de cybersécurité</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -17,39 +17,53 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <div class="ac-container">
         <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
+
         <header class="ac-header">
             <h1>AC24.01Cyber</h1>
-            <p>Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité</p>
+            <p>Connaître et utiliser les bonnes pratiques et les recommandations de cybersécurité</p>
         </header>
+
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai appliqué les référentiels de sécurité (type guides de l'ANSSI) pour durcir les configurations de serveurs et de postes de travail.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai été chargé de l'analyse réglementaire et de la conformité du système d'information en m'appuyant sur le guide des bonnes pratiques de l'ANSSI. J'ai rédigé et suivi une checklist d'audit de sécurité complète pour l'architecture inter-sites.</p>
         </section>
+
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Pour réduire la surface d'attaque en appliquant le principe du moindre privilège et en supprimant les services inutiles qui sont autant de vecteurs d'intrusion.</p>
+            <p>Déployer une infrastructure sans suivre de référentiel officiel expose le système à des failles de configuration majeures. Appliquer les recommandations de l'ANSSI permet de standardiser la sécurité du réseau d'entreprise et de s'assurer qu'aucun vecteur d'attaque évident n'a été omis.</p>
         </section>
+
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En désactivant les protocoles obsolètes (Telnet, FTP, SMBv1), en imposant une politique de complexité de mots de passe via GPO et en configurant des pare-feux locaux (iptables/ufw) pour ne laisser passer que les flux métier nécessaires.</p>
+            <p>J'ai répertorié les exigences applicables à notre maquette (comme le filtrage strict, le chiffrement des flux et la désactivation des protocoles obsolètes). J'ai ensuite audité les configurations des routeurs et commutateurs afin de valider point par point la conformité de nos installations par rapport aux règles de l'agence nationale.</p>
         </section>
+
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Le durcissement extrême peut parfois empêcher le fonctionnement de services légitimes. Il a fallu tester chaque règle en environnement de recette avant le déploiement en production.</p>
+            <p>Il a fallu trouver le juste équilibre entre les recommandations théoriques très restrictives de l'ANSSI et les contraintes techniques ou d'interopérabilité des équipements Cisco émulés sous Packet Tracer, nécessitant l'adaptation de certaines implémentations d'ACL.</p>
         </section>
+
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>Que la sécurité est un équilibre permanent entre protection et usabilité, et que le "durcissement" (hardening) doit être documenté pour faciliter le dépannage.</p>
+            <p>J'ai compris l'importance de mener un audit méthodique basé sur des standards nationaux et j'ai appris à structurer un plan de remédiation technique sous forme de guide de conformité cyber.</p>
         </section>
+
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>J'utiliserais des outils de scanning de vulnérabilités (type OpenVAS) dès la fin de l'installation pour vérifier automatiquement que mes configurations respectent bien les standards de sécurité.</p>
+            <p>À l'avenir, j'automatiserais la vérification de cette conformité à l'aide de scripts d'audit de configuration (comme des playbooks Ansible) plutôt que de vérifier manuellement les fichiers de configuration un par un.</p>
         </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Checklist_ANSSI_SAE4_Cyber.pdf</a>
+        </footer>
     </div>
 </body>
 </html>

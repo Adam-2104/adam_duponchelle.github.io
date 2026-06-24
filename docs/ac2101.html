@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.01 - Routage Dynamique</title>
+    <title>AC21.02 - QoS & Sécurité</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .grid-ac { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
@@ -15,72 +15,46 @@
     </style>
 </head>
 <body>
-
     <header>
         <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
             <div>
-                <h1>AC21.01 | Routage Dynamique</h1>
-                <p style="color: var(--text-muted);">Configure et dépanne le routage dynamique dans un réseau</p>
+                <h1>AC21.02 | QoS & Sécurité de base</h1>
+                <p style="color: var(--text-muted);">Configure et explique une politique simple de QoS et les fonctions de base de la sécurité</p>
             </div>
             <span class="badge-status">Niveau Requis Validé</span>
         </div>
     </header>
-
     <main class="container">
-        <div style="margin-top: 1rem; margin-bottom: 2rem;">
-            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
+        <div style="margin-top: 1rem; margin-bottom: 2rem;"><a href="competence1.html" class="btn-back">← Retour à la compétence</a></div>
         <div class="grid-ac">
-            
             <div class="card-ac">
                 <h3>🎯 Indicateurs d'évaluation</h3>
                 <table class="table-eval">
-                    <thead>
-                        <tr>
-                            <th>Critères</th>
-                            <th>Niveau</th>
-                        </tr>
-                    </thead>
+                    <thead><tr><th>Critères</th><th>Niveau</th></tr></thead>
                     <tbody>
-                        <tr><td>Configuration protocoles (OSPF)</td><td>✔️ Acquis</td></tr>
-                        <tr><td>Voisinage et routage inter-sites</td><td>✔️ Acquis</td></tr>
-                        <tr><td>Dépannage et analyse de table</td><td>✔️ Acquis</td></tr>
+                        <tr><td>Segmentation réseau (VLAN L2)</td><td>✔️ Acquis</td></tr>
+                        <tr><td>Listes de contrôle d'accès (ACLs)</td><td>✔️ Acquis</td></tr>
+                        <tr><td>Redondance de passerelle (HSRP)</td><td>✔️ Acquis</td></tr>
                     </tbody>
                 </table>
             </div>
-
             <div class="card-ac">
                 <h3>💼 Contexte de réalisation</h3>
                 <p><strong>Cadre :</strong> SAÉ 303 — Pépinière Multi-site</p>
-                <p><strong>Description :</strong> Implémentation du routage d'une infrastructure d'entreprise distribuée (Siège social et succursale) simulant un transit opérateur sur le VLAN 800.</p>
+                <p><strong>Description :</strong> Segmentation logique et isolation des flux de l'entreprise sur l'infrastructure du siège social.</p>
             </div>
-
         </div>
-
         <section class="section-portfolio" style="margin-top: 2rem;">
             <h2>🛠️ Travail Réalisé & Justifications Techniques</h2>
             <div class="projet-card" style="margin-bottom: 1.5rem;">
-                <p>Pour cette tâche, nous avons déployé le protocole de routage dynamique <strong>OSPF (Open Shortest Path First)</strong>. Afin d'éviter d'inonder le réseau public de l'opérateur virtuel (VLAN 800) avec nos tables de routage internes, j'ai encapsulé les flux dans un tunnel <strong>VPN IPsec / GRE</strong> reliant le Siège et la succursale.</p>
-                
-                <h4 style="margin-top: 1rem; color: var(--accent-cyan);">Commandes et validations clés :</h4>
-                <ul>
-                    <li>Définition des réseaux de la pépinière dans le processus OSPF (<code>router ospf 1</code>).</li>
-                    <li>Configuration des interfaces passives (<code>passive-interface</code>) vers les VLANs utilisateurs (Admin, Personnel, etc.) pour sécuriser et économiser la bande passante.</li>
-                    <li>Vérification des tables avec la commande <code>show ip route ospf</code> pour valider l'apprentissage des routes de la succursale distante.</li>
-                </ul>
+                <p>J'ai configuré la segmentation de niveau 2 en découpant logiquement le LAN en 5 VLANs distincts (Admin, Personnel, Vidéo, Production, Invité) associés à des sous-réseaux IP de classe C.</p>
+                <p>Pour assurer la sécurité à la distribution, j'ai écrit et appliqué des listes d'accès (ACLs) IP nommées sur les commutateurs Cisco de niveau 3 pour interdire aux VLANs "Invité" et "Personnel" d'initier des flux vers le VLAN "Admin". De plus, la redondance des passerelles par défaut a été configurée via le protocole <strong>HSRP (Hot Standby Router Protocol)</strong>.</p>
             </div>
-
             <div class="card-ac">
                 <h3>📎 Preuves fournies</h3>
-                <p>📂 <strong>Livrable associé :</strong> <a href="#" style="color: var(--accent-cyan);">Rapport_Technique_SAE303.pdf</a> (Voir section II. Configuration de chaque équipement).</p>
+                <p>📂 <strong>Livrable associé :</strong> <a href="#" style="color: var(--accent-cyan);">RAPPORT_SAE303_Duponchelle_Adam_Grévin_Antoine.pdf</a> (Topologie et architecture des VLANs, pages 2-3).</p>
             </div>
         </section>
     </main>
-
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
-
 </body>
 </html>

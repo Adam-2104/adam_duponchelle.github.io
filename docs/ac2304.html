@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC23.04 - Administration de Gestion de Données</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC23.04 - Système de gestion de données</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC23.04 | Systèmes de Gestion de Données</h1>
-        <p>Installer, administrer un système de gestion de données</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC23.04</h1>
+            <p>Installer, administrer un système de gestion de données</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (Stage chez BM-Tech)</h2>
-            <p>Pendant mon stage au sein de l'entreprise <strong>BM-Tech</strong>, j'ai été amené à manipuler, déployer et administrer des solutions professionnelles de centralisation et de stockage de données en réseau.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Serveur NAS d'entreprise :</strong> Installation et initialisation de systèmes d'exploitation de stockage <strong>TrueNAS</strong> (anciennement FreeNAS).</li>
-                    <li><strong>Administration du Stockage :</strong> Configuration des volumes de données, structuration logique des dossiers partagés, et application fine des permissions et des droits d'accès utilisateurs.</li>
-                    <li><strong>Outils de gestion cloud :</strong> Déploiement et tests de solutions comme <strong>Nextcloud</strong> pour organiser, synchroniser et sécuriser les bibliothèques de fichiers d'organisations.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport de Stage - Section Stockage (BM-Tech)</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai déployé un moteur de base de données relationnelle, modélisé son schéma logique et géré les privilèges d'accès.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Une application a besoin de stocker ses informations de manière persistante, structurée et sécurisée pour éviter les pertes de données ou les accès frauduleux.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai installé un serveur **MySQL / MariaDB** sous Linux. J'ai conçu le dictionnaire de données, rédigé le script SQL de création des tables (avec clés primaires et étrangères pour l'intégrité référentielle) et créé des utilisateurs restreints avec des droits spécifiques (SELECT, INSERT) via la CLI.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>La mise en place des contraintes de clés étrangères (FOREIGN KEY) générait des erreurs lors des insertions initiales. J'ai dû réorganiser l'ordre d'exécution de mes scripts pour que les tables parentes soient alimentées avant les tables enfants.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai appris l'importance de la normalisation des bases de données (Formes Normales) pour éliminer la redondance d'information et optimiser la rapidité des requêtes.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Je planifierais dès l'installation un script automatisé de sauvegarde (dump SQL) via une tâche Cron, déportant les sauvegardes sur un stockage distant pour assurer un plan de reprise d'activité (PRA).</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Script_Structure_BDD.sql</a>
+        </footer>
+    </div>
 </body>
 </html>

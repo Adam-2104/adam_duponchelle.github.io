@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.05 - Analyse Cahier des Charges RT</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC22.05 - Questionner un cahier des charges</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC22.05 | Analyse d'un Cahier des Charges</h1>
-        <p>Capacité à questionner un cahier des charges RT</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC22.05</h1>
+            <p>Capacité à questionner un cahier des charges RT</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (Stage chez BM-Tech)</h2>
-            <p>La réussite des intégrations systèmes chez les clients professionnels de l'entreprise <strong>BM-Tech</strong> exigeait une étude préalable approfondie et critique des besoins formulés.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Étude de faisabilité :</strong> Analyse des cahiers des charges clients pour le déploiement d'équipements de visioconférence ou de systèmes complexes d'affichage dynamique.</li>
-                    <li><strong>Audit Technique de Terrain :</strong> Prise de cotes, repérage des contraintes d'alimentation et des points de raccordement réseaux existants, et vérification de la compatibilité des infrastructures préexistantes face aux exigences du constructeur. Cette phase d'échange a permis de questionner et d'ajuster les demandes initiales pour assurer une intégration sans défaut.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport d'activités & Synthèse de Stage</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai audité et analysé de manière critique un document d'expression des besoins clients (CCTP) portant sur une refonte d'infrastructure de télécommunications.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Un cahier des charges comporte souvent des zones d'ombre, des exigences techniques contradictoires ou des oublis majeurs (ex: sécurité, évolutivité). Poser les bonnes questions en amont évite les dérives financières en phase projet.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>En groupe lors de nos projets de SAÉ, j'ai rédigé un tableau de levée de doutes et un questionnaire technique adressé à la maîtrise d'ouvrage pour clarifier les indicateurs de performance attendus (SLA, Taux de disponibilité de 99.9%).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Il a fallu apprendre à traduire un besoin purement métier formulé par le client ("je veux que ça marche tout le temps") en contraintes techniques réseau chiffrées (redondance de liens BGP, protocoles VRRP).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai développé mon esprit critique et compris l'importance de la phase d'ingénierie avant-vente et de conseil dans le parcours d'un technicien ou ingénieur.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'intégrerais dès le premier échange une grille d'analyse des risques cyber (matrice d'impact) pour forcer le client à clarifier son niveau d'exigence sur la confidentialité des données.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Note_de_Cadrage_Analyse_RT.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

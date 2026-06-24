@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.04 - Services Réseaux Avancés</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC21.04 - Services réseaux avancés</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC21.04 | Services Réseaux Avancés</h1>
-        <p>Déployer des services réseaux avancés</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC21.04</h1>
+            <p>Déployer des services réseaux avancés</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 303)</h2>
-            <p>La mise en œuvre de la <strong>SAÉ 303 (Pépinière)</strong> impliquait d'installer et d'interconnecter une suite complète de services d'infrastructure système essentiels au fonctionnement des utilisateurs finaux.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Windows Server 2022 :</strong> Déploiement complet du système d'exploitation serveur, initialisation et promotion du serveur en Contrôleur de Domaine (Active Directory Domain Services).</li>
-                    <li><strong>Services IP Critiques :</strong> Configuration avancée du service <strong>DHCP</strong> (étendues réseaux segmentées par VLANs, baux d'adresses et exclusions) et du service <strong>DNS</strong> interne pour la résolution de noms du domaine d'entreprise.</li>
-                    <li><strong>Proxy de Flux :</strong> Implémentation du logiciel proxy <strong>WinGate</strong> pour centraliser, contrôler et rediriger l'intégralité du trafic web des machines clientes vers le proxy Squid de l'IUT, assurant ainsi l'accès internet de la maquette de manière encadrée.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport Technique SAÉ 303</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai déployé et configuré une infrastructure d'annuaire Active Directory sous Windows Server, incluant des rôles DNS et des serveurs mandataires (proxy).</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Pour centraliser la gestion des droits, l'authentification des utilisateurs et sécuriser la navigation web des postes de travail au sein du réseau de l'entreprise locale.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>En SAÉ 303, j'ai installé Windows Server, créé la structure des Unités d'Organisation (OU) et configuré des <strong>stratégies de groupe (GPO)</strong> pour brider les accès locaux (panneau de configuration). J'ai également couplé l'architecture à un proxy WinGate/Squid pour filtrer les flux HTTP.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Les nouvelles GPOs ne s'appliquaient pas sur les postes clients de test. Après investigation, j'ai découvert un décalage d'horloge de plus de 5 minutes entre le client et le serveur, ce qui bloquait le protocole d'authentification Kerberos.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai appris à orchestrer des services d'infrastructure dépendants les uns des autres (pas d'Active Directory fonctionnel sans un serveur DNS et un serveur de temps NTP parfaitement réglés).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'essaierais de réaliser ce même travail sous un environnement Linux (avec Samba4 pour l'Active Directory) afin de comparer la flexibilité d'administration et d'évaluer le gain financier sur les licences système.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Dossier_Technique_Windows_Server_SAE303.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC21.05 - Réseaux Opérateurs et Internet</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC21.05 - Réseaux opérateurs et Internet</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC21.05 | Réseaux Opérateurs & Internet</h1>
-        <p>Identifier les réseaux opérateurs et l’architecture d’Internet</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC21.05</h1>
+            <p>Identifier les réseaux opérateurs et l’architecture d’Internet</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence1.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 303)</h2>
-            <p>L'architecture de la pépinière multi-site requérait une compréhension rigoureuse des mécanismes d'interconnexion publique et des technologies de raccordement des opérateurs distants.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Interconnexion Publique :</strong> Analyse théorique et technique des protocoles opérateurs d'Internet, incluant l'étude de l'implémentation du protocole <strong>BGP (Border Gateway Protocol)</strong> pour le routage entre systèmes autonomes (AS).</li>
-                    <li><strong>Évitement de l'Inondation Publique :</strong> Choix stratégique de l'encapsulation de l'infrastructure à travers un tunnel <strong>VPN IPSEC / GRE</strong>, permettant de faire transiter nos requêtes et annonces dynamiques d'une succursale à l'autre de manière masquée et chiffrée sans surcharger ni exposer les tables de routage du réseau opérateur public intermédiaire (VLAN 800 de transit).</li>
-                </ul>
-                <span class="badge">Livrable : Rapport Technique SAÉ 303 - Schéma d'Interconnexion</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai étudié le fonctionnement des liaisons WAN inter-opérateurs et simulé l'échange de routes à l'échelle mondiale à l'aide de protocoles de routage externe.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Internet n'est pas un réseau unique mais un ensemble de milliers de Systèmes Autonomes (AS) connectés entre eux. Comprendre comment le trafic transite entre ces structures est indispensable pour appréhender les infrastructures des fournisseurs d'accès (FAI).</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>En manipulant des architectures virtuelles sous EVE-NG/GNS3. J'ai configuré le protocole <strong>BGP (Border Gateway Protocol)</strong> pour créer des sessions de peering et de transit (eBGP) entre les routeurs de bordure de plusieurs opérateurs fictifs.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Assimiler la logique de décision des routes de BGP a été complexe, car contrairement aux protocoles internes (comme OSPF basés sur la vitesse), BGP choisit ses routes selon des critères politiques et contractuels via des attributs complexes (Local Preference, AS-Path).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris l'architecture globale du réseau Internet (rôle des IXP, accords de transit de niveau Tier-1/Tier-2) et comment manipuler les politiques de routage pour influencer le chemin emprunté par les paquets.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'aimerais coupler ces maquettes BGP avec de la commutation d'étiquettes MPLS (MultiProtocol Label Switching), technique massivement déployée par les opérateurs pour accélérer le transport de données au cœur de leur cœur de réseau.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">TP_Architecture_Internet_BGP.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

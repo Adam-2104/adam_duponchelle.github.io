@@ -3,39 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC25.01Cyber - Protection contre les Logiciels Malveillants</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC25.01Cyber - Administrer les protections contre les logiciels malveillants</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence5.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC25.01Cyber | Gestion des Antimalwares</h1>
-        <p>Administrer les protections contre les logiciels malveillants</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC25.01Cyber</h1>
+            <p>Administrer les protections contre les logiciels malveillants</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence5.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (Stage chez BM-Tech)</h2>
-            <p>Au cours de mon stage de technicien chez <strong>BM-Tech</strong>, j'ai participé activement à la sécurisation des postes clients et des serveurs d'entreprises partenaires face aux menaces virales et aux ransomwares.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Déploiement d'Agents :</strong> Installation, configuration et déploiement de solutions d'Epp (Endpoint Protection Platform) et d'antivirus professionnels (notamment les solutions <strong>ESET NOD32 / ESET Protect</strong>) sur des flottes de machines Windows 11.</li>
-                    <li><strong>Administration Centralisée :</strong> Supervision de l'état de sécurité du parc informatique depuis la console d'administration cloud. Gestion des licences, vérification de la bonne application des signatures de virus et traitement des alertes de détection de logiciels malveillants ou d'activités suspectes isolées par l'agent.</li>
-                </ul>
-                <span class="badge">Livrable : Rapport de Stage (Section Sécurisation - BM-Tech)</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>Dans le cadre de la compétence Surveillance, j'ai étudié la mise en place de mécanismes de défense et d'analyse comportementale de l'infrastructure afin de détecter et d'isoler l'exécution de codes malveillants.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Un attaquant cherche systématiquement à installer une persistance ou à exécuter des charges utiles nuisibles (malwares, ransomwares). Disposer d'outils de protection à jour et savoir centraliser les alertes est indispensable pour neutraliser une attaque avant qu'elle ne compromette l'intégrité globale du SI.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai configuré des systèmes de détection et analysé les journaux d'événements (logs) pour identifier des comportements suspects. Nous avons également vu comment utiliser des bases de connaissances d'indicateurs de compromission (IoC) et des plateformes d'analyse de fichiers (comme VirusTotal ou des bacs à sable/sandboxes) pour qualifier la dangerosité d'un exécutable suspecté.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>La principale difficulté réside dans le traitement du volume massif de logs générés par l'infrastructure et le filtrage des faux positifs (alertes déclenchées par des comportements légitimes d'applications ou de scripts d'administration).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai appris à lire et interpréter les alertes de sécurité d'un agent de protection et compris l'importance de maintenir à jour les signatures et règles comportementales de détection.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>J'implémenterais une solution de type SIEM (Wazuh, ELK) pour corréler automatiquement les événements des protections de points de terminaison (EDR) avec les événements réseau, permettant ainsi une détection plus rapide de l'activité des malwares.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_Surveillance_Logs_Malwares.pdf</a>
+        </footer>
+    </div>
 </body>
 </html>

@@ -3,184 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détail AC - Structure Verticale</title>
-    <style>
-        /* --- STYLE GLOBAL ET BACKBONE --- */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212; /* Fond sombre moderne */
-            color: #e0e0e0;
-            margin: 0;
-            padding: 40px 20px;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* --- CONTENEUR DE LA PAGE D'AC --- */
-        .ac-container {
-            max-width: 800px;
-            width: 100%;
-            background-color: #1e1e1e;
-            border: 1px solid #2d2d2d;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            padding: 35px;
-            box-sizing: border-box;
-        }
-
-        /* --- EN-TÊTE DE LA FICHE --- */
-        .ac-header {
-            border-bottom: 2px solid #333;
-            padding-bottom: 15px;
-            margin-bottom: 30px;
-        }
-
-        .ac-header h1 {
-            font-size: 2.2rem;
-            color: #4ade80; /* Vert fluo code AC */
-            margin: 0 0 10px 0;
-        }
-
-        .ac-header p {
-            font-size: 1.15rem;
-            color: #b3b3b3;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        /* --- BLOCS SECTIONS (ALIGNEMENT VERTICAL STRICT) --- */
-        .ac-section {
-            margin-bottom: 30px;
-        }
-
-        .ac-section h2 {
-            font-size: 1.25rem;
-            color: #ffffff;
-            border-bottom: 1px solid #3a3a3a;
-            padding-bottom: 6px;
-            margin-top: 0;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        /* Styles des textes à l'intérieur des sections */
-        .ac-section p {
-            margin: 0 0 12px 0;
-            line-height: 1.6;
-            color: #cccccc;
-        }
-
-        .ac-section p:last-child {
-            margin-bottom: 0;
-        }
-
-        /* Liste à puces pour les compétences ou les points clés */
-        .ac-section ul {
-            padding-left: 20px;
-            margin: 0;
-        }
-
-        .ac-section li {
-            margin-bottom: 8px;
-            color: #cccccc;
-            line-height: 1.5;
-        }
-
-        /* --- STYLE SPÉCIAL POUR LES ENCADRÉS DE TRAVAIL PRATIQUE --- */
-        .ac-box {
-            background-color: #252526;
-            border-left: 4px solid #4ade80;
-            padding: 20px;
-            border-radius: 0 6px 6px 0;
-        }
-
-        /* --- FOOTER : PREUVES ET LIENS --- */
-        .ac-footer {
-            border-top: 1px solid #333;
-            padding-top: 20px;
-            margin-top: 40px;
-            font-size: 0.95rem;
-            color: #a0a0a0;
-        }
-
-        .ac-footer strong {
-            color: #ffffff;
-        }
-
-        .ac-footer a {
-            color: #38bdf8; /* Bleu clair pour les fichiers/liens */
-            text-decoration: none;
-        }
-
-        .ac-footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>AC21.02 - QoS et Sécurité de base</title>
+    <style>/* Même CSS */ body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; } .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); } .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; } .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; } .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; } .ac-section { margin-bottom: 30px; } .ac-section h2 { font-size: 1.25rem; color: #ffffff; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; } .ac-section p { margin: 0 0 12px 0; line-height: 1.6; color: #cccccc; } .ac-section ul { padding-left: 20px; margin: 0; } .ac-section li { margin-bottom: 8px; color: #cccccc; line-height: 1.5; } .ac-box { background-color: #252526; border-left: 4px solid #4ade80; padding: 20px; border-radius: 0 6px 6px 0; } .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; } .ac-footer strong { color: #ffffff; } .ac-footer a { color: #38bdf8; text-decoration: none; } .ac-footer a:hover { text-decoration: underline; }</style>
 </head>
 <body>
-
     <div class="ac-container">
-        
         <header class="ac-header">
             <h1>AC21.02</h1>
-            <p>Configure et explique une politique simple de QoS et les fonctions de base de la sécurité</p>
+            <p>Configure et expliquer une politique simple de QoS et les fonctions de base de la sécurité d’un réseau</p>
         </header>
 
         <section class="ac-section">
-            <h2>🎯 Objectif</h2>
-            <p>
-                L'objectif de cette activité est de mettre en place une architecture réseau locale sécurisée tout en garantissant une gestion optimale des flux de trafic au sein de l'entreprise.
-            </p>
+            <h2>Objectif</h2>
+            <p>Mettre en place des mécanismes de priorisation du trafic critique (QoS) et verrouiller les accès réseau basiques pour protéger l'infrastructure des intrusions locales.</p>
         </section>
 
         <section class="ac-section">
-            <h2>🛠️ Compétences</h2>
+            <h2>Compétences</h2>
             <ul>
-                <li>Capacité à concevoir et implémenter un plan de segmentation réseau (VLANs).</li>
-                <li>Maîtrise du filtrage réseau via l'application de listes de contrôle d'accès (ACLs).</li>
-                <li>Mise en œuvre de mécanismes de haute disponibilité et de redondance (HSRP).</li>
+                <li>Marquage et classification des flux réseaux (VoIP, données).</li>
+                <li>Configuration de listes de contrôle d'accès (ACL) standards et étendues.</li>
+                <li>Sécurisation des ports de commutateurs (Port Security).</li>
             </ul>
         </section>
 
         <section class="ac-section">
-            <h2>💼 Le contexte</h2>
-            <p>
-                Ce travail a été réalisé dans le cadre de la <strong>SAÉ 303 (Pépinière Multi-site)</strong>. Nous devions simuler l'infrastructure réseau complète d'un siège social accueillant différentes catégories d'utilisateurs avec des droits d'accès réseau distincts.
-            </p>
+            <h2>Le contexte</h2>
+            <p>Ce travail s'inscrit dans le cadre de la sécurisation logique des réseaux locaux d'entreprise simulés en SAÉ 303.</p>
         </section>
 
         <section class="ac-section">
-            <h2>🚀 La mise en œuvre</h2>
+            <h2>La mise en œuvre</h2>
             <div class="ac-box">
-                <p>
-                    Dans un premier temps, j'ai configuré la segmentation de niveau 2 sur des commutateurs Cisco en créant 5 VLANs dédiés (Admin, Personnel, Vidéo, Production et Invité). 
-                </p>
-                <p>
-                    Par la suite, j'ai rédigé et appliqué des listes d'accès (ACLs) IP étendues sur les interfaces virtuelles de l'équipement de distribution pour bloquer l'accès aux segments sensibles de l'administration. Enfin, la tolérance aux pannes des passerelles a été assurée en implémentant le protocole HSRP.
-                </p>
+                <p>J'ai rédigé des ACLs sur le routeur pour bloquer les flux d'administration venant des segments utilisateurs classiques. Pour la QoS, nous avons priorisé le trafic de la voix (VLAN Voix) sur les files d'attente des commutateurs face aux téléchargements de fichiers.</p>
             </div>
         </section>
 
         <section class="ac-section">
-            <h2>⚠️ Les difficultés rencontrées</h2>
-            <p>
-                La principale difficulté a résidé dans le placement et le sens d'application des ACLs nommées sur le switch de niveau 3. Un mauvais ciblage bloquait initialement l'intégralité du trafic inter-VLAN, y compris les requêtes légitimes de routage vers internet.
-            </p>
+            <h2>Les difficultés rencontrées</h2>
+            <p>L'application d'une ACL trop restrictive à l'entrée d'une interface coupait également les requêtes DHCP légitimes des clients, empêchant l'attribution d'adresses IP automatiques.</p>
         </section>
 
         <section class="ac-section">
-            <h2>🧠 Ce que j'ai appris</h2>
-            <p>
-                J'ai appris l'importance d'une planification rigoureuse d'une matrice de flux avant de passer à la configuration d'équipements réels. J'ai également consolidé mes connaissances pratiques sur la gestion de la redondance réseau et les règles de sécurité à adopter au niveau de la couche de distribution.
-            </p>
+            <h2>Ce que j'ai appris</h2>
+            <p>J'ai compris l'importance de l'ordre d'évaluation des lignes d'une ACL et la manière dont la bande passante est allouée dynamiquement en fonction du marquage des paquets.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">RAPPORT_SAE303_Duponchelle_Adam_Grévin_Antoine.pdf</a> (Sections Architecture et Sécurité).
+            <strong>Preuve :</strong> <a href="#" target="_blank">Rapport_SAE303_Securite_QoS.pdf</a>
         </footer>
-
     </div>
-    </body>
+</body>
 </html>

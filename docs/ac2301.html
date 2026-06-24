@@ -3,40 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC23.01 - Automatisation & Scripting</title>
-    <link rel="stylesheet" href="style.css">
+    <title>AC23.01 - Automatiser l’administration système</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
+        .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
+        .btn-back:hover { background-color: #22c55e; }
+        .btn-back:active { transform: scale(0.98); }
+        .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
+        .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
+        .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
+        .ac-section { margin-bottom: 30px; }
+        .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
+        .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
+        .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
+        .ac-footer strong { color: #ffffff; }
+        .ac-footer a { color: #38bdf8; text-decoration: none; }
+        .ac-footer a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
+    <div class="ac-container">
+        <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
 
-    <header>
-        <h1>AC23.01 | Automatisation & Scripting</h1>
-        <p>Automatiser l’administration système avec des scripts</p>
-    </header>
+        <header class="ac-header">
+            <h1>AC23.01</h1>
+            <p>Automatiser l’administration système avec des scripts</p>
+        </header>
 
-    <main class="container">
-        <div style="margin-bottom: 2rem;">
-            <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
-        </div>
-
-        <section class="section-portfolio">
-            <h2>Description de la Réalisation (SAÉ 303)</h2>
-            <p>Dans la <strong>SAÉ 303 (Pépinière)</strong>, l'un des besoins fondamentaux était de simplifier et d'automatiser l'accès aux ressources partagées pour les employés d'une entreprise lors de leur authentification.</p>
-            
-            <div class="projet-card">
-                <h3>Détails Techniques de la Preuve :</h3>
-                <ul>
-                    <li><strong>Script d'automatisation (PowerShell) :</strong> Écriture d'un script de connexion (Logon Script) destiné à mapper dynamiquement et automatiquement les lecteurs réseaux (partages de fichiers Windows) sur les postes clients selon l'identité de l'utilisateur.</li>
-                    <li><strong>Déploiement centralisé :</strong> Intégration du script PowerShell au sein d'une Unité d'Organisation (OU) et liaison via une Stratégie de Groupe (<strong>GPO</strong>) Active Directory sur Windows Server 2022.</li>
-                    <li><strong>Gestion des politiques d'exécution :</strong> Ajustement des GPO pour autoriser l'exécution transparente du script sans invites de sécurité intrusives sur les machines du domaine.</li>
-                </ul>
-                <span class="badge">Livrable : GPO & Script de session SAÉ 303</span>
-            </div>
+        <section class="ac-section">
+            <h2>Ce que j’ai fait</h2>
+            <p>J'ai conçu et déployé des scripts d'automatisation autonomes pour réaliser des tâches répétitives de maintenance serveur et de gestion des utilisateurs.</p>
         </section>
-    </main>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio BUT R&T</p>
-    </footer>
+        <section class="ac-section">
+            <h2>Pourquoi je l’ai fait</h2>
+            <p>Créer manuellement 150 comptes utilisateurs ou vérifier chaque matin l'espace disque de 20 serveurs est chronophage et source d'erreurs. L'automatisation fiabilise le système.</p>
+        </section>
 
+        <section class="ac-section">
+            <h2>Comment je l’ai fait</h2>
+            <p>J'ai écrit des scripts en **Bash** et en **Python**. Par exemple, j'ai codé un outil qui lit un fichier CSV d'étudiants pour créer automatiquement leurs répertoires Linux, leur attribuer des quotas disques spécifiques et générer un mot de passe sécurisé aléatoire.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Mes difficultés</h2>
+            <p>Gérer proprement les cas d'erreur (par exemple, si un utilisateur possède déjà un compte existant ou si le nom contient des caractères accentués) a nécessité l'ajout de nombreuses conditions (if/else) et d'expressions régulières (Regex).</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que j’en ai appris</h2>
+            <p>J'ai compris la puissance de la philosophie DevOps et l'importance de journaliser proprement les actions d'un script dans un fichier log (syslog) pour le débogage.</p>
+        </section>
+
+        <section class="ac-section">
+            <h2>Ce que je ferais autrement</h2>
+            <p>Au lieu de scripts bruts parfois lourds à maintenir, j'utiliserais un outil de gestion de configuration comme **Ansible** via des Playbooks YAML, beaucoup plus adaptés à l'administration moderne.</p>
+        </section>
+
+        <footer class="ac-footer">
+            📂 <strong>Preuve :</strong> <a href="#" target="_blank">script_creation_users.sh</a>
+        </footer>
+    </div>
 </body>
 </html>

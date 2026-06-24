@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC24.04Cyber - Outils Cryptographiques</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AC24.04Cyber | Outils Cryptographiques</h1>
+        <p>Choisir les outils cryptographiques adaptés au besoin fonctionnel du système d’information</p>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="competence4.html" class="btn-back">← Retour à la compétence</a>
+        </div>
+
+        <section class="section-portfolio">
+            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
+            <p>L'implémentation de liaisons de confiance et de services sécurisés dans la <strong>SAÉ 4.Cyber.01</strong> a nécessité la sélection et le déploiement de mécanismes de chiffrement asymétriques et symétriques conformes aux exigences modernes.</p>
+            
+            <div class="projet-card">
+                <h3>Détails Techniques de la Preuve :</h3>
+                <ul>
+                    <li><strong>Infrastructure de Gestion de Clés (Génération SSL/TLS) :</strong> Utilisation de l'outil en ligne de commande <strong>OpenSSL</strong> pour générer des clés privées et des requêtes de certificats (CSR). Sélection de clés asymétriques fortes basées sur l'algorithme <strong>RSA 4096 bits</strong> pour sécuriser l'identité des serveurs applicatifs de la DMZ.</li>
+                    <li><strong>Cryptographie sur liaisons tunnels :</strong> Configuration de protocoles de chiffrement symétriques robustes (<strong>AES-256 bits</strong>) et de fonctions de hachage sécurisées (<strong>SHA-256</strong>) pour assurer la confidentialité intégrale des paquets encapsulés au sein du tunnel VPN inter-sites IPsec.</li>
+                </ul>
+                <span class="badge">Livrable : Certificats X.509 générés & Scripts de configuration de chiffrement IPsec</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio BUT R&T</p>
+    </footer>
+
+</body>
+</html>

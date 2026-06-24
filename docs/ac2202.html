@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AC22.02 - Accès Distant Sécurisé</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>AC22.02 | Accès Distant Sécurisé</h1>
+        <p>Mettre en place un accès distant sécurisé</p>
+    </header>
+
+    <main class="container">
+        <div style="margin-bottom: 2rem;">
+            <a href="competence2.html" class="btn-back">← Retour à la compétence</a>
+        </div>
+
+        <section class="section-portfolio">
+            <h2>Description de la Réalisation (SAÉ 4.Cyber.01)</h2>
+            <p>Lors de la <strong>SAÉ 4.Cyber.01 (Sécuriser un SI)</strong>, l'un des enjeux majeurs consistait à interconnecter les deux sites de l'entreprise de manière totalement hermétique à travers un espace public non maîtrisé.</p>
+            
+            <div class="projet-card">
+                <h3>Détails Techniques de la Preuve :</h3>
+                <ul>
+                    <li><strong>Tunnel d'Encapsulation :</strong> Configuration d'un tunnel <strong>GRE (Generic Routing Encapsulation)</strong> entre les routeurs de bordure Cisco pour encapsuler l'intégralité des paquets de données et des protocoles de routage dynamique (OSPF).</li>
+                    <li><strong>Chiffrement de Sécurité (IPSec) :</strong> Implémentation d'une couche <strong>IPSec (IP Security)</strong> pour chiffrer l'intégralité du tunnel GRE (Architecture GRE over IPSec).</li>
+                    <li><strong>Paramètres de Chiffrement :</strong> Définition de politiques ISAKMP strictes avec algorithme de chiffrement symétrique fort <strong>AES-256</strong>, hachage SHA-256 pour l'intégrité, et utilisation du protocole d'échange de clés Diffie-Hellman (DH Group 14) pour sécuriser l'authentification mutuelle des routeurs.</li>
+                </ul>
+                <span class="badge">Livrable : Matrice de flux & Configurations Cisco SAÉ 4.Cyber.01</span>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 - Portfolio BUT R&T</p>
+    </footer>
+
+</body>
+</html>

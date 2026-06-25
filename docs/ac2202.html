@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.02 - Accès distant sécurisé</title>
+    <title>AC22.02 - Mettre en place un accès distant sécurisé</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,7 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,36 +32,47 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai déployé une passerelle de réseau privé virtuel (VPN) pour permettre à des utilisateurs nomades de se connecter de manière chiffrée à l'infrastructure interne de l'entreprise.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai configuré et appliqué des politiques de sécurité strictes sur l'interface interne (Inside) de notre pare-feu matériel dédié Cisco ASA afin de filtrer et de sécuriser les accès réseau initiés depuis nos zones LAN vers la DMZ et vers les sites distants.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Avec l'essor du télétravail, ouvrir des services internes directement sur Internet expose l'entreprise aux cyberattaques. Le VPN chiffre les flux de bout en bout et authentifie strictement l'utilisateur.</p>
+            <p>Sécuriser un accès ou une interconnexion distante ne se limite pas à monter un tunnel réseau. Il est impératif de contrôler précisément les flux autorisés à entrer et à sortir de ce tunnel de communication. Sans un filtrage granulaire par pare-feu, une machine compromise sur un réseau local pourrait exploiter le lien distant pour attaquer les serveurs de la DMZ ou le réseau du second site de l'entreprise.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai installé et configuré un serveur **OpenVPN** sur une machine Linux Debian. J'ai généré une infrastructure de clés publiques (PKI) avec Easy-RSA pour distribuer des certificats SSL/TLS uniques aux clients, et j'ai configuré les règles de routage et de NAT correspondantes.</p>
+            <p>J'ai rédigé une liste de contrôle d'accès étendue nommée <code>INSIDE_IN</code> sur le Cisco ASA. Cette règle octroie un accès complet au VLAN d'administration (<code>192.168.10.0</code>), restreint l'accès des utilisateurs aux seuls services Web (HTTP/HTTPS) et de résolution de noms (DNS) de notre serveur en DMZ (<code>192.168.40.2</code>), et autorise uniquement le trafic vers l'adressage distant légitime (<code>192.168.11.0</code>). Les accès non répertoriés sont explicitement rejetés par un <code>deny ip any any</code> avant d'appliquer la politique en entrée de l'interface.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Les clients VPN parvenaient à se connecter au serveur mais ne pouvaient pas pinguer les machines situées dans les sous-réseaux locaux cachés derrière le serveur. J'ai dû activer l'IP Forwarding dans le noyau Linux et ajouter des directives "push route" dans la configuration d'OpenVPN.</p>
+            <p>La principale difficulté sur un équipement de type Cisco ASA par rapport à un routeur traditionnel réside dans la syntaxe des masques réseau : l'ASA utilise des masques de sous-réseau standards (ex: <code>255.255.255.0</code>) et non des masques génériques inversés (wildcard masks). J'ai dû adapter mon écriture pour éviter des erreurs de validation de syntaxe lors du déploiement des règles.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai assimilé la logique du chiffrement asymétrique/symétrique et compris l'importance de sécuriser l'accès au réseau dès le périmètre externe.</p>
+            <p>J'ai appris à administrer la sécurité périmétrique sur un pare-feu matériel de référence, à traduire un besoin de cloisonnement en règles d'inspection et à lier une politique de filtrage à une interface de zone (Inside/Outside/DMZ) à l'aide de la commande <code>access-group</code>.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Je basculerais sur la technologie **WireGuard**, qui offre de bien meilleures performances en termes de débit et de temps de latence tout en restant plus légère à configurer qu'OpenVPN.</p>
+            <p>Plutôt que d'utiliser des adresses IP et des masques bruts répétés manuellement dans chaque ligne d'ACL, j'utiliserais des objets réseau (<code>object network</code>) et des groupes d'objets (<code>object-group</code>) sur l'ASA. Cela rendrait la configuration beaucoup plus lisible, modulaire et simplifierait les futures mises à jour de l'infrastructure.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Documentation_Technique_VPN.pdf</a>
+            <strong>Trace ciblée :</strong> Configuration de l'ACL de filtrage sur le pare-feu Cisco ASA
+            <pre>
+access-list INSIDE_IN extended permit ip 192.168.10.0 255.255.255.0 any       
+! Admin gauche : access total 
+access-list INSIDE_IN extended permit tcp 192.168.10.0 255.255.255.0 host 192.168.40.2 eq www 
+access-list INSIDE_IN extended permit tcp 192.168.10.0 255.255.255.0 host 192.168.40.2 eq 443 
+access-list INSIDE_IN extended permit udp 192.168.10.0 255.255.255.0 host 192.168.40.2 eq domain 
+access-list INSIDE_IN extended permit tcp 192.168.10.0 255.255.255.0 host 192.168.40.2 eq domain 
+access-list INSIDE_IN extended permit ip 192.168.20.0 255.255.255.0 192.168.11.0 255.255.255.0 
+access-list INSIDE_IN extended permit ip 192.168.30.0 255.255.255.0 192.168.11.0 255.255.255.0 
+access-list INSIDE_IN extended deny ip any any 
+access-group INSIDE_IN in interface inside</pre>
         </footer>
     </div>
 </body>

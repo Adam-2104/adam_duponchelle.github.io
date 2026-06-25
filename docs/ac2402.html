@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.02Cyber - Sécurisation d'une infrastructure réseau</title>
+    <title>AC24.02Cyber - Outils fondamentaux de sécurisation réseau</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,9 +16,7 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,36 +30,46 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>Lors de la SAE 4.Cyber.01, j'ai participé à la sécurisation des interconnexions d'un réseau d'entreprise multi-sites en mettant en œuvre un tunnel GRE, un cloisonnement par VLANs et un pare-feu matériel Cisco ASA.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai configuré et appliqué des listes de contrôle d'accès (ACL) étendues et restrictives sur notre commutateur cœur de réseau de niveau 3 (SR1) afin de cloisonner de manière étanche les zones utilisateurs de moindre confiance par rapport à nos zones d'administration sensibles.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Un réseau d'entreprise sans cloisonnement ni filtrage périphérique permet la propagation rapide des menaces d'un segment à l'autre. Il est crucial d'isoler les flux de production, d'administration et de services, et de contrôler les accès inter-sites.</p>
+            <p>Le routage inter-VLAN permet par défaut à n'importe quel segment réseau de communiquer avec un autre. Pour sécuriser l'infrastructure, il est crucial d'appliquer le principe du moindre privilège au niveau réseau. Les postes du réseau de Production ou de Service ne doivent jamais pouvoir initier un flux vers les serveurs et postes de gestion de l'Administration, évitant ainsi la propagation latérale d'une éventuelle compromission.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai configuré des listes de contrôle d'accès (ACL) stateful sur les switchs de niveau 3 et le pare-feu Cisco ASA. J'ai également activé l'inspection de paquets (notamment <code>inspect icmp</code>) pour autoriser les réponses réseau tout en bloquant les flux d'initiation non sollicités entre les zones de confiance et la DMZ.</p>
+            <p>J'ai implémenté l'ACL nommée <code>BLOCK_SERVICE_PROD</code>. Pour ne pas bloquer le routage dynamique, le trafic <code>ospf</code> est autorisé. Les réseaux d'administration (<code>192.168.10.0/24</code> et <code>192.168.11.0/24</code>) disposent d'un accès complet. Pour les autres zones, j'ai mis en place un mécanisme pseudo-stateful : l'accès n'est autorisé que si le bit TCP <code>established</code> est actif (ce qui indique une réponse à une connexion déjà initiée par l'administrateur) ou s'il s'agit d'un message ICMP <code>echo-reply</code>. Toute tentative d'initiation de connexion vers la zone d'administration est explicitement rejetée par la règle finale <code>deny ip any any</code>.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>La gestion fine des priorités de filtrage au sein de la matrice de flux a provoqué des blocages initiaux sur le routage dynamique OSPF traversant le tunnel GRE. J'ai dû ajuster les règles d'accès pour laisser passer les messages de protocole sans compromettre le cloisonnement.</p>
+            <p>La principale difficulté résidait dans le fait qu'un filtrage trop strict bloquait également les réponses légitimes des serveurs vers les outils d'administration (par exemple, un ping de diagnostic restait sans réponse). L'analyse de l'ordre séquentiel des lignes d'ACL et l'utilisation rigoureuse des types de paquets ICMP (distinction entre echo et echo-reply) m'ont permis de résoudre ce problème de connectivité bidirectionnelle sécurisée.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai appris à configurer et interconnecter des pare-feux Cisco ASA, à gérer des niveaux de sécurité par interface (security-level) et à valider le filtrage via des commandes de vérification de hitcounts.</p>
+            <p>J'ai maîtrisé l'écriture d'ACL étendues complexes sous l'environnement Cisco IOS, compris la logique de filtrage par liste blanche et assimilé l'utilisation des indicateurs d'état TCP (established) pour sécuriser l'infrastructure réseau de manière granulaire.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>À la place d'un tunnel GRE simple en clair, j'ajouterais une surcouche IPsec (Crypto Maps) pour chiffrer l'intégralité du trafic transitant sur le réseau public entre les deux sites de l'entreprise.</p>
+            <p>Les ACLs classiques sur commutateur analysent les paquets ligne par ligne sans véritable table d'état dynamique en mémoire. Pour une infrastructure de production d'entreprise, je préférerais déléguer ce filtrage de zone à un pare-feu applicatif (Next-Gen Firewall) ou activer des fonctionnalités de pare-feu basées sur des zones (Zone-Based Firewall - ZBF) sur le routeur afin de bénéficier d'une inspection stateful complète et native.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Configuration_Cisco_ASA_Régles_ACL.txt</a>
+            <strong>Trace ciblée :</strong> Configuration de la liste d'accès étendue sur le commutateur L3 SR1
+            <pre>
+ip access-list extended BLOCK_SERVICE_PROD 
+ permit ospf any any ! OSPF non bloqué 
+ permit ip 192.168.11.0 0.0.0.255 any ! Admin droit : accès total 
+ permit ip 192.168.10.0 0.0.0.255 any ! Admin gauche : accès total 
+ permit tcp any 192.168.10.0 0.0.0.255 established ! Réponses TCP vers Admin gauche 
+ permit icmp any 192.168.10.0 0.0.0.255 echo-reply ! Réponses ping vers Admin gauche 
+ permit icmp any 192.168.11.0 0.0.0.255 echo-reply ! Réponses ping vers Admin droit 
+ permit tcp any 192.168.11.0 0.0.0.255 established ! Réponses TCP vers Admin droit 
+ deny ip any any ! Tout le reste bloqué</pre>
         </footer>
     </div>
 </body>

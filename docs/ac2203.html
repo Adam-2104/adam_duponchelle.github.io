@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.03 - Connexion multi-site</title>
+    <title>AC22.03 - Connexion multi-site via un réseau opérateur</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,7 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,37 +32,43 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai interconnecté virtuellement deux agences d'une entreprise distantes géographiquement en passant de façon sécurisée par le réseau de transport public.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai configuré et validé l'établissement d'une liaison point-à-point virtuelle (Tunnel GRE) reliant l'infrastructure du routeur R1 (Site Gauche) au routeur R3 (Site Droit) à travers un réseau de transport opérateur.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Pour qu'un employé du site B puisse accéder aux serveurs centraux situés sur le site A de manière transparente, sans avoir besoin de louer des lignes physiques dédiées extrêmement onéreuses.</p>
+            <p>Lier deux sites géographiquement distants via des liaisons physiques dédiées est extrêmement coûteux. Utiliser un réseau opérateur public ou partagé impose de créer un lien logique direct (Tunnel) permettant d'encapsuler nos paquets privés et nos protocoles internes de manière transparente à travers le cœur de réseau externe.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>Sur le simulateur GNS3, j'ai mis en place un tunnel **IPsec de site à site** (Site-to-Site) entre deux routeurs Cisco de bordure. J'ai configuré les politiques ISAKMP (Phase 1) pour l'échange de clés Diffie-Hellman, et le profil de transformation (Phase 2) pour l'encapsulation ESP.</p>
+            <p>J'ai instancié une interface virtuelle (<code>interface Tunnel0</code>) sur chaque routeur d'extrémité, défini l'adressage d'interconnexion en <code>172.30.255.0/30</code>, puis associé l'interface physique de sortie comme source et l'IP WAN du routeur distant comme destination du tunnel. La validation a été confirmée par l'état <em>up/up</em> de la ligne et la validation de requêtes ICMP d'un bout à l'autre.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Le tunnel refusait de monter en raison d'un "Phase 1 Mismatch". En analysant les logs, j'ai constaté qu'une des deux agences utilisait l'algorithme AES-256 alors que l'autre attendait du 3DES. L'alignement rigoureux des deux côtés a résolu le blocage.</p>
+            <p>L'une des difficultés courantes lors du montage de tunnels réside dans les erreurs d'adressage des cibles réelles (tunnel destination) ou le blocage des paquets d'encapsulation par des règles de sécurité intermédiaires. J'ai veillé à tester la connectivité IP publique de base entre R1 et R3 avant de monter le tunnel logique.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris le fonctionnement des tunnels chiffrés sur Internet et l'importance d'une documentation stricte des paramètres de chiffrement lors d'une interconnexion.</p>
+            <p>J'ai compris les concepts d'encapsulation de paquets de Niveau 3, la gestion de liaisons point-à-point virtuelles et la méthode d'analyse de l'état fonctionnel d'un tunnel Cisco.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Si l'architecture devait s'étendre à 10 ou 20 sites, l'IPsec classique deviendrait ingérable. Je déploierais une solution **DMVPN (Dynamic Multipoint VPN)** ou une architecture de type SD-WAN pour automatiser le maillage.</p>
+            <p>Le protocole GRE encapsule les données en clair sans les chiffrer. Pour une infrastructure de production réelle, je couplerais impérativement ce tunnel avec IPsec (Crypto Maps ou profil de protection de tunnel) afin d'assurer la confidentialité et l'intégrité des flux d'entreprise traversant l'opérateur.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Maquette_GNS3_IPsec_MultiSite.zip</a>
-        </footer>
-    </div>
-</body>
-</html>
+            <strong>Trace ciblée :</strong> Configuration croisée des interfaces de tunnel et tests de connectivité
+            <pre>
+Configuration R1 
+interface Tunnel0 
+ ip address 172.30.255.1 255.255.255.252 
+ tunnel source GigabitEthernet0/0 ! IP source : 10.0.0.1 
+ tunnel destination 10.0.1.2 ! IP destination : R3 
+
+Configuration R3 
+interface Tunnel0 
+ ip address

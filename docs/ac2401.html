@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.01Cyber - Bonnes pratiques et recommandations de cybersécurité</title>
+    <title>AC24.01Cyber - Connaître et utiliser les bonnes pratiques et recommandations de cybersécurité</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,9 +16,7 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -33,36 +30,38 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai été chargé de l'analyse réglementaire et de la conformité du système d'information en m'appuyant sur le guide des bonnes pratiques de l'ANSSI. J'ai rédigé et suivi une checklist d'audit de sécurité complète pour l'architecture inter-sites.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01 (Write-Up Technique d'infrastructure), j'ai audité et durci la configuration des équipements de notre maquette réseau en appliquant point par point les guides et recommandations de l'ANSSI (règles R1 à R8+).</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Déployer une infrastructure sans suivre de référentiel officiel expose le système à des failles de configuration majeures. Appliquer les recommandations de l'ANSSI permet de standardiser la sécurité du réseau d'entreprise et de s'assurer qu'aucun vecteur d'attaque évident n'a été omis.</p>
+            <p>Le respect des préconisations de l'ANSSI permet de réduire considérablement la surface d'attaque d'un système d'information. Conserver des identifiants par défaut ou laisser s'exécuter des protocoles obsolètes et non chiffrés (comme Telnet ou HTTP simple) expose directement l'entreprise à des risques d'interception de données ou de compromission totale de ses machines.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai répertorié les exigences applicables à notre maquette (comme le filtrage strict, le chiffrement des flux et la désactivation des protocoles obsolètes). J'ai ensuite audité les configurations des routeurs et commutateurs afin de valider point par point la conformité de nos installations par rapport aux règles de l'agence nationale.</p>
+            <p>J'ai mené le durcissement du système sur plusieurs axes clés : modification systématique des éléments par défaut (configuration de hostnames uniques et personnalisation stricte des clés PSK GRE/IPSec), désactivation complète des protocoles peu sûrs comme Telnet au profit de SSH, et réduction drastique des services système actifs au strict nécessaire (OSPF, SSH, DNS, HTTP/HTTPS). De plus, j'ai initié la sécurisation des services Web applicatifs en forçant l'activation du module SSL d'Apache (<code>a2enmod ssl</code>) et dressé un inventaire technique exhaustif des accès et de l'adressage.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Il a fallu trouver le juste équilibre entre les recommandations théoriques très restrictives de l'ANSSI et les contraintes techniques ou d'interopérabilité des équipements Cisco émulés sous Packet Tracer, nécessitant l'adaptation de certaines implémentations d'ACL.</p>
+            <p>La principale difficulté résidait dans le fait d'appliquer un cloisonnement strict sans interrompre les services de production légitimes. Par exemple, restreindre les modules Apache au strict minimum ou désactiver des services réseau globaux requiert de tester méthodiquement chaque flux pour s'assurer qu'aucune dépendance applicative cachée ne vienne rompre la continuité d'activité.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris l'importance de mener un audit méthodique basé sur des standards nationaux et j'ai appris à structurer un plan de remédiation technique sous forme de guide de conformité cyber.</p>
+            <p>J'ai appris à passer d'une approche théorique de la cybersécurité à une mise en pratique rigoureuse sur des équipements concrets (Cisco et serveurs Linux Ubuntu LTS). J'ai assimilé l'importance capitale du principe de défense en profondeur, à commencer par le durcissement initial de la configuration (hardening).</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>À l'avenir, j'automatiserais la vérification de cette conformité à l'aide de scripts d'audit de configuration (comme des playbooks Ansible) plutôt que de vérifier manuellement les fichiers de configuration un par un.</p>
+            <p>Le suivi et l'application manuelle de grilles ANSSI sur chaque équipement sont chronophages et sujets aux omissions humaines. Pour un déploiement à grande échelle en entreprise, j'utiliserais des outils de gestion de configuration automatisés (comme Ansible) combinés à des playbooks de hardening pour déployer de manière uniforme et continue les baselines de sécurité sur tout le parc.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Checklist_ANSSI_SAE4_Cyber.pdf</a>
+            <strong>Trace ciblée :</strong> Extrait de notre matrice de durcissement réglementaire ANSSI (SAE 4.Cyber.01)
+            <br>
+            <img src="extrait_anssi.png" alt="Extrait recommandations anssi SAE 4.Cyber.01" class="trace-image">
         </footer>
     </div>
 </body>

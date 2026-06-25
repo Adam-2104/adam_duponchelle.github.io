@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.04 - Réseaux d’accès des opérateurs</title>
+    <title>AC22.04 - Déployer des réseaux d’accès des opérateurs</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,7 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,36 +32,39 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai étudié l'architecture de la boucle locale et configuré les protocoles d'accès client permettant le raccordement final aux infrastructures télécoms (FTTH / 4G-5G).</p>
+            <p>Dans le cadre de la SAE 303 (Pépinière multi-site), j'ai configuré et géré la liaison de bordure raccordant notre infrastructure locale au segment de réseau d'accès fourni par l'opérateur (simulé par le VLAN 800 WAN).</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Comprendre le fonctionnement du "dernier kilomètre" est indispensable pour administrer les box d'entreprise ou gérer les incidents de livraison de liens WAN.</p>
+            <p>Pour qu'une infrastructure privée d'entreprise puisse s'interconnecter avec l'extérieur ou d'autres agences distantes, elle doit posséder une interface physique et logique directement connectée à la boucle locale ou au réseau d'accès de l'opérateur de télécommunications. Cette passerelle permet de délimiter la frontière entre notre réseau interne et le réseau public externe.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai configuré des liaisons clients s'appuyant sur l'encapsulation **PPPoE** (Point-to-Point Protocol over Ethernet) avec authentification CHAP sur un routeur faisant office de concentrateur opérateur, et manipulé la séparation de flux par VLAN (VLAN 832 pour internet opérateur).</p>
+            <p>J'ai configuré l'interface physique de bordure (<code>interface GigabitEthernet0</code>) connectée au routeur de l'opérateur. Je lui ai assigné une adresse IP publique dédiée fournie par le fournisseur d'accès (<code>10.1.1.1/8</code> au sein de la maquette d'interconnexion), activé l'interface et configuré les routes par défaut associées pour envoyer tout le trafic non local vers la passerelle de l'opérateur.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Comprendre l'arborescence des technologies de multiplexage optique passif (GPON) où une unique fibre optique est divisée entre plusieurs abonnés a demandé un effort de visualisation important par rapport aux réseaux commutés classiques.</p>
+            <p>La gestion d'un adressage public sur une interface implique qu'aucune adresse de notre plan d'adressage privé interne (RFC 1918) ne doit sortir telle quelle sur le réseau opérateur, sous peine d'être jetée. J'ai dû m'assurer de la bonne configuration conjointe des mécanismes de traduction d'adresses (NAT/PAT) ou de l'encapsulation par tunnel pour isoler totalement nos flux internes.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai appris à différencier les architectures de collecte opérateur et à appréhender les contraintes de partage de médium inhérentes aux technologies grand public.</p>
+            <p>J'ai appris à identifier et paramétrer la frontière réseau entre un client et un opérateur, à manipuler l'adressage de bordure et à appréhender les technologies de raccordement WAN d'entreprise.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Je m'intéresserais de plus près aux configurations de secours (failover) automatiques basées sur des routeurs d'accès munis d'une double SIM 5G pour pallier les coupures de la fibre principale.</p>
+            <p>Sur un réseau opérateur réel, les pannes de liens d'accès de boucle locale sont courantes. Pour garantir la haute disponibilité de l'entreprise, je déploierais une solution de double attachement (Dual-Homing) avec un second routeur de bordure connecté à un opérateur concurrent, en utilisant des métriques de routes flottantes ou du protocole BGP pour automatiser la bascule en cas de coupure.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Dossier_Architecture_FTTH_GPON.pdf</a>
+            <strong>Trace ciblée :</strong> Configuration de l'interface d'accès raccordée au réseau opérateur
+            <pre>
+interface GigabitEthernet0 
+ ip address 10.1.1.1 255.0.0.0</pre>
         </footer>
     </div>
 </body>

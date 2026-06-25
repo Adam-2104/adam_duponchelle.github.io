@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC22.05 - Questionner un cahier des charges</title>
+    <title>AC22.05 - Capacité à questionner un cahier des charges RT</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
@@ -18,8 +18,7 @@
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
         .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 20px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; white-space: pre-wrap; line-height: 1.5; }
     </style>
 </head>
 <body>
@@ -33,36 +32,43 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai audité et analysé de manière critique un document d'expression des besoins clients (CCTP) portant sur une refonte d'infrastructure de télécommunications.</p>
+            <p>Dans le cadre du projet de Radio Logicielle (SAE 301), j'ai analysé et questionné les contraintes d'un cahier des charges exigeant le déploiement d'un système de diffusion multimédia (audio et vidéo) en streaming à l'aide de l'émetteur/récepteur Adalm-Pluto.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Un cahier des charges comporte souvent des zones d'ombre, des exigences techniques contradictoires ou des oublis majeurs (ex: sécurité, évolutivité). Poser les bonnes questions en amont évite les dérives financières en phase projet.</p>
+            <p>Un cahier des charges en Réseaux et Télécommunications exprime souvent un besoin applicatif idéal (par exemple, obtenir un flux multimédia de haute qualité). Cependant, l'ingénieur R&T doit confronter ces exigences aux réalités physiques du support (bande passante disponible sur le canal HF) et aux réglementations strictes de l'ANFR/ARCEP. Questionner le cahier des charges permet d'identifier les incohérences techniques initiales pour proposer des solutions réalistes.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En groupe lors de nos projets de SAÉ, j'ai rédigé un tableau de levée de doutes et un questionnaire technique adressé à la maîtrise d'ouvrage pour clarifier les indicateurs de performance attendus (SLA, Taux de disponibilité de 99.9%).</p>
+            <p>J'ai mis en évidence le conflit entre le débit binaire (bitrate) très élevé d'une source vidéo brute (générée par OBS/VLC) et la bande passante instantanée limitée de notre système de radio logicielle. Pour respecter les capacités spectrales autorisées, j'ai dû justifier et imposer l'usage de codecs de compression hautement efficaces, acceptant de réduire la résolution multimédia pour garantir la faisabilité globale de la transmission.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Il a fallu apprendre à traduire un besoin purement métier formulé par le client ("je veux que ça marche tout le temps") en contraintes techniques réseau chiffrées (redondance de liens BGP, protocoles VRRP).</p>
+            <p>La difficulté principale a été de trouver le juste équilibre lors de la configuration des codecs. Une compression trop forte détruisait complètement la qualité visuelle et sonore à la réception, tandis qu'un débit trop élevé provoquait une saturation immédiate du canal et l'échec de la transmission. J'ai surmonté cela en procédant par tests successifs pour trouver le point de compromis optimal.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai développé mon esprit critique et compris l'importance de la phase d'ingénierie avant-vente et de conseil dans le parcours d'un technicien ou ingénieur.</p>
+            <p>J'ai assimilé le compromis fondamental des télécommunications : la gestion de la ressource spectrale impose des sacrifices sur l'application. J'ai également appris qu'un bon technicien/ingénieur ne doit pas appliquer aveuglément un énoncé, mais doit savoir en questionner la viabilité technique.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>J'intégrerais dès le premier échange une grille d'analyse des risques cyber (matrice d'impact) pour forcer le client à clarifier son niveau d'exigence sur la confidentialité des données.</p>
+            <p>Si je devais refaire cette étude, j'intégrerais en amont des calculs théoriques de capacité de canal (loi de Shannon-Hartley) basés sur le rapport signal sur bruit (SNR) mesuré. Cela permettrait de prédire scientifiquement le débit binaire maximal théorique du canal avant même de choisir et de tester empiriquement les codecs multimédias.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Note_de_Cadrage_Analyse_RT.pdf</a>
+            <strong>Trace ciblée :</strong> Analyse critique du cahier des charges et compromis de transmission (Extrait de la SAE 301)
+            <pre>
+Le Défi Initial : Débit Binaire et Codecs 
+Le premier obstacle a été le débit binaire (bitrate) de la source vidéo. Pour transmettre ce flux, la bande passante HF requise est extrêmement large, ce qui entre en conflit avec les limitations de notre système SDR. 
+
+• Nous avons dû choisir des codecs ultra-compressés (audio et vidéo) et justifier ces choix en fonction des contraintes de bande passante et de débit. 
+
+• Ceci représente le compromis fondamental en télécommunications : sacrifier la qualité multimédia pour respecter les capacités spectrales du canal HF.</pre>
         </footer>
     </div>
 </body>

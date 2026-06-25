@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC23.05 - Accéder à un ensemble de données</title>
+    <title>AC23.05 - Accéder à un ensemble de données depuis une application</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,52 +16,53 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
     <div class="ac-container">
         <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
-
         <header class="ac-header">
             <h1>AC23.05</h1>
             <p>Accéder à un ensemble de données depuis une application et/ou un site web</p>
         </header>
-
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai connecté mon application web à la base de données afin de lire, modifier et afficher dynamiquement les informations sur l'interface utilisateur.</p>
+            <p>Dans le cadre de la SAE 3.02, j'ai programmé des modules d'accès, d'extraction et de requêtage de données capables d'ouvrir et de parser de manière ciblée des jeux d'informations hétérogènes (fichiers structurés Excel, documents PDF et pages Web HTML).</p>
         </section>
-
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Un site web statique ne permet pas d'interaction. Connecter la base de données permet d'avoir des comptes utilisateurs fonctionnels, des catalogues mis à jour ou des tableaux de bord dynamiques.</p>
+            <p>En entreprise, l'information n'est jamais stockée sous un seul format. Une application performante doit savoir interroger un ensemble de données brutes d'origines diverses, extraire le contenu utile en s'affranchissant des balises ou des contraintes de mise en page, puis remonter des indicateurs précis à l'utilisateur (numéro de page, nom d'onglet ou ligne exacte).</p>
         </section>
-
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>En PHP, j'ai utilisé l'extension **PDO (PHP Data Objects)** pour initialiser une connexion sécurisée vers le SGBD. J'ai rédigé des requêtes de sélection complexes à base de jointures (JOIN) pour récupérer les informations associées et les injecter proprement dans des boucles d'affichage HTML.</p>
+            <p>J'ai utilisé la bibliothèque <code>PyPDF2</code> pour parcourir séquentiellement les pages des fichiers PDF et en extraire le texte, la librairie <code>openpyxl</code> pour itérer à travers les feuilles de calcul d'un classeur Excel (<code>ws.iter_rows</code>), et l'outil <code>BeautifulSoup</code> pour supprimer les balises structurelles des fichiers HTML afin d'analyser uniquement le contenu texte réel.</p>
         </section>
-
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Mon application était vulnérable aux injections SQL lorsque je passais directement des variables dans mes requêtes. J'ai dû corriger tout le code en utilisant systématiquement des **requêtes préparées** (fonctions <code>prepare()</code> et <code>execute()</code>) pour neutraliser les entrées utilisateurs.</p>
+            <p>La lecture des fichiers Excel retournait initialement les formules brutes (ex: `=SUM(A1:A10)`) au lieu des résultats textuels calculés. J'ai surmonté ce problème d'accès en forçant le chargement des données en mode valeur seule via le paramètre <code>data_only=True</code> dans la fonction <code>load_workbook</code>.</p>
         </section>
-
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai appris à lier le backend à un modèle de données persistant et j'ai assimilé les règles d'or de la sécurité applicative liée au traitement des bases de données.</p>
+            <p>J'ai appris à manipuler des parseurs de documents avancés, à extraire des chaînes textuelles depuis des objets binaires ou balisés, et à restituer des métadonnées de localisation précises associées aux résultats.</p>
         </section>
-
-        <section class="ac-section">
-            <h2>Ce que je ferais autrement</h2>
-            <p>J'implémenterais un **ORM (Object-Relational Mapping)** comme Eloquent ou Doctrine. Cela permet d'interagir avec la base de données directement sous forme d'objets, rendant le code beaucoup plus propre et indépendant du SGBD utilisé.</p>
-        </section>
-
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Code_Source_Connexion_PDO.php</a>
+            <strong>Trace ciblée :</strong> Implémentation de l'extraction de données depuis des formats PDF et Excel (Extrait SAE 302)
+            <pre>
+# PDF processing
+elif file_ext == "pdf":
+    reader = PdfReader(file_path)
+    for i, page in enumerate(reader.pages, 1):
+        text = page.extract_text()
+        if is_match(text, keywords, query_string, operator):
+            file_matches.append(f"Page {i} matches query.")
+
+# XLSX processing
+elif file_ext == "xlsx":
+    wb = load_workbook(file_path, data_only=True)
+    for sheet in wb.sheetnames:
+        ws = wb[sheet]
+        for r_idx, row in enumerate(ws.iter_rows(values_only=True), 1):...</pre>
         </footer>
     </div>
 </body>

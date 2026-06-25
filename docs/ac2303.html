@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC23.03 - Programmation client/serveur</title>
+    <title>AC23.03 - Utiliser un protocole réseau pour une application client/serveur</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,52 +16,50 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
     <div class="ac-container">
         <a href="competence3.html" class="btn-back">← Retour à la compétence</a>
-
         <header class="ac-header">
             <h1>AC23.03</h1>
             <p>Utiliser un protocole réseau pour programmer une application client/serveur</p>
         </header>
-
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>J'ai développé une application réseau bi-partie capable d'initier des connexions et d'échanger des messages bruts à travers le réseau en utilisant la couche de transport.</p>
+            <p>Dans le cadre de la SAE 3.02, j'ai développé l'architecture réseau d'un serveur applicatif de recherche s'appuyant sur les sockets TCP/IP et gérant des requêtes asynchrones via du multi-threading.</p>
         </section>
-
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Pour comprendre comment les applications comme SSH, HTTP ou les jeux en ligne communiquent réellement avec les cartes réseaux sous-jacentes du système.</p>
+            <p>Pour qu'un service soit accessible à distance par des utilisateurs ou des applications clientes, il doit exploiter un protocole de transport réseau fiable (comme TCP). Implémenter des threads permet au serveur de traiter chaque client en parallèle, évitant qu'une recherche lourde demandée par un utilisateur ne bloque l'accès aux autres.</p>
         </section>
-
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai utilisé l'API **Sockets** de Python. J'ai codé un script serveur écoutant sur un port TCP spécifique, capable de gérer les connexions entrantes, et un script client envoyant des chaînes de caractères encodées en UTF-8 avant de recevoir un accusé de réception.</p>
+            <p>J'ai instancié un socket TCP de niveau transport (<code>socket.AF_INET, socket.SOCK_STREAM</code>), lié le service à une adresse et un port d'écoute (<code>server.bind</code>). Pour assurer la concurrence d'accès, j'ai configuré une boucle infinie qui accepte les connexions entrantes (<code>server.accept</code>) et délègue immédiatement chaque client à un thread d'exécution indépendant (<code>threading.Thread</code>).</p>
         </section>
-
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Au début, mon serveur se bloquait dès qu'un premier client se connectait, interdisant l'accès aux autres. J'ai dû implémenter le multi-threading (module <code>threading</code>) pour que le serveur crée un fil d'exécution dédié à chaque nouveau client.</p>
+            <p>Une des difficultés fréquentes lors des redémarrages successifs du script était l'erreur "Address already in use". J'ai résolu ce blocage réseau en injectant l'option de socket <code>SO_REUSEADDR</code>, permettant de réutiliser immédiatement le port local sans attendre l'expiration du timeout système.</p>
         </section>
-
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris le mécanisme du "Three-way handshake" de TCP, la notion de port d'écoute et la gestion des flux d'octets asynchrones.</p>
+            <p>J'ai maîtrisé les primitives fondamentales de la programmation réseau (sockets, bind, listen, accept) et compris le fonctionnement de la gestion de processus légers (threads) pour les services réseaux concurrents.</p>
         </section>
-
-        <section class="ac-section">
-            <h2>Ce que je ferais autrement</h2>
-            <p>J'ajouterais une couche de sécurité applicative essentielle en encapsulant le flux réseau dans un tunnel chiffré **TLS/SSL** (via le module <code>ssl</code> de Python) pour chiffrer les données échangées.</p>
-        </section>
-
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">tp_sockets_client_serveur.py</a>
+            <strong>Trace ciblée :</strong> Initialisation du socket TCP et répartition multi-threadée des connexions clients (Extrait SAE 302)
+            <pre>
+def start_server():
+    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    server.bind((HOST, PORT))
+    server.listen(MAX_CONNECTIONS)
+    print(f"[START] Server listening on {HOST}:{PORT}")
+
+    while True:
+        client, addr = server.accept()
+        thread = threading.Thread(target=handle_client, args=(client, addr))
+        thread.start()</pre>
         </footer>
     </div>
 </body>

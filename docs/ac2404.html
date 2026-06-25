@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AC24.04Cyber - Choix des outils cryptographiques</title>
+    <title>AC24.04Cyber - Choisir les outils cryptographiques adaptés</title>
     <style>
         body { font-family: 'Segoe UI', sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,9 +16,7 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,36 +30,44 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>Dans la SAE 4.Cyber.01, j'ai sélectionné et mis en œuvre des algorithmes de chiffrement asymétrique pour sécuriser les serveurs web (certificats TLS) et signer cryptographiquement nos zones DNS via DNSSEC.</p>
+            <p>Dans le cadre de la SAE 4.Cyber.01, j'ai sélectionné, dimensionné et mis en œuvre des primitives cryptographiques asymétriques adaptées aux contraintes opérationnelles et de sécurité d'une infrastructure DNSSEC (serveur BIND9).</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Utiliser des protocoles de chiffrement obsolètes (comme MD5, SHA-1 ou des clés RSA trop courtes) compromet l'intégrité du système d'information car ces algorithmes peuvent être cassés par force brute ou collisions. Il est capital de choisir des standards robustes face aux capacités de calcul actuelles.</p>
+            <p>En cryptographie, le choix des algorithmes et de la taille des clés dépend directement du besoin fonctionnel et du compromis requis entre niveau de sécurité d'un côté, et performances de calcul/consommation de bande passante de l'autre. Une clé trop courte met en péril l'infrastructure face aux capacités de calcul modernes, tandis qu'une clé inutilement longue ralentit le traitement des paquets réseau légitimes.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>Pour le serveur HTTPS, j'ai généré une clé privée avec un certificat RSA de 4096 bits. Concernant la spécialisation DNSSEC, nous avons choisi une architecture à deux clés : une clé de signature de zone (ZSK) s'appuyant sur RSA 2048 bits pour les signatures courantes, et une clé de signature de clés (KSK) hautement sécurisée en RSA 4096 bits pour l'ancrage de confiance.</p>
+            <p>J'ai segmenté le besoin cryptographique de la zone DNS en deux niveaux distincts à l'aide de l'utilitaire <code>dnssec-keygen</code> et du protocole <strong>RSASHA256</strong> :</p>
+            <p style="margin-left: 20px; margin-top: 10px;">• Une clé de signature de zone (<strong>ZSK</strong>) dimensionnée à <strong>2048 bits</strong>, dimensionnée pour signer les enregistrements courants de manière agile sans surcharger la taille des paquets DNS (UDP).</p>
+            <p style="margin-left: 20px;">• Une clé de signature de clés (<strong>KSK</strong>) beaucoup plus robuste, configurée à <strong>4096 bits</strong>, dédiée exclusivement à la validation de la clé ZSK et à l'ancrage de la chaîne de confiance vers le niveau supérieur, justifiant un coût de calcul supérieur car sollicitée beaucoup moins fréquemment.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Le calcul des signatures DNSSEC avec des clés asymétriques de 4096 bits augmente significativement la taille des réponses DNS (paquets UDP) et la charge CPU du serveur virtuel. Il a fallu ajuster la configuration du cache de Bind9 pour optimiser les performances.</p>
+            <p>La génération d'une paire de clés asymétriques complexes (notamment le module RSA 4096 bits) nécessite une grande quantité d'entropie (données aléatoires) de la part du système Linux sous-jacent. Sur une machine virtuelle de test, le générateur de nombres aléatoires peut se bloquer par manque d'activité. J'ai dû veiller au maintien des flux systèmes ou m'assurer de la bonne allocation des ressources pour éviter le gel de la commande.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris la distinction entre l'utilisation fonctionnelle d'une ZSK et d'une KSK, et j'ai appris à dimensionner la taille des clés cryptographiques en fonction de la criticité des données et de la durée de vie des secrets.</p>
+            <p>J'ai appris à évaluer les besoins de sécurité d'un système pour y appliquer la juste réponse cryptographique. J'ai compris la différence opérationnelle entre la protection des données transitoires (ZSK) et la protection à long terme de l'identité du serveur (KSK).</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>À la place du chiffrement RSA classique, je préconiserais l'usage de la cryptographie sur les courbes elliptiques (ECDSA). Cela permet d'obtenir un niveau de sécurité équivalent ou supérieur avec des tailles de clés beaucoup plus petites, ce qui réduit la consommation de bande passante.</p>
+            <p>Bien que le chiffrement RSA couplé à SHA-256 soit le standard historique robuste, les recommandations actuelles de l'ANSSI s'orientent de plus en plus vers la cryptographie sur les courbes elliptiques (comme l'algorithme <strong>ECDSA P-256</strong>). Si je devais refaire ce déploiement, je choisirais l'ECDSA : il offre un niveau de sécurité équivalent ou supérieur à une clé RSA 3072/4096 bits tout en générant des signatures beaucoup plus courtes, ce qui réduit considérablement le risque d'attaques par amplification DNS basées sur la taille des réponses UDP.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Configuration_Zones_DNSSEC_Signées.conf</a>
+            <strong>Trace ciblée :</strong> Commandes de génération asymétrique différenciée (ZSK 2048-bit vs KSK 4096-bit)
+            <pre>
+# ZSK (Zone Signing Key) — signe les enregistrements de la zone 
+sudo dnssec-keygen -a RSASHA256 -b 2048 -n ZONE example.local 
+ 
+# KSK (Key Signing Key) — signe les autres clés (chaîne de confiance) 
+sudo dnssec-keygen -f KSK -a RSASHA256 -b 4096 -n ZONE example.local</pre>
         </footer>
     </div>
 </body>

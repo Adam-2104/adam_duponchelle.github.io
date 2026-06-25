@@ -9,7 +9,6 @@
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,9 +16,7 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; line-height: 1.4; }
     </style>
 </head>
 <body>
@@ -33,36 +30,45 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>Tout au long de la réalisation de la SAE 4.Cyber.01, j'ai exploité exclusivement les documentations officielles constructeurs rédigées en anglais pour configurer le pare-feu Cisco ASA et mettre en œuvre l'architecture DNSSEC (RFCs IETF).</p>
+            <p>Dans le cadre de la SAE 3.02 (Moteur de recherche de documents multi-clients), j'ai étudié des documentations techniques anglophones de bibliothèques logicielles (BeautifulSoup, PyPDF2, openpyxl), analysé des architectures de protocoles applicatifs et entièrement rédigé le fichier de documentation de référence (<code>README.md</code>) du projet en anglais technique.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>En informatique et en cybersécurité, l'anglais est la langue de référence. Les traductions françaises des documentations techniques d'équipements spécialisés comme Cisco ou Bind9 sont souvent incomplètes, obsolètes, voire inexistantes. Se référer à la source anglophone garantit l'exactitude des commandes saisies.</p>
+            <p>L'anglais est la langue universelle des réseaux, des télécommunications et du développement logiciel. Les documentations officielles, les RFCs (Request for Comments), les alertes de vulnérabilités mondiales (CVE) et les guides d'installation d'outils de sécurité sont rédigés exclusivement en anglais. Savoir comprendre et produire des écrits techniques dans cette langue est indispensable pour intégrer une équipe d'ingénierie et maintenir des systèmes informatiques à jour.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai étudié les guides d'implémentation de Cisco concernant l'inspection adaptative de paquets (MPF - Modular Policy Framework) et les options de filtrage de flux. J'ai également traduit et extrait les syntaxes exactes de commandes de l'anglais pour écrire nos configurations de pare-feu sans erreur.</p>
+            <p>Pour mener à bien ce projet, j'ai lu et assimilé les spécifications d'utilisation des bibliothèques logicielles nécessaires au parsing de fichiers structurés. J'ai ensuite structuré la documentation de déploiement de notre application sous la forme d'un fichier Markdown rigoureux. J'ai formalisé en anglais les prérequis réseaux propres à notre environnement de l'IUT (exportation des variables d'environnement pour le franchissement du proxy académique <code>cache-etu.univ-artois.fr</code>), décrit la cinématique du protocole client/serveur multi-threadé et schématisé sous forme de tableau (<em>Search Modes Comparison</em>) le comportement logique de l'application (Intersection, Union, Pattern Matching).</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>Certains termes cryptographiques très précis ou acronymes complexes présents dans les spécifications de la RFC DNSSEC ont demandé une lecture attentive et croisée avec nos supports de cours pour en saisir parfaitement le sens fonctionnel.</p>
+            <p>La principale complexité résidait dans le choix des termes techniques exacts pour décrire précisément des fonctionnalités logicielles complexes (comme la distinction sémantique entre l'exclusion de format via des préfixes ou la transmission asynchrone concurrente par sockets TCP), sans faire de contresens ou utiliser de calques de la langue française.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai développé ma capacité à naviguer de manière autonome dans des documentations d'ingénierie d'éditeurs anglophones et renforcé mon vocabulaire technique professionnel (cyber et réseau).</p>
+            <p>J'ai renforcé ma maîtrise du vocabulaire technique informatique et réseau (<em>concurrent processing, multi-threaded architecture, location metadata, parsing</em>) et j'ai appris à concevoir un guide de déploiement complet, clair et directement exploitable par une équipe technique internationale.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>Je prendrais l'habitude de consigner mes notes techniques de veille directement en anglais (vocabulaire, syntaxes clés) afin de constituer un glossaire de référence personnel plus rapide à réutiliser.</p>
+            <p>Pour enrichir cette documentation technique, j'ajouterais une section en anglais dédiée aux aspects sécurité de l'application (<em>Security Considerations</em>) afin de formaliser la manière dont les entrées utilisateurs sont nettoyées (méthode <code>clean_query</code>) pour prévenir les attaques de type injection ou déni de service (DoS) sur le socket d'écoute par saturation de threads.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Cisco_ASA_Documentation_Notes.pdf</a>
+            <strong>Trace ciblée :</strong> Extrait du fichier README.md rédigé pour la SAE 3.02
+            <pre>
+# SAE 3.02 - Multi-Client Document Search Engine
+## Technical Features
+- **Concurrent Processing**: Multi-threaded TCP server architecture allows multiple clients to perform searches simultaneously.
+
+## Proxy Configuration (Mandatory at IUT Béthune)
+When working within the IUT de Béthune network, you must configure the university proxy to allow external connections for library installations:
+  export http_proxy=http://cache-etu.univ-artois.fr:3128
+  export https_proxy=http://cache-etu.univ-artois.fr:3128</pre>
         </footer>
     </div>
 </body>

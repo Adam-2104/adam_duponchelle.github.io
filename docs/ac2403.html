@@ -9,7 +9,6 @@
         .ac-container { max-width: 800px; width: 100%; background-color: #1e1e1e; border: 1px solid #2d2d2d; border-radius: 8px; padding: 35px; box-sizing: border-box; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); }
         .btn-back { display: inline-flex; align-items: center; background-color: #4ade80; color: #121212; font-weight: 600; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-size: 0.95rem; margin-bottom: 20px; transition: background-color 0.2s, transform 0.1s; }
         .btn-back:hover { background-color: #22c55e; }
-        .btn-back:active { transform: scale(0.98); }
         .ac-header { border-bottom: 2px solid #333; padding-bottom: 15px; margin-bottom: 30px; }
         .ac-header h1 { font-size: 2.2rem; color: #4ade80; margin: 0 0 10px 0; }
         .ac-header p { font-size: 1.15rem; color: #b3b3b3; margin: 0; line-height: 1.5; }
@@ -17,9 +16,7 @@
         .ac-section h2 { font-size: 1.25rem; color: #4ade80; border-bottom: 1px solid #3a3a3a; padding-bottom: 6px; margin-top: 0; margin-bottom: 14px; }
         .ac-section p { margin: 0; line-height: 1.6; color: #cccccc; }
         .ac-footer { border-top: 1px solid #333; padding-top: 20px; margin-top: 40px; font-size: 0.95rem; color: #a0a0a0; }
-        .ac-footer strong { color: #ffffff; }
-        .ac-footer a { color: #38bdf8; text-decoration: none; }
-        .ac-footer a:hover { text-decoration: underline; }
+        pre { background-color: #141414; padding: 15px; border-radius: 6px; border: 1px solid #2d2d2d; color: #a7f3d0; font-family: 'Consolas', monospace; overflow-x: auto; margin: 10px 0 0 0; }
     </style>
 </head>
 <body>
@@ -33,36 +30,39 @@
 
         <section class="ac-section">
             <h2>Ce que j’ai fait</h2>
-            <p>Durant la SAE 4.Cyber.01, j'ai configuré et sécurisé les services hébergés dans la DMZ locale, spécifiquement le serveur Web Apache en appliquant une redirection stricte du trafic HTTP vers HTTPS et en durcissant la configuration DNS.</p>
+            <p>Dans le cadre de notre projet d'infrastructure sécurisée (SAE 4.Cyber.01), j'ai analysé et participé à l'implémentation de la sécurisation des protocoles applicatifs du réseau, et plus spécifiquement le passage obligatoire du protocole non sécurisé HTTP vers le protocole chiffré HTTPS sur notre serveur Web en DMZ.</p>
         </section>
 
         <section class="ac-section">
             <h2>Pourquoi je l’ai fait</h2>
-            <p>Les services accessibles publiquement (Web, DNS) sont les cibles prioritaires des attaquants. Faire transiter des données en HTTP clair expose les utilisateurs à des attaques de type Man-In-The-Middle (MITM) et au vol d'identifiants.</p>
+            <p>Par défaut, le protocole HTTP transmet l'intégralité des données (y compris les formulaires, identifiants ou jetons de session) en clair sur le réseau. N'importe quel attaquant effectuant une écoute passive (sniffing) pourrait intercepter ces informations confidentielles. Forcer l'utilisation de TLS via HTTPS garantit l'authentification du serveur, la confidentialité des échanges et l'intégrité des données transmises.</p>
         </section>
 
         <section class="ac-section">
             <h2>Comment je l’ai fait</h2>
-            <p>J'ai implémenté des règles de redirection permanente (statut 301) dans le serveur virtuel Apache et j'ai configuré des en-têtes de sécurité web essentiels tels que le HSTS (HTTP Strict Transport Security), X-Frame-Options et X-XSS-Protection afin de prémunir le serveur contre le clickjacking et les failles de scripts inter-sites.</p>
+            <p>Nous avons configuré le serveur HTTP Apache2 en éditant son fichier de configuration de l'hôte virtuel (VirtualHost) sur le port 80. À l'aide de la directive <code>Redirect permanent /</code>, nous avons mis en place une redirection de code d'état HTTP 301, indiquant aux navigateurs clients que la ressource a définitivement déménagé vers l'adresse chiffrée correspondante (<code>https://...</code>), forçant ainsi l'établissement d'une session TLS sécurisée sur le port 443.</p>
         </section>
 
         <section class="ac-section">
             <h2>Mes difficultés</h2>
-            <p>L'activation du HSTS a temporairement bloqué les accès de test car nos certificats de sécurité auto-signés n'étaient pas reconnus par les navigateurs des machines clientes, obligeant à importer l'autorité de certification locale sur chaque poste.</p>
+            <p>La principale difficulté résidait dans le risque de créer des boucles de redirection infinies (<em>Too many redirects</em>) si la directive de redirection était mal positionnée ou mal interprétée par le serveur. Il a fallu veiller à bien isoler la directive de redirection au sein du bloc d'écoute HTTP standard (port 80) tout en configurant indépendamment le bloc sécurisé HTTPS (port 443) accueillant le certificat SSL.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que j’en ai appris</h2>
-            <p>J'ai compris comment durcir un service web Linux au-delà de la simple activation du SSL/TLS et j'ai mesuré l'impact des politiques d'en-têtes HTTP sur la protection globale d'une application.</p>
+            <p>J'ai compris comment durcir les accès à un service applicatif public exposé sur Internet ou en DMZ. J'ai également assimilé la mécanique des réponses HTTP (codes 301) et l'importance du cycle de vie des requêtes client/serveur dans l'application des politiques de sécurité.</p>
         </section>
 
         <section class="ac-section">
             <h2>Ce que je ferais autrement</h2>
-            <p>J'utiliserais un reverse proxy dédié (comme Nginx ou HAProxy) placé devant le serveur d'application afin de centraliser le déchiffrement SSL/TLS et la gestion des politiques de sécurité.</p>
+            <p>Bien que la redirection 301 soit efficace, le premier échange initial entre le client et le serveur s'effectue toujours en HTTP clair, ce qui laisse une mince fenêtre d'opportunité pour une attaque de type <em>MInM (Man-in-the-Middle) / SSL Strip</em>. Pour y remédier en production, j'injecterais l'en-tête de sécurité <strong>HSTS (HTTP Strict Transport Security)</strong> dans les réponses d'Apache, forçant le navigateur du client à communiquer exclusivement en HTTPS avant même d'interroger le serveur.</p>
         </section>
 
         <footer class="ac-footer">
-            📂 <strong>Preuve :</strong> <a href="#" target="_blank">Script_Migration_HTTPS_Apache.sh</a>
+            <strong>Trace ciblée :</strong> Directive de redirection permanente configurée sur le serveur Web (SAE 4.Cyber.01)
+            <pre>
+# Redirection HTTP -> HTTPS 
+Redirect permanent / https://192.31.25.16/</pre>
         </footer>
     </div>
 </body>
